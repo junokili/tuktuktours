@@ -84,14 +84,14 @@
                     </li>
                     <li>
                         <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger' href='#' data-target='dropdown1'>All Tours</a>
+                        <a class="dropdown-trigger" href="#" data-target="dropdown1">All Tours</a>
 
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">Cambodia</a></li>
-    <li><a href="#!">Laos</a></li>
-    <li><a href="#!">Vietnam</a></li>
-  </ul>
+                        <!-- Dropdown Structure -->
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="#!">Cambodia</a></li>
+                            <li><a href="#!">Laos</a></li>
+                            <li><a href="#!">Vietnam</a></li>
+                        </ul>
                     </li>
 
                     {% if request.user.is_authenticated %}
@@ -152,18 +152,18 @@
     <!-- div for flash messages -->
     {% if messages %}
     {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
+    {% with message.level as level %}
+    {% if level == 40 %}
+    {% include 'includes/toasts/toast_error.html' %}
+    {% elif level == 30 %}
+    {% include 'includes/toasts/toast_warning.html' %}
+    {% elif level == 25 %}
+    {% include 'includes/toasts/toast_success.html' %}
+    {% else %}
+    {% include 'includes/toasts/toast_info.html' %}
+    {% endif %}
+    {% endwith %}
+    {% endfor %}
     <div class="row flashes">
         <h4 class="light-green accent-2 center-align white-text">
         </h4>
