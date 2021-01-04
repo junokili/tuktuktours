@@ -1,23 +1,18 @@
 <li>
-    <!-- Dropdown Trigger -->
-    <a class="dropdown-trigger" href="#" data-target="dropdown-tours">All Tours</a>
-    <!-- Dropdown Structure -->
-    <ul id="dropdown-tours" class="dropdown-content">
-        <li><a href="#!">By Country</a></li>
-        <li><a href="#!">By Category</a></li>
-        <!-- <li class="divider" tabindex="-1"></li> -->
-        <li><a href="#!">three</a></li>
-    </ul>
+    <a href="{% url 'home' %}">Home</a>
 </li>
 <li>
-    <a href="#">Contact Us</a>
+    <a href="#">All Tours</a>
+    <ul class="sublist">
+        <li><a href="#!">Cambodia</a></li>
+        <li><a href="#!">Laos</a></li>
+        <li><a href="#!">Vietnam</a></li>
+    </ul>
 </li>
 {% if request.user.is_authenticated %}
 <li>
-    <!-- Dropdown Trigger -->
-    <a class="dropdown-trigger" href="#" data-target="dropdown-user">My Account</a>
-    <!-- Dropdown Structure -->
-    <ul id="dropdown-user" class="dropdown-content">
+    <a href="#">My Account</a>
+    <ul class="sublist">
         <li><a href="#!">My Profile</a></li>
         {% if request.user.is_superuser %}
         <li><a href="#!">Manage Tours</a></li>
@@ -36,7 +31,7 @@
 </li>
 {% endif %}
 <li>
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}" href="#">
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="#">
         <i class="fas fa-shopping-basket fa-lg"></i>
         <span class="hp-total">
             {% if grand_total %}

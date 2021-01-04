@@ -60,7 +60,7 @@
 
 <body>
     <div class="spacer"></div>
-    <header class="navbar-fixed">
+    <header class=".fixed-top-desktop-only">
         <!-- full navbar -->
         <nav class="nav-extended black">
             <div class="nav-wrapper">
@@ -70,7 +70,7 @@
                     <li>
                         <div class="row center-align">
                             <form method="GET" action="#">
-                                <div class="input-field col s8 m8 search">
+                                <div class="input-field col s8 m8">
                                     <input type="text" id="query" name="query" minlength="3" class="validate" />
                                     <label for="query">Find a Tour</label>
                                 </div>
@@ -85,7 +85,6 @@
                     <li>
                         <!-- Dropdown Trigger -->
                         <a class="dropdown-trigger" href="#" data-target="dropdown1">All Tours</a>
-
                         <!-- Dropdown Structure -->
                         <ul id="dropdown1" class="dropdown-content">
                             <li><a href="#!">Cambodia</a></li>
@@ -93,7 +92,6 @@
                             <li><a href="#!">Vietnam</a></li>
                         </ul>
                     </li>
-
                     {% if request.user.is_authenticated %}
                     <li>
                         <!-- Dropdown Trigger -->
@@ -139,15 +137,7 @@
         <ul class="sidenav" id="mobile-demo">
             {% include 'includes/mobile-header.html' %}
         </ul>
-        <!--        
-        <div id="delivery-banner" class="row text-center">
-            <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                
-            </div>            
-        </div>
--->
     </header>
-
 
     <!-- div for flash messages -->
     {% if messages %}
@@ -180,5 +170,4 @@
     {% endblock %}
 
 </body>
-
 </html>

@@ -33,9 +33,8 @@ i:focus {
     margin-top: -1rem;
     font-size: 1rem;
 }
-
-.short-bottom {
-    margin-bottom: -8px;
+.sublist {
+    margin-left: 2rem;
 }
 
 /* modified materialize css */
@@ -46,9 +45,6 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
 .dropdown-content li a {color: #222; }
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer;}
 
-.btn {
-    z-index: 10;
-}
 .hp-total {
     margin-left: 1rem;
 }
