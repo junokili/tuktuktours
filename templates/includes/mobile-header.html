@@ -1,0 +1,49 @@
+<li>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown-tours">All Tours</a>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown-tours" class="dropdown-content">
+        <li><a href="#!">By Country</a></li>
+        <li><a href="#!">By Category</a></li>
+        <!-- <li class="divider" tabindex="-1"></li> -->
+        <li><a href="#!">three</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#">Contact Us</a>
+</li>
+{% if request.user.is_authenticated %}
+<li>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown-user">My Account</a>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown-user" class="dropdown-content">
+        <li><a href="#!">My Profile</a></li>
+        {% if request.user.is_superuser %}
+        <li><a href="#!">Manage Tours</a></li>
+        {% endif %}
+    </ul>
+</li>
+<li>
+    <a href="{% url 'account_logout' %}">Log Out</a>
+</li>
+{% else %}
+<li>
+    <a href="{% url 'account_login' %}">Log In</a>
+</li>
+<li>
+    <a href="{% url 'account_signup' %}">Sign Up</a>
+</li>
+{% endif %}
+<li>
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}" href="#">
+        <i class="fas fa-shopping-basket fa-lg"></i>
+        <span class="hp-total">
+            {% if grand_total %}
+            ${{ grand_total|floatformat:2 }}
+            {% else %}
+            $0.00
+            {% endif %}
+        </span>
+    </a>
+</li>

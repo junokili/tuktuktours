@@ -2,7 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     {% block meta %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,60 +15,170 @@
     {% endblock %}
 
     {% block corecss %}
-    <link rel="stylesheet" type="text/css" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <link type="text/css" rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
-    
+
     {% block corejs %}
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclustererplus@4.0.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7q25_CcuaXX7I2tSXB8VId8XLzcLrB98&callback=initMap" async defer ></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script
+        src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclustererplus@4.0.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7q25_CcuaXX7I2tSXB8VId8XLzcLrB98&callback=initMap"
+        async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script>
-      (function () {
-        emailjs.init("user_O4p1uzoCxjXWmUYNVNa1Y");
-      })();
+        (function () {
+            emailjs.init("user_O4p1uzoCxjXWmUYNVNa1Y");
+        })();
     </script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
     <title>Tuk Tuk Tours {% block extra_title %}{% endblock %}</title>
-  </head>
-  <body>
-    <header>
+</head>
+
+<body>
+    <div class="spacer"></div>
+    <header class="navbar-fixed">
+        <!-- full navbar -->
+        <nav class="nav-extended black">
+            <div class="nav-wrapper">
+                <a href="{% url 'home' %}" class="brand-logo" id="home-logo"><img src="/media/home-logo-white.png"></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <div class="row center-align">
+                            <form method="GET" action="#">
+                                <div class="input-field col s8 m8 search">
+                                    <input type="text" id="query" name="query" minlength="3" class="validate" />
+                                    <label for="query">Find a Tour</label>
+                                </div>
+                                <div class="col s4 m4">
+                                    <button class="btn tuktuk-blue" type="submit">
+                                        <i class="fas fa-search prefix"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Dropdown Trigger -->
+  <a class='dropdown-trigger' href='#' data-target='dropdown1'>All Tours</a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">Cambodia</a></li>
+    <li><a href="#!">Laos</a></li>
+    <li><a href="#!">Vietnam</a></li>
+  </ul>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <!-- Dropdown Trigger -->
+                        <a class="dropdown-trigger" href="#" data-target="dropdown2">My Account</a>
+                        <!-- Dropdown Structure -->
+                        <ul id="dropdown2" class="dropdown-content">
+                            <li><a href="#!">My Profile</a></li>
+                            {% if request.user.is_superuser %}
+                            <li><a href="#!">Manage Tours</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_logout' %}"
+                            class="waves-effect waves-light text-shadow tuktuk-blue btn">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'account_login' %}"
+                            class="waves-effect waves-light text-shadow tuktuk-blue btn">Log In</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_signup' %}">Sign Up</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}"
+                            href="#">
+                            <i class="fas fa-shopping-basket fa-lg"></i>
+                            <span class="hp-total">
+                                {% if grand_total %}
+                                ${{ grand_total|floatformat:2 }}
+                                {% else %}
+                                $0.00
+                                {% endif %}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- hamburger navbar -->
+        <ul class="sidenav" id="mobile-demo">
+            {% include 'includes/mobile-header.html' %}
+        </ul>
+        <!--        
+        <div id="delivery-banner" class="row text-center">
+            <div class="col bg-black text-white">
+                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>                
+            </div>            
+        </div>
+-->
     </header>
 
+
     <!-- div for flash messages -->
-    {% if messages %} 
-      {% for message in messages %}
-      <div class="row flashes">
+    {% if messages %}
+    {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/toast_info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+    <div class="row flashes">
         <h4 class="light-green accent-2 center-align white-text">
-          {{ message }}
         </h4>
-      </div>
-      {% endfor %} 
-      {% endif %} 
+    </div>
+    {% endif %}
 
-      {% block page_header %}
-      {% endblock %}
+    {% block page_header %}
+    {% endblock %}
 
-      {% block content %}
-      {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-      {% block postloadjs %}
-      {% endblock %}
+    {% block postloadjs %}
+    {% endblock %}
 
-  </body>
+</body>
+
 </html>
