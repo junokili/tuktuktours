@@ -8,6 +8,12 @@ body {
     color: #555;
     font-family: 'Caveat', cursive;
 }
+.tuktuk-blue {
+    background: #032ea1;
+}
+.uppercase {
+    text-transform: uppercase;
+}
 /* navbar - header */
 .spacer {
     height: 1rem;
@@ -15,9 +21,7 @@ body {
 nav.nav-extended {
     height: 4.8rem;
 }
-.tuktuk-blue {
-    background: #032ea1;
-}
+
 #home-logo img {
     max-height: 5rem;
 }
@@ -53,27 +57,25 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
     background: url('/media/home-tuktuks.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 2rem;
+    padding: 0;
+    min-height: 30rem;
 }
 
 .about-us {
-    background-color: #000;
     color: white;
-    min-height: 360px;
-    margin: 30px;
-    border-radius: 1rem;
+    margin-top: 3rem;
 }
 
 #about-us-info {
-    padding: 30px;
-    margin-left: 30px;
-    margin-right: 0px;
+    background-color: #000;
+    padding: 3rem;
+    margin-left: 4rem;
 }
 
 .map-icon {
     height: 3rem;
     width: 3rem;
-    margin-left: 20px; 
+    margin-left: 2rem; 
 }
 
 .main-logo-link {
@@ -83,10 +85,10 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
 .see-tours-button {
     background: #032ea1;
     color: white;
-    min-width: 260px;
+    min-width: 20rem;
+    min-height: 5rem;
     margin: 2rem;
-    margin-left: 7rem;
-    padding-top: 1.2rem;
+    padding-top: 0.5rem;
 }
 
 .see-tours-button:hover,
@@ -97,10 +99,6 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
 .btn:focus {
     background: white;
     color: #032ea1;
-}
-
-.text-black {
-    color: #000 !important;
 }
 
 .border-black {
@@ -211,7 +209,60 @@ input[name='q']::placeholder {
     overflow-x: hidden;
     overflow-y: auto;
 }
-
+/* footer */
+.fixed {
+    min-height: 12rem;
+}
+.page-footer {
+    background-color: #000;
+    margin-top: 3rem;
+}
+.right-border {
+    border-right: 2px solid white;
+}
+#mini-map {
+    max-height: 8rem;
+}
+.footer .fa {
+    margin-left: 2rem;
+    margin-right: 0.4rem;
+    font-size: 28px;
+    color: #fff;
+}
+.footer .fa:active,
+.footer .fa:focus,
+.footer .fa:hover {
+    color: #032ea1;
+}
+.info-text-top {
+    margin-top: 20px;
+    font-size: 22px;
+}
+.info-text {
+    margin-top: -10px;
+    font-size: 22px;
+}
+.list-inline {
+    margin-top: 50px;
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+.list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+ul.social > li > a > i {
+    margin: 15px;
+    font-size: 52px;
+    color: #fff;
+}
+ul.social > li > a > i:hover,
+ul.social > li > a > i:active,
+ul.social > li > a > i:focus {
+    color: #032ea1;
+}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

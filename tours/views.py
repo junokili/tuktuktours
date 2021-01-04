@@ -1,3 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Tour
+
+
+def all_tours(request):
+
+    tours = Tour.objects.all()
+
+    context = {
+        'tours': tours,
+    }
+
+    return render(request, 'tours/tours.html', context)
