@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.linkedin_oauth2',
     # 'allauth.socialaccount.providers.twitter',
     'home',
+    'tours',
 ]
 
 # Provider specific settings

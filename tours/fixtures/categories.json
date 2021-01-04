@@ -1,0 +1,98 @@
+﻿[
+  {
+    "pk": 1,
+    "model": "tours.category",
+    "fields": {
+      "name": "cooking",
+      "friendly_name": "Cooking Class"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "tours.category",
+    "fields": {
+      "name": "cultural",
+      "friendly_name": "Cultural Tour"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "tours.category",
+    "fields": {
+      "name": "historical",
+      "friendly_name": "Historical Tour"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "tours.category",
+    "fields": {
+      "name": "lakes_hills",
+      "friendly_name": "Lakes & Hills Tours"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "tours.category",
+    "fields": {
+      "name": "market",
+      "friendly_name": "Market Tours"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "tours.category",
+    "fields": {
+      "name": "spice",
+      "friendly_name": "Spice Garden Tour"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "tours.category",
+    "fields": {
+      "name": "street_art",
+      "friendly_name": "Street Art Tours"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "tours.category",
+    "fields": {
+      "name": "street_food",
+      "friendly_name": "Street Food Tours"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "tours.category",
+    "fields": {
+      "name": "sunrise",
+      "friendly_name": "Sunrise Tours"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "tours.category",
+    "fields": {
+      "name": "tea_plant",
+      "friendly_name": "Tea Plantation Tours"
+    }
+  },
+  {
+    "pk": 11,
+    "models": "tours.categories",
+    "fields": {
+      "name": "temples",
+      "friendly_name": "Temple Tours"
+    }
+  },
+  {
+    "pk": 12,
+    "models": "tours.categories",
+    "fields": {
+      "name": "villages",
+      "friendly_name": "Village Tours"
+    }
+  }
+]

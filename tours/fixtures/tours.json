@@ -1,0 +1,32 @@
+﻿[
+  {
+    "pk": 1,
+    "model": "tours.tour",
+    "fields": {
+      "sku": "tt00010",
+      "name": "Prambanan Temple Tour",
+      "description": "A half day outing to the famous Prambanan Temple complex",
+      "price": 50,
+      "category": 11,
+      "rating": 4.6,
+      "includes": "Tuk tuk and driver, mineral water, temple entrance fees",
+      "image_url": "",
+      "image": "Prambanan.jpg"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "tours.tour",
+    "fields": {
+      "sku": "tt00011",
+      "name": "Shadow Puppet Tour",
+      "description": "An evening tour to vidit the shadow puppet museum and watch a traditional, live shadow puppet show",
+      "price": 60,
+      "category": 2,
+      "rating": 4.2,
+      "includes": "Tuk tuk and driver, mineral water, museum and show entrance fees",
+      "image_url": "",
+      "image": "shadow-puppets.jpg"
+    }
+  }
+]
