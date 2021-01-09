@@ -3,26 +3,17 @@
 
 {% endblock %}
 {% block content %}
-<ul class="collapsible">
-  <li>
-    <div class="collapsible-header cyan accent-3 center-align"
-      id="all-events-flash">
-      <h4 class="cyan accent-3 white-text">
-        All Tours <i class="fa fa-caret-down" aria-hidden="true"></i>
-      </h4>
-    </div>
-    <div class="collapsible-body">
       <div class="row">
-        <ul class="collapsible">
           {% for tour in tours %}
               <div class="col s12 m4 l3">
                 <div class="card">
                     <div class="card-image">
                     {% if tour.image %}
-                    <a href="#"></a>
+                    <a href="{% url 'indv_tour' tour.id %}">
                     <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
                     {% else %} 
                     <img src="/media/noimage.png" alt="{{ tour.name }}" />
+                    </a>
                     {% endif %}
                     </div>
                     <div class="tour-name">{{ tour.category.friendly_name }}</div>
@@ -56,9 +47,5 @@
                 </div>
             </div>
           {% endfor %}
-        </ul>
       </div>
-    </div>
-  </li>
-</ul>
 {% endblock %}
