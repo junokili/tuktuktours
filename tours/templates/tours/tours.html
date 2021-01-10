@@ -3,49 +3,75 @@
 
 {% endblock %}
 {% block content %}
-      <div class="row">
-          {% for tour in tours %}
-              <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                    {% if tour.image %}
-                    <a href="{% url 'indv_tour' tour.id %}">
+<div class="row">
+    <div class="col s12 m4">
+        <!-- Dropdown Trigger -->
+        <ul>
+            <li><a class="dropdown-trigger btn" data-target="dropdown">
+                    Sort Tours</a>
+            </li>
+        </ul>
+        <!-- Dropdown Structure -->
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="{% url 'tours' %}">All Tours</a></li>
+            <li><a href="{% url 'tours' %}?sort=price&direction=asc">By Price</a></li>
+            <li><a href="{% url 'tours' %}?sort=rating&direction=desc">By Rating</a></li>
+            <li><a href="{% url 'tours' %}?sort=category&direction=asc">By Category</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    {% for tour in tours %}
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-image">
+                {% if tour.image %}
+                <a href="{% url 'indv_tour' tour.id %}">
                     <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
-                    {% else %} 
+                    {% else %}
                     <img src="/media/noimage.png" alt="{{ tour.name }}" />
-                    </a>
-                    {% endif %}
-                    </div>
-                    <div class="tour-name">{{ tour.category.friendly_name }}</div>
-                    <div class="card-content valign-wrapper center-align">
-                        <p class="tour-description">{{ tour.description }}</p>
-                    </div>
-                    <div class="card-content card-link-div center-align valign-wrapper">
-                        <span class="card-title activator">{{ tour.name }}
-                        <i class="fas fa-plus prefix white-text tooltipped" data-position="right" data-tooltip="Get Details">
-                        </i>
-                        </span>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title card-link-div center-align">{{ tour.name }}
-                <i class="fas fa-times prefix white-text tooltipped right" id="event-deets-close" data-position="right" data-tooltip="Close Details">
-                </i>
-                        </span>
-                        <p>
-                        <i class="fas fa-list-ul prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right" data-tooltip="Event Category">
-                        </i>{{ tour.category.friendly_name }}<br />
-                        <i class="fas fa-edit prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right" data-tooltip="Event Description">
-                        </i>{{ tour.description }}<br />
-                        <i class="fas fa-map prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right" data-tooltip="Event Location">
-                        </i>{{ tour.includes }}<br />
-                        <i class="fas fa-map-marker-alt prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right" data-tooltip="Meet Point">
-                        </i>{{ tour.rating }}<br />
-                        <i class="fas fa-user prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right" data-tooltip="Created by user">
-                        </i>{{ tour.price }}<br />
-                        </p>
-                    </div>
-                </div>
+                </a>
+                {% endif %}
             </div>
-          {% endfor %}
-      </div>
+            <div class="tour-name">{{ tour.category.friendly_name }}</div>
+            <div class="card-content valign-wrapper center-align">
+                <p class="tour-description">{{ tour.description }}</p>
+            </div>
+            <div class="card-content card-link-div center-align valign-wrapper">
+                <span class="card-title activator">{{ tour.name }}
+                    <i class="fas fa-plus prefix white-text tooltipped" data-position="right"
+                        data-tooltip="Get Details">
+                    </i>
+                </span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title card-link-div center-align">{{ tour.name }}
+                    <i class="fas fa-times prefix white-text tooltipped right" id="event-deets-close"
+                        data-position="right" data-tooltip="Close Details">
+                    </i>
+                </span>
+                <p>
+                    <i class="fas fa-list-ul prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
+                        data-tooltip="Event Category">
+                    </i>{{ tour.category.friendly_name }}<br />
+                    <i class="fas fa-edit prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
+                        data-tooltip="Event Description">
+                    </i>{{ tour.description }}<br />
+                    <i class="fas fa-map prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
+                        data-tooltip="Event Location">
+                    </i>{{ tour.includes }}<br />
+                    <i class="fas fa-map-marker-alt prefix cyan-text text-accent-3 tooltipped sgl-event"
+                        data-position="right" data-tooltip="Meet Point">
+                    </i>{{ tour.rating }}<br />
+                    <i class="fas fa-user prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
+                        data-tooltip="Created by user">
+                    </i>{{ tour.price }}<br />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

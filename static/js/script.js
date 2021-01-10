@@ -3,7 +3,7 @@
 // materialize script for functionality of built in components
 $(document).ready(function(){
     $('.sidenav').sidenav({edge: "right"});
-    $('.dropdown-trigger').dropdown();
+    $('.dropdown-trigger').dropdown({ constrainWidth: false });
     $('.collapsible').collapsible();
     $('.tooltipped').tooltip();
     $('select').formSelect();

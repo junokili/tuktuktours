@@ -46,7 +46,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]) { background-color:
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem; width: 17.25rem;}
 input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222}
 .input-field.col label { color: #222; left: 1.25rem; top: -0.5rem;}
-.dropdown-content li a {color: #222; }
+.dropdown-content li a {color: #222; margin: 0rem 1rem;}
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer;}
 
 .hp-total {
@@ -100,6 +100,70 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
     background: white;
     color: #032ea1;
 }
+/* all tours display */
+.card-content {
+    color: #000;
+}
+/* footer */
+.fixed {
+    min-height: 12rem;
+}
+.page-footer a {
+    color: white;
+}
+.page-footer {
+    background-color: #000;
+    margin-top: 3rem;
+}
+.right-border {
+    border-right: 2px solid white;
+}
+#mini-map {
+    max-height: 8rem;
+}
+.footer .fa {
+    margin-left: 2rem;
+    margin-right: 0.4rem;
+    font-size: 28px;
+    color: #fff;
+}
+.footer .fa:active,
+.footer .fa:focus,
+.footer .fa:hover {
+    color: #032ea1;
+}
+.info-text-top {
+    margin-top: 20px;
+    font-size: 22px;
+}
+.info-text {
+    margin-top: -10px;
+    font-size: 22px;
+}
+.list-inline {
+    margin-top: 50px;
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+.list-inline > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+ul.social > li > a > i {
+    margin: 15px;
+    font-size: 52px;
+    color: #fff;
+}
+ul.social > li > a > i:hover,
+ul.social > li > a > i:active,
+ul.social > li > a > i:focus {
+    color: #032ea1;
+}
+
+
+
 
 .border-black {
     border: 1px solid black !important;
@@ -209,60 +273,7 @@ input[name='q']::placeholder {
     overflow-x: hidden;
     overflow-y: auto;
 }
-/* footer */
-.fixed {
-    min-height: 12rem;
-}
-.page-footer {
-    background-color: #000;
-    margin-top: 3rem;
-}
-.right-border {
-    border-right: 2px solid white;
-}
-#mini-map {
-    max-height: 8rem;
-}
-.footer .fa {
-    margin-left: 2rem;
-    margin-right: 0.4rem;
-    font-size: 28px;
-    color: #fff;
-}
-.footer .fa:active,
-.footer .fa:focus,
-.footer .fa:hover {
-    color: #032ea1;
-}
-.info-text-top {
-    margin-top: 20px;
-    font-size: 22px;
-}
-.info-text {
-    margin-top: -10px;
-    font-size: 22px;
-}
-.list-inline {
-    margin-top: 50px;
-    padding-left: 0;
-    margin-left: -5px;
-    list-style: none;
-}
-.list-inline > li {
-    display: inline-block;
-    padding-right: 5px;
-    padding-left: 5px;
-}
-ul.social > li > a > i {
-    margin: 15px;
-    font-size: 52px;
-    color: #fff;
-}
-ul.social > li > a > i:hover,
-ul.social > li > a > i:active,
-ul.social > li > a > i:focus {
-    color: #032ea1;
-}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
