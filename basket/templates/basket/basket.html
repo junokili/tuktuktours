@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static %} {% load basket_tools %}
 {% block page_header %}
 <div class="row">
     <div class="col s12 valign-wrapper subheading">
@@ -7,58 +7,112 @@
 </div>
 {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col">
-        {% if basket_not_empty %}
-        {{ basket_not_empty }}
-        <table class="striped">
-            <thead>
-                <tr>
-                    <th>Tour</th>
-                    <th>No. of People</th>
-                    <th>Price Per Person</th>
-                    <th>Price Per Tour</th>
-                </tr>
-            </thead>
+<div class="container">
+    {% if basket_not_empty %}
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Tour</th>
+                <th>No. of People</th>
+                <th>Price Per Person</th>
+                <th>Price Per Tour</th>
+            </tr>
+        </thead>
 
-            <tbody>
-                {% for tour in basket_not_empty %}
-                <tr>
-                    {% if tour.tour.image %}
-                    <td><img src="{{ tour.tour.image.url }}" alt="{{ tour.tour.name }}"
-                            class="circle responsive-img basket-img"></td>
-                    {% else %}
-                    <td><img src="/media/noimage.png" alt="{{ tour.tour.name }}" class="circle responsive-img"></td>
-                    {% endif %}
-                    <td>{{ tour.tour.name }}</td>
-                    <td>{{ tour.quantity }}</td>
-                    <td>{{ tour.tour.price }}</td>
-                    <td>{{ tour.total }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'tours' %}" class="btn">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-            <span class="text-uppercase">Add More Tours to your Basket!</span>
-        </a>
-        <a href="~" class="btn">
-            <span class="icon">
-                <i class="fas fa-lock"></i>
-            </span>
-            <span class="text-uppercase">Secure Checkout</span>
-        </a>
-        {% else %}
-        <p class="lead mb-5">Your shopping basket is empty.</p>
-        <a href="{% url 'tours' %}" class="btt-link">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-            <span class="text-uppercase">Back to All Tours</span>
-        </a>
-        {% endif %}
-    </div>
+        <tbody>
+            {% for tour in basket_not_empty %}
+            <tr>
+                {% if tour.tour.image %}
+                <td><img src="{{ tour.tour.image.url }}" alt="{{ tour.tour.name }}"
+                        class="circle responsive-img basket-img"></td>
+                {% else %}
+                <td><img src="/media/noimage.png" alt="{{ tour.tour.name }}" class="circle responsive-img"></td>
+                {% endif %}
+                <td>{{ tour.tour.name }}</td>
+                <td>
+                    <!-- increment buttons -->
+                    <form class="update-form" action="{% url 'edit_basket' tour.tour_id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <p class="mt-3"><strong>Quantity:</strong></p>
+                            <div class="form-group w-50">
+                                <div class="input-field">
+                                    <button class="decrement-qty btn btn-black rounded-0"
+                                        data-tour_id="{{ tour.tour_id }}" id="decrement-qty_{{ tour.tour_id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button>
+                                    <input class="form-control qty_input" type="number" name="quantity"
+                                        value="{{ tour.quantity }}" min="1" max="10" data-tour_id="{{ tour.tour_id }}"
+                                        id="id_qty_{{ tour.tour_id }}">
+                                    <button class="increment-qty btn btn-black rounded-0"
+                                        data-tour_id="{{ tour.tour_id }}" id="increment-qty_{{ tour.tour_id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="update-link text-info"><small>Update</small></a>
+                    <a class="remove-tour text-danger float-right"
+                        id="remove_{{ tour.tour_id }}"><small>Remove</small></a>
+
+                </td>
+                <td>{{ tour.tour.price }}</td>
+                <td>{{ tour.tour.price | calc_subtotal:tour.quantity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'tours' %}" class="btn">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="text-uppercase">Add More Tours to your Basket!</span>
+    </a>
+    <a href="~" class="btn">
+        <span class="icon">
+            <i class="fas fa-lock"></i>
+        </span>
+        <span class="text-uppercase">Secure Checkout</span>
+    </a>
+    {% else %}
+    <p class="lead mb-5">Your shopping basket is empty.</p>
+    <a href="{% url 'tours' %}" class="btt-link">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="text-uppercase">Back to All Tours</span>
+    </a>
+    {% endif %}
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'tours/includes/change_quantity.html' %}
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function (e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-tour').click(function (e) {
+        var csrfToken = "{{ csrf_token }}";
+        var tourId = $(this).attr('id').split('remove_')[1];
+        var url = `/basket/remove/${tourId}/`;
+        var data = { 'csrfmiddlewaretoken': csrfToken };
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
+    })
+</script>
 {% endblock %}
