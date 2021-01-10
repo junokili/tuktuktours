@@ -89,9 +89,12 @@
                         <ul id="dropdown1" class="dropdown-content">
                             <li><a href="{% url 'tours' %}">All Tours</a></li>
                             <li><a href="{% url 'tours' %}?category=temple">Temple Tours</a></li>
-                            <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a></li>
-                            <li><a href="{% url 'tours' %}?category=villages,street_art,cultural">Cultural Tours</a></li>
-                            <li><a href="{% url 'tours' %}?category=sunrise,tea_plant,lake_hill">Sunrise & Scenic Tours</a></li>
+                            <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a>
+                            </li>
+                            <li><a href="{% url 'tours' %}?category=villages,street_art,cultural">Cultural Tours</a>
+                            </li>
+                            <li><a href="{% url 'tours' %}?category=sunrise,tea_plant,lake_hill">Sunrise & Scenic
+                                    Tours</a></li>
                         </ul>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -121,7 +124,7 @@
                     {% endif %}
                     <li>
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}"
-                            href="#">
+                            href="{% url 'basket' %}">
                             <i class="fas fa-shopping-basket fa-lg"></i>
                             <span class="hp-total">
                                 {% if grand_total %}
@@ -139,6 +142,11 @@
         <ul class="sidenav" id="mobile-demo">
             {% include 'includes/mobile-header.html' %}
         </ul>
+        <div class="row">
+            <div class="col s12 valign-wrapper discount-heading">
+                <h4 class="logo-font my-1">5% discount if you book {{ discount_threshold }} tours or more!</h4>
+            </div>
+        </div>
     </header>
 
     <!-- div for flash messages -->
@@ -170,60 +178,61 @@
 
     <!-- footer -->
     <footer class="page-footer">
-      <div class="row">
-        <div class="col s12 m4 center-align footer bottom-border right-border">
-          <div class="fixed">
-            <h4 class="uppercase">Contact Us</h4>
-            <p class="info-text-top">
-              <i class="fa fa-phone"></i> 085 777 7777
-            </p>
-            <p class="info-text">
-              <i class="fa fa-envelope"></i> info@tuktuktours.com
-            </p>
-          </div>
-        </div>
-        <div class="col s12 m4 center-align footer bottom-border right-border">
-          <div class="fixed">
-            <h4 class="uppercase">Tuk Tuk Tours</h4>
-            <div>
-              <img src="/media/tuktuk-icon-white.svg" alt="map of cafe location" id="mini-map"/>
+        <div class="row">
+            <div class="col s12 m4 center-align footer bottom-border right-border">
+                <div class="fixed">
+                    <h4 class="uppercase">Contact Us</h4>
+                    <p class="info-text-top">
+                        <i class="fa fa-phone"></i> 085 777 7777
+                    </p>
+                    <p class="info-text">
+                        <i class="fa fa-envelope"></i> info@tuktuktours.com
+                    </p>
+                </div>
             </div>
-          </div>
+            <div class="col s12 m4 center-align footer bottom-border right-border">
+                <div class="fixed">
+                    <h4 class="uppercase">Tuk Tuk Tours</h4>
+                    <div>
+                        <img src="/media/tuktuk-icon-white.svg" alt="map of cafe location" id="mini-map" />
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 center-align">
+                <div class="fixed">
+                    <h4 class="uppercase">Social Media</h4>
+                    <ul class="social list-inline">
+                        <li>
+                            <a href="/media/coming-soon.jpg" target="_blank">
+                                <i class="fab fa-facebook-square" aria-hidden="true"></i>
+                                <span class="sr-only">Facebook </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/media/coming-soon.jpg" target="_blank">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/media/coming-soon.jpg" target="_blank">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                <span class="sr-only">Linked In</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col s12 m4 center-align">
-          <div class="fixed">
-            <h4 class="uppercase">Social Media</h4>
-            <ul class="social list-inline">
-              <li>
-                <a href="/media/coming-soon.jpg" target="_blank">
-                  <i class="fab fa-facebook-square" aria-hidden="true"></i>
-                  <span class="sr-only">Facebook </span>
-                </a>
-              </li>
-              <li>
-                <a href="/media/coming-soon.jpg" target="_blank">
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                  <span class="sr-only">Instagram</span>
-                </a>
-              </li>
-              <li>
-                <a href="/media/coming-soon.jpg" target="_blank">
-                  <i class="fab fa-linkedin" aria-hidden="true"></i>
-                  <span class="sr-only">Linked In</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="footer-copyright center-align grey darken-3">
+            <div class="container">
+                © 2021 Travels with Reggie
+            </div>
         </div>
-      </div>
-      <div class="footer-copyright center-align grey darken-3">
-        <div class="container">
-          © 2021 Travels with Reggie
-        </div>
-      </div>
     </footer>
     {% block postloadjs %}
     {% endblock %}
 
 </body>
+
 </html>

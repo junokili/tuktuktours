@@ -4,11 +4,11 @@
 <li>
     <a href="{% url 'tours' %}">All Tours</a>
     <ul class="sublist">
-        <li><a href="#!">All Tours</a></li>
-        <li><a href="#!">Temple Tours</a></li>
-        <li><a href="#!">Market & Food Tours</a></li>
-        <li><a href="#!">Cultural Tours</a></li>
-        <li><a href="#!">Sunrise & Scenic Tours</a></li>
+        <li><a href="{% url 'tours' %}">All Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=temple">Temple Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=villages,street_art,cultural">Cultural Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=sunrise,tea_plant,lake_hill">Sunrise & Scenic Tours</a></li>
     </ul>
 </li>
 {% if request.user.is_authenticated %}
@@ -33,7 +33,7 @@
 </li>
 {% endif %}
 <li>
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="#">
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="{% url 'basket' %}">
         <i class="fas fa-shopping-basket fa-lg"></i>
         <span class="hp-total">
             {% if grand_total %}

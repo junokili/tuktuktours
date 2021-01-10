@@ -43,6 +43,13 @@ i:focus {
 .sublist {
     margin-left: 2rem;
 }
+.discount-heading {
+    background: #032ea1;
+}
+.discount-heading h4 {
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
 .subheading {
     background: #000;
     height: 3rem;

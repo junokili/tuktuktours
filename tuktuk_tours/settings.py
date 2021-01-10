@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.twitter',
     'home',
     'tours',
+    'basket',
 ]
 
 # Provider specific settings
@@ -96,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'basket.contexts.basket_contains',
             ],
         },
     },
@@ -175,3 +177,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DISCOUNT_THRESHOLD = 2
+DISCOUNT_PERCENTAGE = 5
