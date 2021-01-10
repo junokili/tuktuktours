@@ -8,6 +8,9 @@ body {
     color: #555;
     font-family: 'Caveat', cursive;
 }
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
 .tuktuk-blue {
     background: #032ea1;
 }
@@ -40,7 +43,13 @@ i:focus {
 .sublist {
     margin-left: 2rem;
 }
-
+.subheading {
+    background: #000;
+    height: 3rem;
+}
+.subheading h4 {
+    margin: 0 auto;
+}
 /* modified materialize css */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem; width: 17.25rem;}

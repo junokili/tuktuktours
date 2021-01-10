@@ -9,7 +9,7 @@ def all_tours(request):
 
     tours = Tour.objects.all()
     query = None
-    categories = None
+    categories = Category.objects.all()
     sort = None
     direction = None
 
@@ -20,8 +20,6 @@ def all_tours(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 tours = tours.annotate(lower_name=Lower('name'))
-            if sortkey == 'category':
-                sortkey = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
@@ -46,6 +44,7 @@ def all_tours(request):
 
     context = {
         'tours': tours,
+        'categories': categories,
         'search_text': query,
         'current_categories': categories,
         'current_sorting': current_sorting,

@@ -1,26 +1,66 @@
 {% extends "base.html" %} {% load static %}
 {% block page_header %}
-
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Tours</h4>
+    </div>
+</div>
 {% endblock %}
 {% block content %}
 <div class="row">
+    <div class="col center-align">
+        {% for c in categories %}
+        <button>
+            <a href="{% url 'tours' %}?category={{ c.name }}">
+                <span
+                    class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+            </a>
+        </button>
+        {% endfor %}
+    </div>
+</div>
+<!-- dropdown button
+<div class="row">
     <div class="col s12 m4">
-        <!-- Dropdown Trigger -->
         <ul>
             <li><a class="dropdown-trigger btn" data-target="dropdown">
                     Sort Tours</a>
             </li>
         </ul>
-        <!-- Dropdown Structure -->
         <ul id="dropdown" class="dropdown-content">
             <li><a href="{% url 'tours' %}">All Tours</a></li>
-            <li><a href="{% url 'tours' %}?sort=price&direction=asc">By Price</a></li>
-            <li><a href="{% url 'tours' %}?sort=rating&direction=desc">By Rating</a></li>
-            <li><a href="{% url 'tours' %}?sort=category&direction=asc">By Category</a></li>
+            <li><a href="{% url 'tours' %}?sort=price&direction=asc">By Price (low to high)</a></li>
+            <li><a href="{% url 'tours' %}?sort=price&direction=desc">By Price (high to low)</a></li>
+            <li><a href="{% url 'tours' %}?sort=rating&direction=asc">By Rating (low to high)</a></li>
+            <li><a href="{% url 'tours' %}?sort=rating&direction=desc">By Rating (high to low)</a></li>
         </ul>
     </div>
 </div>
-
+ -->
+<div class="input-field col s12">
+    <select id="sort-selector">
+        <option value="" disabled selected>Sort Tours</option>
+        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
+        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)
+        </option>
+        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)
+        </option>
+        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)
+        </option>
+        <option value="rating_desc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (high to low)
+        </option>
+    </select>
+    <label>Materialize Select</label>
+</div>
+<div class="col-12 col-md-6 order-md-first">
+    <p class="text-muted mt-3 text-center text-md-left">
+        {% if search_text or current_categories or current_sorting != 'None_None' %}
+        <span class="small"><a href="{% url 'tours' %}">Back to All Tours</a> | </span>
+        {% endif %}
+        {{ tours|length }} {% if tours|length == 1 %}Tour{% else%}Tours{% endif %}{% if search_text %} found for
+        <strong>"{{ search_text }}"</strong>{% endif %}
+    </p>
+</div>
 
 <div class="row">
     {% for tour in tours %}
@@ -74,4 +114,39 @@
     </div>
     {% endfor %}
 </div>
+    <div class="btn">
+        <a class="back-to-top d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.back-to-top').click(function (e) {
+        window.scrollTo(0, 0)
+    })
+</script>
+<script type="text/javascript">
+    $('#sort-selector').change(function () {
+        var selector = $(this);
+        var currentURL = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if (selectedVal != "reset") {
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentURL.searchParams.set("sort", sort);
+            currentURL.searchParams.set("direction", direction);
+
+            window.location.replace(currentURL);
+        } else {
+            currentURL.searchParams.delete("sort");
+            currentURL.searchParams.delete("direction");
+
+            window.location.replace(currentURL);
+        }
+    })
+</script>
 {% endblock %}
