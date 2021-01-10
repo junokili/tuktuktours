@@ -9,6 +9,17 @@ def basket_contains(request):
     basket_not_empty = []
     total = 0
     tour_count = 0
+    basket = request.session.get('basket', {})
+
+    for tour_id, quantity in basket.items():
+        tour = get_object_or_404(Tour, pk=tour_id)
+        total += quantity * tour.price
+        quantity += quantity
+        basket_not_empty.append({
+            'tour_id': tour_id,
+            'quantity': quantity,
+            'tour': tour,
+        })
 
     if tour_count >= settings.DISCOUNT_THRESHOLD:
         discount = total * Decimal(settings.DISCOUNT_PERCENTAGE/100)

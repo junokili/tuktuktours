@@ -33,7 +33,8 @@
 </li>
 {% endif %}
 <li>
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="{% url 'basket' %}">
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" 
+        href="{% url 'view_basket' %}">
         <i class="fas fa-shopping-basket fa-lg"></i>
         <span class="hp-total">
             {% if grand_total %}

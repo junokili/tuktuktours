@@ -48,11 +48,35 @@
                         data-tooltip="Created by user">
                     </i>{{ tour.price }}<br />
                 </p>
+
             </div>
         </div>
     </div>
+
+</div>
+<form action="{% url 'add_to_basket' tour.id %}" method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="input-field col s6">
+          <input name="quantity" type="text" class="validate" data-tour_id="{{ tour.id }}" id="id_qty_{{ tour.id }}">
+          <label for="quantity">Quantity</label>
+        </div>
+    <!-- 
+                        <div class="form-row">
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Quantity:</strong></p>
+                                <div class="form-group w-50">
+                                    <div class="input-group">
+                                        <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-tour_id="{{ tour.id }}" id="id_qty_{{ tour.id }}">
+                                    </div>
+                                </div>
+                            </div>  
+                                    -->      
+    </div>
     <div class="col s12 m6">
-        <a href="{% url 'tours' %}" class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
+        <a href="{% url 'tours' %}"
+            class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
             <span class="icon">
                 <i class="fas fa-chevron-left"></i>
             </span>
@@ -61,5 +85,5 @@
         <input type="submit" class="waves-effect waves-light btn-large rounded-4 text-uppercase" value="Add to Basket">
     </div>
     <input type="hidden" name="redirect_url" value="{{ request.path }}">
-</div>
+</form>
 {% endblock %}

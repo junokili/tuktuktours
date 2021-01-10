@@ -10,89 +10,46 @@
 <div class="row">
     <div class="col">
         {% if basket_not_empty %}
-        <div class="d-block d-md-none">
-            <div class="row">
-                <div class="col">
-                    {% include "#" %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    {% include "bag/checkout-buttons.html" %}
-                    <p class="text-muted mb-5">A summary of your bag contents is below</p>
-                </div>
-            </div>
-            {% for tour in basket_not_empty %}
-            <div class="row">
-                <div class="col-12 col-sm-6 mb-2">
-                    {% include "#" %}
-                </div>
-                <div class="col-12 col-sm-6 mb-2">
-                    {% include "#" %}
-                </div>
-                <div class="col-12 col-sm-6 order-sm-last">
-                    <p class="my-0">Price Each: </p>
-                    <p><strong>Subtotal: </strong></p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    {% include "#" %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <hr>
-                </div>
-            </div>
-            {% endfor %}
-            <div class="btt-button shadow-sm rounded-0 border border-black">
-                <a class="btt-link d-flex h-100">
-                    <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-                </a>
-            </div>
-        </div>
-        <div class="table-responsive rounded d-none d-md-block">
-            <table class="table table-sm table-borderless">
-                <thead class="text-black">
-                    <tr>
-                        <th scope="col">Product Info</th>
-                        <th scope="col"></th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Subtotal</th>
-                    </tr>
-                </thead>
+        {{ basket_not_empty }}
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Tour</th>
+                    <th>No. of People</th>
+                    <th>Price Per Person</th>
+                    <th>Price Per Tour</th>
+                </tr>
+            </thead>
 
+            <tbody>
                 {% for tour in basket_not_empty %}
                 <tr>
-                    <td class="p-3 w-25">
-                        {% include "#" %}
-                    </td>
-                    <td class="py-3">
-                        {% include "#" %}
-                    </td>
-                    <td class="py-3">
-                        <p class="my-0"></p>
-                    </td>
-                    <td class="py-3 w-25">
-                        {% include "#" %}
-                    </td>
-                    <td class="py-3">
-                        <p class="my-0"></p>
-                    </td>
+                    {% if tour.tour.image %}
+                    <td><img src="{{ tour.tour.image.url }}" alt="{{ tour.tour.name }}"
+                            class="circle responsive-img basket-img"></td>
+                    {% else %}
+                    <td><img src="/media/noimage.png" alt="{{ tour.tour.name }}" class="circle responsive-img"></td>
+                    {% endif %}
+                    <td>{{ tour.tour.name }}</td>
+                    <td>{{ tour.quantity }}</td>
+                    <td>{{ tour.tour.price }}</td>
+                    <td>{{ tour.total }}</td>
                 </tr>
                 {% endfor %}
-                <tr>
-                    <td colspan="5" class="pt-5 text-right">
-                        {% include "#" %}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="text-right">
-                        {% include "#" %}
-                    </td>
-                </tr>
-            </table>
-        </div>
+            </tbody>
+        </table>
+        <a href="{% url 'tours' %}" class="btn">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <span class="text-uppercase">Add More Tours to your Basket!</span>
+        </a>
+        <a href="~" class="btn">
+            <span class="icon">
+                <i class="fas fa-lock"></i>
+            </span>
+            <span class="text-uppercase">Secure Checkout</span>
+        </a>
         {% else %}
         <p class="lead mb-5">Your shopping basket is empty.</p>
         <a href="{% url 'tours' %}" class="btt-link">

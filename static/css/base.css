@@ -120,6 +120,11 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
 .card-content {
     color: #000;
 }
+/* shopping basket */
+img.responsive-img {
+    width: 4rem;
+    height: 4rem;
+}
 /* footer */
 .fixed {
     min-height: 12rem;
