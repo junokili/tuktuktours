@@ -13,6 +13,7 @@ def view_basket(request):
 
 def add_to_basket(request, tour_id):
 
+    tour = Tour.objects.get(pk=tour_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
@@ -21,6 +22,7 @@ def add_to_basket(request, tour_id):
         basket[tour_id] += quantity
     else:
         basket[tour_id] = quantity
+        messages.success(request, f'Added {tour.name} quantity to your shopping basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -37,7 +39,7 @@ def edit_basket(request, tour_id):
         messages.success(request, f'Updated {tour.name} quantity to {basket[tour_id]}')
     else:
         basket.pop(tour_id)
-        messages.success(request, f'Removed {tour.name} from your bag')
+        messages.success(request, f'Removed {tour.name} from your shopping basket')
 
     request.session['basket'] = basket
     return redirect(reverse('view_basket'))
@@ -46,9 +48,11 @@ def edit_basket(request, tour_id):
 def remove_from_basket(request, tour_id):
 
     try:
+        tour = get_object_or_404(Tour, pk=tour_id)
         basket = request.session.get('basket', {})
 
         basket.pop(tour_id)
+        messages.success(request, f'Removed {tour.name} from your shopping basket')
 
         request.session['basket'] = basket
         return HttpResponse(status=200)

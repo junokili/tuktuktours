@@ -14,7 +14,7 @@ def basket_contains(request):
     for tour_id, quantity in basket.items():
         tour = get_object_or_404(Tour, pk=tour_id)
         total += quantity * tour.price
-        quantity += quantity
+        tour_count += quantity
         basket_not_empty.append({
             'tour_id': tour_id,
             'quantity': quantity,
