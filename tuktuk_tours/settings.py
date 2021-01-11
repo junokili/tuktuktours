@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'tours',
     'basket',
     'checkout',
+    'crispy_forms',
+    'materializecssform',
 ]
 
 # Provider specific settings
@@ -98,6 +100,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'basket.contexts.basket_contains',
             ],
         },
