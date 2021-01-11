@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'home',
     'tours',
     'basket',
+    'checkout',
 ]
 
 # Provider specific settings
@@ -180,5 +181,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-DISCOUNT_THRESHOLD = 2
+DISCOUNT_THRESHOLD = 5
 DISCOUNT_PERCENTAGE = 5

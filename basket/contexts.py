@@ -21,7 +21,7 @@ def basket_contains(request):
             'tour': tour,
         })
 
-    if tour_count >= settings.DISCOUNT_THRESHOLD:
+    if tour_count > settings.DISCOUNT_THRESHOLD:
         discount = total * Decimal(settings.DISCOUNT_PERCENTAGE/100)
         discount_delta = 0
     else:
