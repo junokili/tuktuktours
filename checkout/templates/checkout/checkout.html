@@ -59,9 +59,7 @@
     <form action="#" method="POST">
         {% csrf_token %}
         <div class="container">
-            {{ order_form.full_name|materializecss }}
-            {{ order_form.email|materializecss }}
-            {{ order_form.street_address1|materializecss }}
+            {{ order_form|materializecss }}
         </div>
         <!-- make this a materialize check box to save user info -->
         <div class="form-check form-check-inline float-right mr-0">
