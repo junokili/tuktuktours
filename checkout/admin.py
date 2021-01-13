@@ -6,26 +6,25 @@ from .models import Order, OrderLineItem
 
 class OrderLineItemAdminInline(admin.TabularInline):
     model = OrderLineItem
-    readonly_fields = ('lineitem_total',)
+    readonly_fields = ('lineitem_total', 'tour_count',
+                       'discount',)
 
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
-    readonly_fields = ('order_number', 'date',
-                       'discount', 'order_total',
+    readonly_fields = ('order_number', 'date', 'order_total',
                        'grand_total', 'original_basket', 'stripe_pid',)
 
     fields = ('order_number', 'date', 'full_name',
               'email', 'phone_number', 'country',
               'postcode', 'town_or_city', 'street_address1',
-              'street_address2', 'county', 'discount',
+              'street_address2', 'county',
               'order_total', 'grand_total',
               'original_basket', 'stripe_pid',)
 
     list_display = ('order_number', 'date', 'full_name',
-                    'order_total', 'discount',
-                    'grand_total',)
+                    'order_total', 'grand_total',)
 
     ordering = ('-date',)
 

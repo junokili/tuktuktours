@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% load static %}{% load basket_tools %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+{% block page_header %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Success!</h4>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-lg-6 order-lg-last mb-5">
+        <p class="text-muted">Order Summary ({{ tour_count }})</p>
+        <div class="row">
+            <div class="col-7 offset-2">
+                <p class="mb-1 mt-0 small text-muted">Item</p>
+            </div>
+            <div class="col-3 text-right">
+                <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+            </div>
+        </div>
+        {% for tour in basket_not_empty %}
+        <div class="row">
+            <div class="col-2 mb-1">
+                <a href="{% url 'indv_tour' tour.tour.id %}">
+                    {% if tour.tour.image %}
+                    <img class="w-100" src="{{ tour.tour.image.url }}" alt="{{ tour.name }}">
+                    {% else %}
+                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-7">
+                <p class="my-0"><strong>{{ tour.tour.name }}</strong></p>
+                <p class="my-0 small text-muted">Qty: {{ tour.quantity }}</p>
+            </div>
+            <div class="col-3 text-right">
+                <p class="my-0 small text-muted">${{ tour.tour.price | calc_subtotal:tour.quantity }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <hr class="my-0">
+        <div class="row text-black text-right">
+            <div class="col-7 offset-2">
+                <p class="my-0">Order Total:</p>
+                <p class="my-0">Discount:</p>
+                <p class="my-0">Grand Total:</p>
+            </div>
+            <div class="col-3">
+                <p class="my-0">${{ total | floatformat:2 }}</p>
+                <p class="my-0">${{ discount | floatformat:2 }}</p>
+                <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
