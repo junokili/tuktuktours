@@ -1,59 +1,118 @@
-{% extends "base.html" %} {% load static %}{% load basket_tools %}
+{% extends "base.html" %} {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 {% block page_header %}
 <div class="row">
     <div class="col s12 valign-wrapper subheading">
-        <h4>Success!</h4>
+        <h4>Thank you!</h4>
+    </div>
+    <div class="row">
+        <div class="col s12 valign-wrapper discount-heading">
+            <p>Your order information is below. A confirmation email will be sent to
+                <strong>{{ order.email }}</strong>.</p>
+        </div>
     </div>
 </div>
 {% endblock %}
 {% block content %}
+<div class="container black-fill">
+    <div class="row">
+        <div class="col-12 col-lg-7">
+            <div class="row">
+                <div class="col">
+                    <small>Order Info:</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p>Order Number</p>
+                </div>
+                <div class="col 12 col md8t">
+                    <p>{{ order.order_number }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0 text-black font-weight-bold">Order Date</p>
+                </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">{{ order.date }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <small class="text-muted">Order Details:</small>
+                </div>
+            </div>
+
+            {% for item in order.lineitems.all %}
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="small mb-0 text-black font-weight-bold">
+                        {{ item.tour.name }}
+                    </p>
+                </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="small mb-0">{{ item.tour_count }} people at ${{ item.tour.price }} per person</p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col">
+                    <small class="text-muted">Billing Info:</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0 text-black font-weight-bold">Order Total</p>
+                </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">{{ order.order_total }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0 text-black font-weight-bold">Discount</p>
+                </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">{{ order.discount }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0 text-black font-weight-bold">Grand Total</p>
+                </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">{{ order.grand_total }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
-    <div class="col-12 col-lg-6 order-lg-last mb-5">
-        <p class="text-muted">Order Summary ({{ tour_count }})</p>
-        <div class="row">
-            <div class="col-7 offset-2">
-                <p class="mb-1 mt-0 small text-muted">Item</p>
-            </div>
-            <div class="col-3 text-right">
-                <p class="mb-1 mt-0 small text-muted">Subtotal</p>
-            </div>
-        </div>
-        {% for tour in basket_not_empty %}
-        <div class="row">
-            <div class="col-2 mb-1">
-                <a href="{% url 'indv_tour' tour.tour.id %}">
-                    {% if tour.tour.image %}
-                    <img class="w-100" src="{{ tour.tour.image.url }}" alt="{{ tour.name }}">
-                    {% else %}
-                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}">
-                    {% endif %}
-                </a>
-            </div>
-            <div class="col-7">
-                <p class="my-0"><strong>{{ tour.tour.name }}</strong></p>
-                <p class="my-0 small text-muted">Qty: {{ tour.quantity }}</p>
-            </div>
-            <div class="col-3 text-right">
-                <p class="my-0 small text-muted">${{ tour.tour.price | calc_subtotal:tour.quantity }}</p>
-            </div>
-        </div>
-        {% endfor %}
-        <hr class="my-0">
-        <div class="row text-black text-right">
-            <div class="col-7 offset-2">
-                <p class="my-0">Order Total:</p>
-                <p class="my-0">Discount:</p>
-                <p class="my-0">Grand Total:</p>
-            </div>
-            <div class="col-3">
-                <p class="my-0">${{ total | floatformat:2 }}</p>
-                <p class="my-0">${{ discount | floatformat:2 }}</p>
-                <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
-            </div>
-        </div>
+    <div class="col-12 col-lg-7 text-right">
+        {% if from_profile %}
+        <a href="#" class="btn btn-black rounded-0 my-2">
+            <span class="icon mr-2">
+                <i class="fas fa-angle-left"></i>
+            </span>
+            <span class="text-uppercase">Back to My Profile</span>
+        </a>
+        {% else %}
+        <a href="{% url 'tours' %}" class="btn btn-black rounded-0 my-2">
+            <span class="icon mr-2">
+                <i class="fas fa-gifts"></i>
+            </span>
+            <span class="text-uppercase">Book Another Tour Now!</span>
+        </a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

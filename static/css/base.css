@@ -8,11 +8,14 @@ body {
     color: #555;
     font-family: 'Caveat', cursive;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     color: white;
 }
 .tuktuk-blue {
     background: #032ea1;
+}
+.black-fill {
+    background: #000;
 }
 .uppercase {
     text-transform: uppercase;
@@ -46,7 +49,7 @@ i:focus {
 .discount-heading {
     background: #032ea1;
 }
-.discount-heading h4 {
+.discount-heading h4, p {
     margin: 0 auto;
     font-size: 1.5rem;
 }

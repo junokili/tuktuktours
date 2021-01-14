@@ -50,7 +50,7 @@ def checkout(request):
                         "Please call or email us for assistance!")
                     )
                     order.delete()
-                    return redirect(reverse('view_bag'))
+                    return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('successful_checkout', args=[order.order_number]))
@@ -61,7 +61,7 @@ def checkout(request):
         basket = request.session.get('basket', {})
         if not basket:
             messages.error(request, "Your shopping basket is currently empty")
-            return redirect(reverse('products'))
+            return redirect(reverse('tours'))
 
     current_basket = basket_contains(request)
     total = current_basket['grand_total']
