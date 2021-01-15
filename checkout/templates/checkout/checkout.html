@@ -55,17 +55,19 @@
             </div>
         </div>
     </div>
-    <div>
-    <form action="#" method="POST">
+    <div class="container">
+    <form action="{% url 'checkout' %}" method="POST" id="payment-form">
         {% csrf_token %}
-        <div class="container">
+        <div class="col s12">
             {{ order_form|materializecss }}
         </div>
         <!-- make this a materialize check box to save user info -->
-        <div class="form-check form-check-inline float-right mr-0">
+        <div class="row">
             {% if user.is_authenticated %}
-            <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-            <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+            <label for="id-save-info">
+            <input type="checkbox" id="id-save-info" name="save-info" checked="checked">
+<span>Save this delivery information to my profile</span>
+            </label>
             {% else %}
             <label class="form-check-label" for="id-save-info">
                 <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
@@ -73,6 +75,7 @@
             </label>
             {% endif %}
             <div class="container">
+                <div>
             <fieldset class="px-3">
                 <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                 <!-- A Stripe card element will go here -->
@@ -81,7 +84,7 @@
                 <!-- Used to display form errors -->
                 <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
-            </fieldset>
+            </fieldset></div>
         </div>
         </div>
         <div class="submit-button text-right mt-5 mb-2">
