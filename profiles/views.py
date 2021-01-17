@@ -1,16 +1,32 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 from .models import UserProfile
+from .forms import UserProfileForm
 
-# Create your views here.
 
-
+@login_required
 def user_profile(request):
-
+    """ Display the user's profile. """
     user_profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request, 'Profile not updated, please check if entry is valid')
+    else: 
+        form = UserProfileForm(instance=user_profile)
+    orders = user_profile.orders.all()
 
     template = 'profiles/user_profile.html'
     context = {
-        'user_profile': user_profile
+        'form': form,
+        'orders': orders,
+        'on_profile_page': True
     }
 
     return render(request, template, context)
