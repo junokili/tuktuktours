@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load static %} {% load materializecss %}
+{% block extra_css %}
+{% endblock %}
+{% block page_header %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Edit Category</h4>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <form action="{% url 'edit_category' category.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            {% for field in form %}
+            {{ field | materializecss }}
+            {% endfor %}
+        </div>
+        <div class="submit-button text-right mt-5 mb-2">
+            <a href="{% url 'categories' %}" class="btn btn-outline-black rounded-0">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="font-weight-bold">Cancel</span>
+            </a>
+            <button id="submit-button" class="btn btn-black rounded-0">
+                <span class="font-weight-bold">Update Category</span>
+                <span class="icon">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </button>
+            <p class="small text-danger my-0">
+                <span class="icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </span>
+            </p>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}

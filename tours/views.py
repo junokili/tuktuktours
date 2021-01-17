@@ -4,7 +4,7 @@ from django.db.models import Q
 from .models import Tour, Category
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
-from .forms import TourDetailForm
+from .forms import TourDetailForm, CategoryForm
 
 
 def all_tours(request):
@@ -132,3 +132,81 @@ def delete_tour(request, tour_id):
     tour.delete()
     messages.success(request, 'Tour deleted')
     return redirect(reverse('tours'))
+
+
+def all_categories(request):
+
+    categories = Category.objects.all()
+
+    context = {
+        'categories': categories,
+    }
+
+    return render(request, 'tours/categories.html', context)
+
+
+def indv_category(request, category_id):
+    """ A view to show individual tour details """
+
+    category = get_object_or_404(Category, pk=category_id)
+
+    context = {
+        'category': category,
+    }
+
+    return render(request, 'tours/categories/indv_category.html', context)
+
+
+@login_required
+def add_category(request):
+    """ Add a new category to the site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you are not authorized to do that')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            category = form.save()
+            messages.success(request, 'Successfully added new category!')
+            return redirect(reverse('categories'))
+        else:
+            messages.error(request, 'Failed to add new category. Please ensure the form is valid.')
+    else:
+        form = CategoryForm()
+
+    template = 'tours/categories/add_category.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_category(request, category_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you are not authorized to do that')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES, instance=category)
+        if form.is_valid:
+            form.save()
+            messages.success(request, 'Successfully updated category')
+            return redirect(reverse('categories'))
+        else:
+            messages.error(request, 'Failed to update category. Check that the form entry is valid')
+    else:
+        form = CategoryForm(instance=category)
+        messages.info(request, f'You are editing existing product {category.friendly_name}')
+
+    template = 'tours/categories/edit_category.html'
+    context = {
+        'form': form,
+        'category': category,
+    }
+
+    return render(request, template, context)

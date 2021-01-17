@@ -70,8 +70,10 @@
                 {% if tour.image %}
                 <a href="{% url 'indv_tour' tour.id %}">
                     <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
-                    {% else %}
-                    <img src="/media/noimage.png" alt="{{ tour.name }}" />
+                </a>
+                {% else %}
+                <a href="{% url 'indv_tour' tour.id %}">
+                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
                 </a>
                 {% endif %}
             </div>
@@ -114,11 +116,11 @@
     </div>
     {% endfor %}
 </div>
-    <div class="btn">
-        <a class="back-to-top d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>
-    </div>
+<div class="btn">
+    <a class="back-to-top d-flex h-100">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>
+</div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}

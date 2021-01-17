@@ -11,7 +11,7 @@
                 <a href="#"></a>
                 <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
                 {% else %}
-                <img src="/media/noimage.png" alt="{{ tour.name }}" />
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
                 {% endif %}
             </div>
             <div class="tour-name">{{ tour.category.friendly_name }}</div>

@@ -7,4 +7,8 @@ urlpatterns = [
     path('add/', views.add_tour, name='add_tour'),
     path('edit/<int:tour_id>', views.edit_tour, name='edit_tour'),
     path('delete/<int:tour_id>', views.delete_tour, name='delete_tour'),
+    path('categories/', views.all_categories, name='categories'),
+    path('categories/<category_id>', views.indv_category, name='indv_category'),
+    path('categories/add_category/', views.add_category, name='add_category'),
+    path('categories/edit_category/<int:category_id>', views.edit_category, name='edit_category'),
 ]

@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load static %}
+{% block page_header %}
+
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col center-align">
+        <button>
+            <a href="#">
+                <span
+                    class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ category.friendly_name }}</span>
+            </a>
+        </button>
+                {% if request.user.is_superuser %}
+        <a href="{% url 'edit_category' category.id %}"
+            class="waves-effect waves-light btn-sm rounded-4 text-uppercase">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <span class="text-uppercase">Edit Category</span>
+        </a>
+                <a href="#"
+            class="waves-effect waves-light btn-sm rounded-4 text-uppercase">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <span class="text-uppercase">Delete Tour</span>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'tours/includes/change_quantity.html' %}
+{% endblock %}
