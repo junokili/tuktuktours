@@ -210,3 +210,15 @@ def edit_category(request, category_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_category(request, category_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you are not authorized to do that')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+    category.delete()
+    messages.success(request, 'Category deleted')
+    return redirect(reverse('categories'))
