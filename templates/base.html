@@ -108,8 +108,9 @@
                         <a class="dropdown-trigger" href="#" data-target="dropdown2">My Account</a>
                         <!-- Dropdown Structure -->
                         <ul id="dropdown2" class="dropdown-content">
-                            <li><a href="#!">My Profile</a></li>
+                            <li><a href="{% url 'user_profile' %}">My Profile</a></li>
                             {% if request.user.is_superuser %}
+                            <li><a href="{% url 'tours' %}">View Tours</a></li>
                             <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
                             <li><a href="{% url 'categories' %}">View Categories</a></li>
                             <li><a href="{% url 'add_category' %}">Add Category</a></li>

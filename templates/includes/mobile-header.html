@@ -17,7 +17,10 @@
     <ul class="sublist">
         <li><a href="#!">My Profile</a></li>
         {% if request.user.is_superuser %}
-        <li><a href="{% url 'add_tour' %}">Manage Tours</a></li>
+        <li><a href="{% url 'tours' %}">View Tours</a></li>
+        <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
+        <li><a href="{% url 'categories' %}">View Categories</a></li>
+        <li><a href="{% url 'add_category' %}">Add Category</a></li>
         {% endif %}
     </ul>
 </li>
@@ -33,7 +36,7 @@
 </li>
 {% endif %}
 <li>
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" 
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}"
         href="{% url 'view_basket' %}">
         <i class="fas fa-shopping-basket fa-lg"></i>
         <span class="hp-total">

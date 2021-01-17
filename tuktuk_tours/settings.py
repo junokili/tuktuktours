@@ -56,8 +56,8 @@ INSTALLED_APPS = [
     'tours',
     'basket',
     'checkout',
-    'crispy_forms',
     'materializecssform',
+    'profiles',
 ]
 
 # Provider specific settings
