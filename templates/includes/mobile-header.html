@@ -15,7 +15,7 @@
 <li>
     <a href="#">My Account</a>
     <ul class="sublist">
-        <li><a href="#!">My Profile</a></li>
+        <li><a href="{% url 'user_profile' %}">My Profile</a></li>
         {% if request.user.is_superuser %}
         <li><a href="{% url 'tours' %}">View Tours</a></li>
         <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
