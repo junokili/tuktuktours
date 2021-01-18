@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% load static %}
+{% block page_header %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Blog</h4>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="input-field col s12">
+    <select id="sort-selector">
+        <option value="" disabled selected>Sort Tours</option>
+        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
+        <option value="createdon_asc" {% if current_sorting == 'createdon_asc' %}selected{% endif %}>Most Recent First
+        </option>
+        <option value="createdon_desc" {% if current_sorting == 'createdon_desc' %}selected{% endif %}>Oldest First
+        </option>
+        <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A to Z)
+        </option>
+        <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z to A)
+        </option>
+    </select>
+    <label>Sort by</label>
+</div>
+<div class="col-12 col-md-6 order-md-first">
+    <p class="text-muted mt-3 text-center text-md-left">
+        {% if search_text or current_sorting != 'None_None' %}
+        <span class="small"><a href="{% url 'all_posts' %}">Back to All Posts</a> | </span>
+        {% endif %}
+        {{ posts|length }} {% if posts|length == 1 %}post{% else%}posts{% endif %}{% if search_text %} found for
+        <strong>"{{ search_text }}"</strong>{% endif %}
+    </p>
+</div>
+<div class="row">
+    {% for post in posts %}
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-image">
+                {% if post.image %}
+                <a href="{% url 'post_detail' post.id %}">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                </a>
+                {% else %}
+                <a href="{% url 'post_detail' post.id %}">
+                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
+                </a>
+                {% endif %}
+            </div>
+            <div class="tour-name">{{ post.title }}</div>
+            <div class="card-content valign-wrapper center-align">
+                <p class="tour-description">{{ post.content|slice:":200" }}</p>
+            </div>
+            <div class="card-content card-link-div center-align valign-wrapper">
+                <span class="card-title activator">{{ post.title  }}
+                    <i class="fas fa-plus prefix white-text tooltipped" data-position="right"
+                        data-tooltip="Get Details">
+                    </i>
+                    <a href="{% url 'post_detail' post.id  %}" class="btn btn-primary">Read More &rarr;</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="btn">
+    <a class="back-to-top d-flex h-100">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>
+</div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.back-to-top').click(function (e) {
+        window.scrollTo(0, 0)
+    })
+</script>
+<script type="text/javascript">
+    $('#sort-selector').change(function () {
+        var selector = $(this);
+        var currentURL = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if (selectedVal != "reset") {
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentURL.searchParams.set("sort", sort);
+            currentURL.searchParams.set("direction", direction);
+
+            window.location.replace(currentURL);
+        } else {
+            currentURL.searchParams.delete("sort");
+            currentURL.searchParams.delete("direction");
+
+            window.location.replace(currentURL);
+        }
+    })
+</script>
+{% endblock %}

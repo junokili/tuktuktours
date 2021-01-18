@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'checkout',
     'materializecssform',
     'profiles',
+    'blogs',
 ]
 
 # Provider specific settings
