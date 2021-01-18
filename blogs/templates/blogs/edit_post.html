@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% load static %} {% load materializecss %}
+{% block extra_css %}
+{% endblock %}
+{% block page_header %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Edit Blog Post</h4>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <form action="{% url 'edit_post' post.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            {% for field in form %}
+            {% if field.name != 'image' %}
+            {{ field | materializecss }}
+            {% else %}
+            {{ field }}
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="submit-button text-right mt-5 mb-2">
+            <a href="{% url 'post_detail' post.id %}" class="btn btn-outline-black rounded-0">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="font-weight-bold">Cancel</span>
+            </a>
+            <button id="submit-button" class="btn btn-black rounded-0">
+                <span class="font-weight-bold">Update Post</span>
+                <span class="icon">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </button>
+            <p class="small text-danger my-0">
+                <span class="icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </span>
+            </p>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('#new-image').change(function () {
+        var file = $('#new-image')[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    })
+</script>
+{% endblock %}

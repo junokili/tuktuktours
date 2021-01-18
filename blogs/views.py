@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
 from .models import BlogPost
 from .forms import BlogPostForm
 from profiles.models import UserProfile
@@ -60,6 +61,7 @@ def post_detail(request, post_id):
     return render(request, 'blogs/post_detail.html', context)
 
 
+@login_required
 def add_post(request):
     if not request.user.is_superuser:
         messages.error(request,
@@ -92,3 +94,44 @@ def add_post(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_post(request, post_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you are not authorized to do that')
+        return redirect(reverse('posts'))
+
+    post = get_object_or_404(BlogPost, pk=post_id)
+
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid:
+            form.save()
+            messages.success(request, 'Successfully updated post')
+            return redirect(reverse('post_detail', args=[post.id]))
+        else:
+            messages.error(request, 'Failed to update post. Check that the form entry is valid')
+    else:
+        form = BlogPostForm(instance=post)
+        messages.info(request, f'You are editing existing product {post.title}')
+
+    template = 'blogs/edit_post.html'
+    context = {
+        'form': form,
+        'post': post,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_post(request, post_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you are not authorized to do that')
+        return redirect(reverse('posts'))
+
+    post = get_object_or_404(BlogPost, pk=post_id)
+    post.delete()
+    messages.success(request, 'Post deleted')
+    return redirect(reverse('all_posts'))
