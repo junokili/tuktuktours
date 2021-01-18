@@ -7,6 +7,15 @@
 </div>
 {% endblock %}
 {% block content %}
+{% if request.user.is_superuser %}
+<div>
+    <h4>
+        <a href="{% url 'add_post' %}"
+            class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">Write New Blog Post<i
+                class="fas fa-map-marked-alt map-icon"></i></a>
+    </h4>
+</div>
+{% endif %}
 <div class="input-field col s12">
     <select id="sort-selector">
         <option value="" disabled selected>Sort Tours</option>

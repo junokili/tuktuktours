@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import BlogPost
+from .forms import BlogPostForm
+from profiles.models import UserProfile
 
 
 def all_posts(request):
@@ -55,3 +58,37 @@ def post_detail(request, post_id):
     }
 
     return render(request, 'blogs/post_detail.html', context)
+
+
+def add_post(request):
+    if not request.user.is_superuser:
+        messages.error(request,
+                       f'Sorry, you are not authorized to do that. If you would like to \
+                       add a post to our site please contact us here { settings.DEFAULT_FROM_EMAIL }.')
+        return redirect(reverse('posts'))
+
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            messages.success(request, 'Successfully added new post!')
+            return redirect(reverse('post_detail', args=[post.id]))
+        else:
+            messages.error(request, 'Failed to add new post. Please ensure the form is valid.')
+    else:
+        form = BlogPostForm()
+
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+        form = BlogPostForm(initial={
+            'author': profile.default_full_name,
+                })
+    except UserProfile.DoesNotExist:
+        form = BlogPostForm()
+
+    template = 'blogs/add_post.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
