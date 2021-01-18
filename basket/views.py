@@ -14,15 +14,23 @@ def view_basket(request):
 def add_to_basket(request, tour_id):
 
     tour = Tour.objects.get(pk=tour_id)
+    tour_id = int(tour_id)
     quantity = int(request.POST.get('quantity'))
+    tour_date = request.POST.get('tour_date')
     redirect_url = request.POST.get('redirect_url')
     basket = request.session.get('basket', {})
 
-    if tour_id in list(basket.keys()):
-        basket[tour_id] += quantity
+    if tour_date:
+        if tour_id in list(basket.keys()):
+            basket[tour_id][tour_date] += quantity
+            messages.success(request, f'Updated {tour.name} on {tour_date} for {quantity} \
+                                people')
+        else:
+            basket[tour_id] = {tour_date: quantity}
+            messages.success(request, f'Added {tour.name} on {tour_date} for {quantity} \
+                                people to your shopping basket')
     else:
-        basket[tour_id] = quantity
-        messages.success(request, f'Added {tour.name} quantity to your shopping basket')
+        messages.error(request, 'Please choose a date')
 
     request.session['basket'] = basket
     return redirect(redirect_url)

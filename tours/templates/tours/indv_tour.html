@@ -56,15 +56,6 @@
 </div>
 <form action="{% url 'add_to_basket' tour.id %}" method="POST">
     {% csrf_token %}
-    <!-- working materialize quantity 
-    <div class="row">
-        <div class="input-field col s6">
-            <input name="quantity" type="text" class="validate" data-tour_id="{{ tour.id }}" id="id_qty_{{ tour.id }}">
-            <label for="quantity">Quantity</label>
-        </div>
-    </div>
--->
-    <!-- increment buttons -->
     <div class="col-12">
         <p class="mt-3"><strong>Quantity:</strong></p>
         <div class="form-group w-50">
@@ -84,6 +75,15 @@
                     </span>
                 </button>
             </div>
+                        <!-- event date -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-calendar-alt prefix cyan-text text-accent-3"></i>
+                        <input id="tour_date" name="tour_date" type="text" class="datepicker validate"
+                        required>
+                        <label for="tour_date">Date:</label>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="col s12 m6">

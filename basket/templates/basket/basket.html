@@ -17,6 +17,7 @@
                 <th>No. of People</th>
                 <th>Price Per Person</th>
                 <th>Price Per Tour</th>
+                <th>Date of Tour</th>
             </tr>
         </thead>
 
@@ -64,6 +65,7 @@
                 </td>
                 <td>{{ tour.tour.price }}</td>
                 <td>{{ tour.tour.price | calc_subtotal:tour.quantity }}</td>
+                <td>{{ tour.tour_date }}</td>
             </tr>
             {% endfor %}
         </tbody>

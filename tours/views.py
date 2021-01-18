@@ -59,6 +59,7 @@ def indv_tour(request, tour_id):
     """ A view to show individual tour details """
 
     tour = get_object_or_404(Tour, pk=tour_id)
+    tour_id = int(tour_id)
 
     context = {
         'tour': tour,

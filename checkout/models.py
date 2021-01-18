@@ -62,6 +62,7 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     tour = models.ForeignKey(Tour, null=False, blank=False, on_delete=models.CASCADE)
     tour_count = models.IntegerField(null=False, blank=False, default=0)
+    tour_date = models.CharField(max_length=40, null=False, blank=False, default='')
     discount = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
     lineitem_disc_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False, default=0)

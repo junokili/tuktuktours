@@ -13,6 +13,7 @@ from basket.contexts import basket_contains
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -55,20 +56,23 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
-            for tour_id, quantity in basket.items():
+            for tour_id in basket.keys():
                 try:
-                    tour = Tour.objects.get(id=tour_id)
-                    order_line_item = OrderLineItem(
-                        order=order,
-                        tour=tour,
-                        tour_count=quantity,
-                    )
-                    order_line_item.save()
+                    tour = get_object_or_404(Tour, pk=tour_id)
+                    for tour_date, quantity in basket[tour_id].items():
+                        tour = Tour.objects.get(id=tour_id)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            tour=tour,
+                            tour_count=quantity,
+                            tour_date=tour_date
+                        )
+                        order_line_item.save()
                 except Tour.DoesNotExist:
                     messages.error(request, (
                         "One of the tours in your shopping basket wasn't found in our database. "
                         "Please call us for assistance!")
-                    )
+                        )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
