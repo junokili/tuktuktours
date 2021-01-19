@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'profiles',
     'blogs',
     'reviews',
+    'comments',
 ]
 
 # Provider specific settings
