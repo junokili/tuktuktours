@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'materializecssform',
     'profiles',
     'blogs',
+    'reviews',
 ]
 
 # Provider specific settings
