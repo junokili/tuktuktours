@@ -53,6 +53,18 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col">
+        <h4>Reviews</h4>
+        {% for review in reviews %}
+        <p>{{ review.title }}</p>
+        <p>{{ review.review_rating }}</p>
+        <p>{{ review.review_content }}</p>
+        <p>{{ review.writtenon }}</p>
+        {% endfor %}
+    </div>
+</div>
+
 <form action="{% url 'add_to_basket' tour.id %}" method="POST">
     {% csrf_token %}
     <div class="col-12">

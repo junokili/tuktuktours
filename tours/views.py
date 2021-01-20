@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
 from .models import Tour, Category
+from reviews.models import Review
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 from .forms import TourDetailForm, CategoryForm
@@ -60,9 +61,11 @@ def indv_tour(request, tour_id):
 
     tour = get_object_or_404(Tour, pk=tour_id)
     tour_id = int(tour_id)
+    reviews = Review.objects.all
 
     context = {
         'tour': tour,
+        'reviews': reviews,
     }
 
     return render(request, 'tours/indv_tour.html', context)

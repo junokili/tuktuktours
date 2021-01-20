@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 STATUS = (
     (0, "Draft"),
@@ -19,5 +17,21 @@ class BlogPost(models.Model):
     image = models.ImageField(null=True, blank=True)
     status = models.IntegerField(choices=STATUS, default=1)
 
+    class Meta:
+        ordering = ['createdon']
+
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    writer = models.CharField(max_length=50, null=False, blank=False,
+                              default='')
+    comment = models.TextField()
+    writtenon = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['writtenon']
+
+    def __str__(self):
+        return self.comment
