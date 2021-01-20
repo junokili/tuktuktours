@@ -1,5 +1,5 @@
 from django.db import models
-
+from profiles.models import UserProfile
 
 STATUS = (
     (0, "Draft"),
@@ -8,6 +8,8 @@ STATUS = (
 
 
 class BlogPost(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='posts')
     title = models.CharField(max_length=254, null=False, blank=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.CharField(max_length=50, null=False, blank=False, default='')
@@ -25,6 +27,9 @@ class BlogPost(models.Model):
 
 
 class Comment(models.Model):
+    blogpost = models.ForeignKey(BlogPost, null=False, blank=False,
+                                 on_delete=models.CASCADE,
+                                 related_name='comments', default='')
     writer = models.CharField(max_length=50, null=False, blank=False,
                               default='')
     comment = models.TextField()

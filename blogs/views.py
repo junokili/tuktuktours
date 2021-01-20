@@ -4,8 +4,8 @@ from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
-from .models import BlogPost
-from .forms import BlogPostForm
+from .models import BlogPost, Comment
+from .forms import BlogPostForm, CommentForm
 from profiles.models import UserProfile
 
 
@@ -32,7 +32,7 @@ def all_posts(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(request, "You didn't enter any search terms!")
                 return redirect(reverse('blogs'))
 
             queries = Q(name__icontains=query) | Q(content__icontains=query)
@@ -53,9 +53,26 @@ def post_detail(request, post_id):
     """ A view to show individual blog post details """
 
     post = get_object_or_404(BlogPost, pk=post_id)
+    comments = post.comments.all()
+    new_comment = None
+
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.blogpost = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
 
     context = {
         'post': post,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form,
     }
 
     return render(request, 'blogs/post_detail.html', context)
@@ -66,7 +83,8 @@ def add_post(request):
     if not request.user.is_superuser:
         messages.error(request,
                        f'Sorry, you are not authorized to do that. If you would like to \
-                       add a post to our site please contact us here { settings.DEFAULT_FROM_EMAIL }.')
+                       add a post to our site please contact us here \
+                       { settings.DEFAULT_FROM_EMAIL }.')
         return redirect(reverse('posts'))
 
     if request.method == 'POST':
@@ -76,7 +94,8 @@ def add_post(request):
             messages.success(request, 'Successfully added new post!')
             return redirect(reverse('post_detail', args=[post.id]))
         else:
-            messages.error(request, 'Failed to add new post. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add new post. \
+                           Please ensure the form is valid.')
     else:
         form = BlogPostForm()
 
@@ -111,10 +130,11 @@ def edit_post(request, post_id):
             messages.success(request, 'Successfully updated post')
             return redirect(reverse('post_detail', args=[post.id]))
         else:
-            messages.error(request, 'Failed to update post. Check that the form entry is valid')
+            messages.error(request, 'Failed to update post. \
+                           Check that the form entry is valid')
     else:
         form = BlogPostForm(instance=post)
-        messages.info(request, f'You are editing existing product {post.title}')
+        messages.info(request, f'You are editing the post {post.title}')
 
     template = 'blogs/edit_post.html'
     context = {
@@ -135,3 +155,38 @@ def delete_post(request, post_id):
     post.delete()
     messages.success(request, 'Post deleted')
     return redirect(reverse('all_posts'))
+
+
+"""
+@login_required
+def add_comment(request, post_id):
+
+    post = BlogPost.objects.get(pk=post_id)
+    post_id = int(post_id)
+
+    if not request.user.is_authenticated:
+        messages.error(request,
+                       'Sorry, you need to be logged in to do that.')
+        return redirect(reverse('post_detail'))
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, request.FILES)
+        if comment_form.is_valid():
+            comment_form.save()
+            messages.success(request, f'Succssfully added comment to \
+                             {post.title}')
+            return redirect(reverse('post_detail', args=[post.id]))
+        else:
+            messages.error(request, 'Failed to add comment. \
+                           Please ensure the form is valid.')
+    else:
+        comment_form = CommentForm()
+
+    template = 'blogs/comments/add_comment.html'
+    context = {
+        'comment_form': comment_form,
+        'post': post,
+    }
+
+    return render(request, template, context)
+"""

@@ -11,4 +11,5 @@ from Code Institute Django Project
 
 https://github.com/kalwalkden/django-materializecss-form
 
-wikipedia for blog post content
+https://djangocentral.com/creating-comments-system-with-django/
+

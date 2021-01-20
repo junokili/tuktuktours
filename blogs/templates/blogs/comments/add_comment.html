@@ -1,0 +1,32 @@
+{% extends "../post_detail.html" %} {% load static %}
+{% block page_header %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Add a comment</h4>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <form action="{% url 'add_comment' post.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            {{ comment_form }}
+            <div class="submit-button text-right mt-5 mb-2">
+                <a href="{% url 'post_detail' post.id %}" class="btn btn-outline-black rounded-0">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="font-weight-bold">Cancel</span>
+                </a>
+                <button id="submit-button" class="btn btn-black rounded-0">
+                    <span class="font-weight-bold">Publish Comment</span>
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
