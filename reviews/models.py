@@ -4,11 +4,8 @@ from profiles.models import UserProfile
 
 
 class Review(models.Model):
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True,
-                                     related_name='reviews')
     tour = models.ForeignKey(Tour, null=False, blank=False,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,)
     title = models.CharField(max_length=254, null=False, blank=True)
     author = models.CharField(max_length=50, null=False, blank=False,
                               default='')

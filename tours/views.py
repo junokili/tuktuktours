@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
-from .models import Tour, Category
-from reviews.models import Review
+from .models import Tour, Category, Review
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
-from .forms import TourDetailForm, CategoryForm
+from .forms import TourDetailForm, CategoryForm, ReviewForm
 
 
 def all_tours(request):
@@ -37,7 +36,7 @@ def all_tours(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(request, "You didn't enter any search terms!")
                 return redirect(reverse('tours'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
@@ -60,12 +59,26 @@ def indv_tour(request, tour_id):
     """ A view to show individual tour details """
 
     tour = get_object_or_404(Tour, pk=tour_id)
-    tour_id = int(tour_id)
-    reviews = Review.objects.all
+    reviews = tour.reviews.all()
+    new_review = None
+
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST, request.FILES)
+        if review_form.is_valid():
+            # Create Comment object but don't save to database yet
+            new_review = review_form.save(commit=False)
+            # Assign the current post to the comment
+            new_review.tour = tour
+            # Save the comment to the database
+            new_review.save()
+    else:
+        review_form = ReviewForm()
 
     context = {
         'tour': tour,
         'reviews': reviews,
+        'new_review': new_review,
+        'review_form': review_form,
     }
 
     return render(request, 'tours/indv_tour.html', context)

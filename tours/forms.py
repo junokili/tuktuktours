@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tour, Category
+from .models import Tour, Category, Review
 from .widgets import CustomClearableFileInput
 
 
@@ -27,3 +27,25 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
+
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ('title', 'review_content',
+                  'review_rating', 'author',
+                  'image',)
+
+        placeholders = {
+            'title': 'Give your review a short title',
+            'review_content': 'Your Review',
+            'review_rating': 'Your Rating',
+            'author': 'Your Name',
+        }
+
+    image = forms.ImageField(label='Image', required=False,
+                             widget=CustomClearableFileInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
