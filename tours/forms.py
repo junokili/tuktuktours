@@ -34,8 +34,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('title', 'review_content',
-                  'review_rating', 'author',
-                  'image',)
+                  'review_rating', 'author',)
 
         placeholders = {
             'title': 'Give your review a short title',

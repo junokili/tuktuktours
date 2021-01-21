@@ -20,9 +20,9 @@
     <select id="sort-selector">
         <option value="" disabled selected>Sort Tours</option>
         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
-        <option value="createdon_asc" {% if current_sorting == 'createdon_asc' %}selected{% endif %}>Most Recent First
+        <option value="createdon_desc" {% if current_sorting == 'createdon_desc' %}selected{% endif %}>Most Recent First
         </option>
-        <option value="createdon_desc" {% if current_sorting == 'createdon_desc' %}selected{% endif %}>Oldest First
+        <option value="createdon_asc" {% if current_sorting == 'createdon_asc' %}selected{% endif %}>Oldest First
         </option>
         <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A to Z)
         </option>

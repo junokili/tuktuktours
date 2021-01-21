@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static %} {% load materializecss %}
 {% block page_header %}
 
 {% endblock %}
@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-image">
                 {% if tour.image %}
-                <a href="#"></a>
+                <a href="{% url 'indv_tour' tour.id %}"></a>
                 <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
                 {% else %}
                 <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
@@ -55,46 +55,43 @@
 </div>
 {% if user.is_authenticated %}
 <div class="card-body">
-    {% if new_review %}
-    <div class="alert alert-success" role="alert">
-        Thanks for reviewing this tour!
-    </div>
-    {% else %}
-    <h3>Leave a review</h3>
-    <form method="POST">
-        {{ review_form }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-lg">Publish Review</button>
-    </form>
-    {% endif %}
-    {% endif %}
-    <div class="row">
-        <h2>{{ reviews.count }} reviews</h2>
-        {% for review in reviews %}
-        <div class="col s12 m4 l3">
-            <div class="card">
-                <div class="card-image">
-                    {% if review.image %}
-                    <a href="#">
-                        <img src="{{ review.image.url }}" alt="{{ review.title }}" />
-                    </a>
-                    {% else %}
-                    <a href="#">
-                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.title }}" />
-                    </a>
-                    {% endif %}
-                </div>
-                <div class="tour-name">{{ review.author }}</div>
-                <div class="card-content valign-wrapper center-align">
-                    <p class="tour-description">{{ review.review_content|slice:":200" }}</p>
-                </div>
-                <div class="card-content card-link-div center-align valign-wrapper">
-                    <span class="card-title activator">{{ review.writtenon  }}
-                    </span>
-                </div>
+    <a href="{% url 'add_review' tour.id %}"
+        class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        <span class="text-uppercase">Leave a review</span>
+    </a>
+</div>
+{% endif %}
+<div class="row">
+    <h2>{{ reviews.count }} reviews</h2>
+    {% for review in reviews %}
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-image">
+                {% if review.image %}
+                <a href="#">
+                    <img src="{{ review.image.url }}" alt="{{ review.title }}" />
+                </a>
+                {% else %}
+                <a href="#">
+                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.title }}" />
+                </a>
+                {% endif %}
+            </div>
+            <div class="tour-name">{{ review.author }}</div>
+            <div class="card-content valign-wrapper center-align">
+                <p class="tour-description">{{ review.review_content|slice:":200" }}</p>
+            </div>
+            <div class="card-content card-link-div center-align valign-wrapper">
+                <span class="card-title activator">{{ review.writtenon  }}
+                </span>
             </div>
         </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
 <form action="{% url 'add_to_basket' tour.id %}" method="POST">
     {% csrf_token %}
     <div class="col-12">

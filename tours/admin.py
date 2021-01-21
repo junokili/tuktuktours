@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tour, Category
+from .models import Tour, Category, Review
 
 # Register your models here.
 
@@ -28,5 +28,18 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ('name',)
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'author',
+        'review_rating',
+        'review_content',
+        'writtenon',
+    )
+
+    ordering = ('writtenon',)
+
+
 admin.site.register(Tour, TourAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Review, ReviewAdmin)

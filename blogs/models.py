@@ -1,4 +1,5 @@
 from django.db import models
+from autoslug import AutoSlugField
 from profiles.models import UserProfile
 
 STATUS = (
@@ -11,7 +12,7 @@ class BlogPost(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='posts')
     title = models.CharField(max_length=254, null=False, blank=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = AutoSlugField(populate_from='title')
     author = models.CharField(max_length=50, null=False, blank=False, default='')
     content = models.TextField()
     createdon = models.DateTimeField(auto_now_add=True)

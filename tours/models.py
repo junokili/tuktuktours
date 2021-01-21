@@ -44,8 +44,6 @@ class Review(models.Model):
     review_content = models.TextField()
     review_rating = models.IntegerField(null=False, blank=False, default=0)
     writtenon = models.DateTimeField(auto_now_add=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ['writtenon']

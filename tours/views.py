@@ -60,20 +60,38 @@ def indv_tour(request, tour_id):
 
     tour = get_object_or_404(Tour, pk=tour_id)
     reviews = tour.reviews.all()
+
+    context = {
+        'tour': tour,
+        'reviews': reviews,
+    }
+
+    return render(request, 'tours/indv_tour.html', context)
+
+
+@login_required
+def add_review(request, tour_id):
+    """ A view to add a review to an individual tour """
+
+    tour = get_object_or_404(Tour, pk=tour_id)
+    reviews = tour.reviews.all()
     new_review = None
 
     if request.method == 'POST':
         review_form = ReviewForm(request.POST, request.FILES)
         if review_form.is_valid():
-            # Create Comment object but don't save to database yet
+            # Create Review object but don't save to database yet
             new_review = review_form.save(commit=False)
-            # Assign the current post to the comment
+            # Assign the current review to the tour
             new_review.tour = tour
-            # Save the comment to the database
+            # Save the review to the database
             new_review.save()
+            return redirect(reverse('indv_tour', args=[tour.id]))
     else:
+        messages.error(request, 'Failed to add review. Please ensure the form is valid.')
         review_form = ReviewForm()
 
+    template = 'tours/indv_tour_add_review.html'
     context = {
         'tour': tour,
         'reviews': reviews,
@@ -81,7 +99,7 @@ def indv_tour(request, tour_id):
         'review_form': review_form,
     }
 
-    return render(request, 'tours/indv_tour.html', context)
+    return render(request, template, context)
 
 
 @login_required
