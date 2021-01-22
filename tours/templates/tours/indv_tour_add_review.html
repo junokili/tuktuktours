@@ -64,7 +64,35 @@
     <form method="POST">
         {% csrf_token %}
         {% for field in review_form %}
+        {% if field.name == 'review_rating' %}
+        <p>
+            <label>
+                <input name="group1" type="radio" checked />
+                <span>1</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="group1" type="radio" />
+                <span>2</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input class="with-gap" name="group1" type="radio" />
+                <span>3</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="group1" type="radio" disabled="disabled" />
+                <span>4</span>
+            </label>
+        </p>
+        {% else %}
         {{ field | materializecss }}
+        {% endif %}
+
         {% endfor %}
         <button type="submit" class="btn btn-primary btn-lg">Publish Review</button>
     </form>

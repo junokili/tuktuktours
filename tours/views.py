@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
-from .models import Tour, Category, Review
+from .models import Tour, Category
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 from .forms import TourDetailForm, CategoryForm, ReviewForm
@@ -88,7 +88,8 @@ def add_review(request, tour_id):
             new_review.save()
             return redirect(reverse('indv_tour', args=[tour.id]))
     else:
-        messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+        messages.error(request, 'Failed to add review. '
+                       'Please ensure the form is valid.')
         review_form = ReviewForm()
 
     template = 'tours/indv_tour_add_review.html'
@@ -116,7 +117,8 @@ def add_tour(request):
             messages.success(request, 'Successfully added new tour!')
             return redirect(reverse('indv_tour', args=[tour.id]))
         else:
-            messages.error(request, 'Failed to add new tour. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add new tour. '
+                           'Please ensure the form is valid.')
     else:
         form = TourDetailForm()
 
@@ -143,7 +145,8 @@ def edit_tour(request, tour_id):
             messages.success(request, 'Successfully updated tour')
             return redirect(reverse('indv_tour', args=[tour.id]))
         else:
-            messages.error(request, 'Failed to update tour. Check that the form entry is valid')
+            messages.error(request, 'Failed to update tour. '
+                           'Check that the form entry is valid')
     else:
         form = TourDetailForm(instance=tour)
         messages.info(request, f'You are editing existing product {tour.name}')
@@ -202,11 +205,12 @@ def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
-            category = form.save()
+            form.save()
             messages.success(request, 'Successfully added new category!')
             return redirect(reverse('categories'))
         else:
-            messages.error(request, 'Failed to add new category. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add new category. '
+                           'Please ensure the form is valid.')
     else:
         form = CategoryForm()
 

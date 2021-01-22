@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
-from .models import BlogPost, Comment
+from .models import BlogPost
 from .forms import BlogPostForm, CommentForm
 from profiles.models import UserProfile
 
