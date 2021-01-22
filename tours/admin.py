@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tour, Category, Review
+from .models import Tour, Category, Review, Rating
 
 # Register your models here.
 
@@ -32,7 +32,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'author',
-        'review_rating',
+        'review_emoji',
         'review_content',
         'writtenon',
     )
@@ -40,6 +40,16 @@ class ReviewAdmin(admin.ModelAdmin):
     ordering = ('writtenon',)
 
 
+class RatingAdmin(admin.ModelAdmin):
+    list_display = (
+        'rating_name',
+        'rating_number',
+    )
+
+    ordering = ('rating_number',)
+
+
 admin.site.register(Tour, TourAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Rating, RatingAdmin)

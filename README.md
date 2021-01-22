@@ -13,3 +13,5 @@ https://github.com/kalwalkden/django-materializecss-form
 
 https://djangocentral.com/creating-comments-system-with-django/
 
+https://fontawesome.com/license
+

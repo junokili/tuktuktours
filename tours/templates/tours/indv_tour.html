@@ -70,13 +70,29 @@
     <div class="col s12 m4 l3">
         <div class="card">
             <div class="card-image">
-                {% if review.image %}
+                {% if review.review_emoji.rating_name == "Amazing!" %}
                 <a href="#">
-                    <img src="{{ review.image.url }}" alt="{{ review.title }}" />
+                    <img src="{{ MEDIA_URL }}grin-stars-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                </a>
+                {% elif review.review_emoji.rating_name == "Great!" %}
+                <a href="#">
+                    <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                </a>
+                {% elif review.review_emoji.rating_name == "Good" %}
+                <a href="#">
+                    <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                </a>
+                {% elif review.review_emoji.rating_name == "OK" %}
+                <a href="#">
+                    <img src="{{ MEDIA_URL }}meh-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                </a>
+                {% elif review.review_emoji.rating_name == "Disappointing" %}
+                <a href="#">
+                    <img src="{{ MEDIA_URL }}frown-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                 </a>
                 {% else %}
                 <a href="#">
-                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.title }}" />
+                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.review_emoji.rating_name }}" />
                 </a>
                 {% endif %}
             </div>

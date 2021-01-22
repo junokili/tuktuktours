@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
-from .models import Tour, Category
+from .models import Tour, Category, Rating
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 from .forms import TourDetailForm, CategoryForm, ReviewForm

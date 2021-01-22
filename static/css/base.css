@@ -66,6 +66,7 @@ input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem
 input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222}
 .input-field.col label { color: #222; left: 1.25rem; top: -0.5rem;}
 .dropdown-content li a {color: #222; margin: 0rem 1rem;}
+.dropdown-content li span {color: #555;}
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer;}
 
 .hp-total {
