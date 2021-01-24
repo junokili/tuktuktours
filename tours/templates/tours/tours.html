@@ -8,12 +8,11 @@
 {% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col center-align">
+    <div class="col s12 center-align">
         {% for c in categories %}
-        <button>
+        <button class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
             <a href="{% url 'tours' %}?category={{ c.name }}">
-                <span
-                    class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                <span>{{ c.friendly_name }}</span>
             </a>
         </button>
         {% endfor %}
@@ -37,7 +36,7 @@
 <div class="col-12 col-md-6 order-md-first">
     <p class="text-muted mt-3 text-center text-md-left">
         {% if search_text or current_categories or current_sorting != 'None_None' %}
-        <span class="small"><a href="{% url 'tours' %}">Back to All Tours</a> | </span>
+        <span class="small"><a href="{% url 'tours' %}">All Tours</a> | </span>
         {% endif %}
         {{ tours|length }} {% if tours|length == 1 %}Tour{% else%}Tours{% endif %}{% if search_text %} found for
         <strong>"{{ search_text }}"</strong>{% endif %}

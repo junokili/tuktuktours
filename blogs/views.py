@@ -29,13 +29,13 @@ def all_posts(request):
                     sortkey = f'-{sortkey}'
             posts = posts.order_by(sortkey)
 
-        if 'q' in request.GET:
-            query = request.GET['q']
+        if 'qp' in request.GET:
+            query = request.GET['qp']
             if not query:
                 messages.error(request, "You didn't enter any search terms!")
                 return redirect(reverse('blogs'))
 
-            queries = Q(name__icontains=query) | Q(content__icontains=query)
+            queries = Q(title__icontains=query) | Q(content__icontains=query)
             posts = posts.filter(queries)
 
     current_sorting = f'{sort}_{direction}'

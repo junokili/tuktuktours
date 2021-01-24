@@ -1,0 +1,85 @@
+<li>
+    <div class="row center-align">
+        <form method="GET" action="{% url 'tours' %}">
+            <div class="input-field col s8 m8">
+                <input type="text" id="q" name="q" minlength="3" class="validate" />
+                <label for="q">Find a Tour</label>
+            </div>
+            <div class="col s4 m4">
+                <button class="btn tuktuk-blue" type="submit">
+                    <i class="fas fa-search prefix"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</li>
+<li>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown1">Tours</a>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="{% url 'tours' %}">All Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=temple">Temple Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a>
+        </li>
+        <li><a href="{% url 'tours' %}?category=villages,street_art,cultural">Cultural Tours</a>
+        </li>
+        <li><a href="{% url 'tours' %}?category=sunrise,tea_plant,lake_hill">Sunrise & Scenic
+                Tours</a></li>
+    </ul>
+</li>
+{% if request.user.is_superuser %}
+<li>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown3">Blog</a>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown3" class="dropdown-content">
+        <li><a href="{% url 'all_posts' %}">View All Posts</a></li>
+        <li><a href="{% url 'add_post' %}">Write New Post</a></li>
+    </ul>
+</li>
+{% else %}
+<li>
+    <a href="{% url 'all_posts' %}">Blog</a>
+</li>
+{% endif %}
+{% if request.user.is_authenticated %}
+<li>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown2">My Account</a>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="{% url 'user_profile' %}">My Profile</a></li>
+        <li><a href="#">My Order History</a></li>
+        {% if request.user.is_superuser %}
+        <li><a href="{% url 'tours' %}">View Tours</a></li>
+        <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
+        <li><a href="{% url 'categories' %}">View Categories</a></li>
+        <li><a href="{% url 'add_category' %}">Add Category</a></li>
+        {% endif %}
+    </ul>
+</li>
+<li>
+    <a href="{% url 'account_logout' %}" class="waves-effect waves-light text-shadow tuktuk-blue btn">Log Out</a>
+</li>
+{% else %}
+<li>
+    <a href="{% url 'account_login' %}" class="waves-effect waves-light text-shadow tuktuk-blue btn">Log In</a>
+</li>
+<li>
+    <a href="{% url 'account_signup' %}">Sign Up</a>
+</li>
+{% endif %}
+<li>
+    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}"
+        href="{% url 'view_basket' %}">
+        <i class="fas fa-shopping-basket fa-lg"></i>
+        <span class="hp-total">
+            {% if grand_total %}
+            ${{ grand_total|floatformat:2 }}
+            {% else %}
+            $0.00
+            {% endif %}
+        </span>
+    </a>
+</li>

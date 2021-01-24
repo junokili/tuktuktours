@@ -5,7 +5,7 @@ html {
 body {
     background: url('/media/wooden-board-light.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #555;
+    color: #424242;
     font-family: 'Caveat', cursive;
 }
 h1, h2, h3, h4, h5, h6, p {
@@ -40,7 +40,7 @@ i:focus {
     color: #032ea1;
 }
 .fa-search {
-    margin-top: -1rem;
+    margin-top: 0rem;
     font-size: 1rem;
 }
 .sublist {
@@ -60,15 +60,62 @@ i:focus {
 .subheading h4 {
     margin: 0 auto;
 }
+.sm-blue-button {
+    background: #032ea1;
+    min-width: 10rem;
+    min-height: 1rem;
+    margin: 0.5rem;
+}
+.sm-blue-button a, i {
+    color: white;
+}
+.sm-blue-button i {
+    font-size: 1rem;
+    margin-left: 0.8rem;
+}
+.float-right {
+    float: right;
+}
+.sm-blue-button:hover,
+.sm-blue-button:active,
+.sm-blue-button:focus,
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background: white;
+    color: #032ea1;
+}
+.sm-blue-button a:hover,
+.sm-blue-button a:active,
+.sm-blue-button a:focus {
+    color: #032ea1;
+}
 /* modified materialize css */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem; width: 17.25rem;}
 input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222}
-.input-field.col label { color: #222; left: 1.25rem; top: -0.5rem;}
-.dropdown-content li a {color: #222; margin: 0rem 1rem;}
-.dropdown-content li span {color: #555;}
+.input-field.col label { color: #032ea1; left: 1.25rem; top: -0.5rem;}
+.dropdown-content li a {color: #424242; margin: 0rem 1rem;}
+.dropdown-content li span {color: #424242;}
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer;}
-
+.input-field.col.post-search label{ top: 0.5rem; z-index: 999;}
+.select-wrapper .caret {color: #032ea1; z-index: 999;}
+.select-wrapper+label {font-size: 1rem;}
+.select-dropdown.dropdown-content li.selectedn{
+    color: #032ea1;
+}
+button, input, optgroup, select, textarea {
+    font-family: 'Caveat', cursive;
+    color: #424242;
+    text-align: left;
+}
+.search-btn {
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+}
+#post-search {
+    margin-bottom: 0;
+}
 .hp-total {
     margin-left: 1rem;
 }
@@ -121,8 +168,27 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222
     color: #032ea1;
 }
 /* all tours display */
+.count {
+    margin-left: 1rem;
+}
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4);
+}
 .card-content p {
-    color: #555;
+    color: #424242;
+    font-size: 1.2rem;
+}
+.card-content h4 {
+    margin: 0 auto;
+}
+.card .card-padding {
+    padding: 0.7rem 1.1rem;
+}
+.border-btm {
+    border-bottom: 1px solid rgba(160,160,160,0.2);
+}
+.card-action {
+    float: right;
 }
 /* shopping basket */
 img.responsive-img {
@@ -186,41 +252,18 @@ ul.social > li > a > i:active,
 ul.social > li > a > i:focus {
     color: #032ea1;
 }
-
-
-
-
-.border-black {
-    border: 1px solid black !important;
-}
-
-.bg-black {
-    background: #000 !important;
-}
-
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: white;
-	z-index: -1;
-}
-
-a.category-badge > span.badge:hover {
-    background: #212529 !important;
-    color: #fff !important;
-}
-
-.btt-button {
-    height: 42px;
-    width: 42px;
+.btt {
+    background: #032ea1;
+    height: 3rem;
+    width: 3rem;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 1rem;
+    right: 1rem;
 }
-
+.btt i {
+    margin-left: -0.2rem;
+    margin-top: 0.2rem;
+}
 .btt-link,
 .update-link,
 .remove-item {
