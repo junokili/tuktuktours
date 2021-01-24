@@ -46,6 +46,9 @@ i:focus {
     margin-top: 0rem;
     font-size: 1rem;
 }
+.hp-total {
+    margin-left: 1rem;
+}
 .sublist {
     margin-left: 2rem;
 }
@@ -93,9 +96,9 @@ i:focus {
 .sm-blue-button a:focus {
     color: #032ea1;
 }
-/* modified materialize css */
+/* modified materialize css for forms */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
-input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem; width: 17.25rem;}
+input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem;}
 input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222}
 .input-field.col label { color: #032ea1; left: 1.25rem; top: -0.5rem;}
 .dropdown-content li a {color: #424242; margin: 0rem 1rem;}
@@ -112,17 +115,7 @@ button, input, optgroup, select, textarea {
     color: #424242;
     text-align: left;
 }
-.search-btn {
-    margin-top: -0.5rem;
-    margin-left: -0.5rem;
-}
-#post-search {
-    margin-bottom: 0;
-}
-.hp-total {
-    margin-left: 1rem;
-}
-
+/* home page */
 #home-img {
     background: url('/media/home-tuktuks.jpg');
     background-position: center;
@@ -130,28 +123,25 @@ button, input, optgroup, select, textarea {
     padding: 0;
     min-height: 30rem;
 }
-
 .about-us {
     color: white;
     margin-top: 3rem;
 }
-
 #about-us-info {
     background-color: #000;
     padding: 3rem;
     margin-left: 4rem;
 }
-
 .map-icon {
     height: 3rem;
     width: 3rem;
     margin-left: 2rem; 
 }
-
+/*
 .main-logo-link {
     width: fit-content;
 }
-
+*/
 .see-tours-button {
     background: #032ea1;
     color: white;
@@ -160,7 +150,6 @@ button, input, optgroup, select, textarea {
     margin: 2rem;
     padding-top: 0.5rem;
 }
-
 .see-tours-button:hover,
 .see-tours-button:active,
 .see-tours-button:focus,
@@ -170,12 +159,30 @@ button, input, optgroup, select, textarea {
     background: white;
     color: #032ea1;
 }
-/* all tours display */
+/* blog pages */
+.search-btn {
+    margin-top: -0.5rem;
+    margin-left: -0.5rem;
+}
+#post-search {
+    margin-bottom: 0;
+}
+#post-detail {
+    padding: 1rem;
+    margin-bottom: 0rem;
+}
+.post-detail {
+    padding-top: 1rem;
+}
+/* card displays */
 .count {
     margin-left: 1rem;
 }
-.card {
+.card, .shadowed {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4);
+}
+.wt-shadow {
+    box-shadow: 1px 1px 2px -1px #fff
 }
 .card-content p {
     color: #424242;
@@ -201,13 +208,6 @@ button, input, optgroup, select, textarea {
 }
 .card-style {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4)
-}
-#post-detail {
-    padding: 1rem;
-    margin-bottom: 0rem;
-}
-.post-detail {
-    padding-top: 1rem;
 }
 /* shopping basket */
 img.responsive-img {
@@ -288,7 +288,6 @@ ul.social > li > a > i:focus {
 .remove-item {
     cursor: pointer;
 }
-
 input[name='q']::placeholder {
     color: #aab7c4;
 }

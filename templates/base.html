@@ -82,28 +82,28 @@
         </ul>
         <div class="row">
             <div class="col s12 valign-wrapper discount-heading">
-                <h4 class="logo-font my-1">5% discount if you book {{ discount_threshold }} tours or more!</h4>
+                <h4 class="logo-font my-1">5% discount if you book for {{ discount_threshold }} people or more!</h4>
             </div>
         </div>
     </header>
 
     <!-- div for flash messages -->
     {% if messages %}
-    {% for message in messages %}
-    {% with message.level as level %}
-    {% if level == 40 %}
-    {% include 'includes/toasts/toast_error.html' %}
-    {% elif level == 30 %}
-    {% include 'includes/toasts/toast_warning.html' %}
-    {% elif level == 25 %}
-    {% include 'includes/toasts/toast_success.html' %}
-    {% else %}
-    {% include 'includes/toasts/toast_info.html' %}
-    {% endif %}
-    {% endwith %}
-    {% endfor %}
     <div class="row flashes">
         <h4 class="light-green accent-2 center-align white-text">
+            {% for message in messages %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/toasts/toast_error.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/toasts/toast_warning.html' %}
+            {% elif level == 25 %}
+            {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+            {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
         </h4>
     </div>
     {% endif %}
@@ -132,7 +132,7 @@
                 <div class="fixed">
                     <h4 class="uppercase">Tuk Tuk Tours</h4>
                     <div>
-                        <img src="{{ MEDIA_URL }}tuktuk-icon-white.svg" alt="map of cafe location" id="mini-map" />
+                        <img src="{{ MEDIA_URL }}tuktuk-icon-white.svg" alt="tuk tuk tours" id="mini-map" />
                     </div>
                 </div>
             </div>

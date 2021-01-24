@@ -97,16 +97,16 @@
     </div>
     {% endfor %}
 </div>
-<div class="btn">
-    <a class="back-to-top d-flex h-100">
-        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+<div class="btt-link">
+    <a class="waves-effect waves-light btn rounded-4 text-uppercase btt">
+        <i class="fas fa-arrow-up"></i>
     </a>
 </div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('.back-to-top').click(function (e) {
+    $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>

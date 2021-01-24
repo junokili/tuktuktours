@@ -7,38 +7,31 @@
 </div>
 {% endblock %}
 {% block content %}
+{% if request.user.is_superuser %}
+<div class="container center-align">
+    <a href="{% url 'add_category' %}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+        Add New Category<i class="fas fa-plus"></i></a>
+</div>
+{% endif %}
 <div class="row">
-    <div class="col center-align">
-      <div>
-        <h4>
-          <a href="{% url 'add_category' %}"
-            class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">Add New Category<i class="fas fa-map-marked-alt map-icon"></i></a>
-        </h4>
-      </div>
-        {% for category in categories %}
-        <button>
-            <a href="{% url 'indv_category' category.id %}">
-                <span
-                    class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ category.friendly_name }}</span>
-            </a>
-        </button>
-        {% if request.user.is_superuser %}
-        <a href="{% url 'edit_category' category.id %}"
-            class="waves-effect waves-light btn-sm rounded-4 text-uppercase">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-            <span class="text-uppercase">Edit Category</span>
-        </a>
-        <a href="{% url 'delete_category' category.id %}" class="waves-effect waves-light btn-sm rounded-4 text-uppercase">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-            <span class="text-uppercase">Delete Category</span>
-        </a>
-        {% endif %}
-        {% endfor %}
+
+    {% for category in categories %}
+    <div class="col s12 m3">
+        <div class="card black center-align">
+            <div class="card-content tuktuk-blue card-padding">
+                <h4>{{ category.friendly_name }}</h4>
+            </div>
+            <div class="shadowed card-action">
+                <a href="{% url 'edit_category' category.id %}"
+                    class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button wt-shadow">Edit Category<i
+                        class="fas fa-pencil-alt"></i></a>
+                <a href="{% url 'delete_category' category.id %}"
+                    class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button wt-shadow">Delete
+                    Category<i class="fas fa-pencil-alt"></i></a>
+            </div>
+        </div>
     </div>
+    {% endfor %}
 </div>
 <div class="btn">
     <a class="back-to-top d-flex h-100">
