@@ -8,6 +8,9 @@ body {
     color: #424242;
     font-family: 'Caveat', cursive;
 }
+.bold {
+    font-weight: 600;
+}
 h1, h2, h3, h4, h5, h6, p {
     color: white;
 }
@@ -30,7 +33,17 @@ h1, h2, h3, h4, h5, h6, p {
 nav.nav-extended {
     height: 4.8rem;
 }
-
+#search-header {
+    margin-right: 4rem;
+    width: 20rem;
+}
+.header-search-btn{
+    margin-left: -1.8rem;
+}
+.header-search-btn i {
+    margin-top: -1.8rem;
+    margin-left: 0.5rem;
+}
 #home-logo img {
     max-height: 5rem;
 }
@@ -99,7 +112,9 @@ i:focus {
 /* modified materialize css for forms */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem;}
-input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #222}
+input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #424242}
+input[type=text]:not(.browser-default).validate+label {top: 0.6rem; left: 1rem; color: #424242}
+input[type=text]:not(.browser-default).validate.header-search+label {top: -0.65rem; left: 1rem;}
 .input-field.col label { color: #032ea1; left: 1.25rem; top: -0.5rem;}
 .dropdown-content li a {color: #424242; margin: 0rem 1rem;}
 .dropdown-content li span {color: #424242;}
@@ -161,8 +176,9 @@ button, input, optgroup, select, textarea {
 }
 /* blog pages */
 .search-btn {
-    margin-top: -0.5rem;
-    margin-left: -0.5rem;
+    margin-top: 2rem;
+    margin-left: -1.5rem;
+    z-index: 9999;
 }
 #post-search {
     margin-bottom: 0;
@@ -184,6 +200,13 @@ button, input, optgroup, select, textarea {
 .wt-shadow {
     box-shadow: 1px 1px 2px -1px #fff
 }
+.card h5 {
+    margin: 0;
+    padding: 0.5rem;
+}
+.tour-card-desc {
+    height: 12.5rem;
+}
 .card-content p {
     color: #424242;
     font-size: 1.2rem;
@@ -193,6 +216,14 @@ button, input, optgroup, select, textarea {
 }
 .card .card-padding {
     padding: 0.7rem 1.1rem;
+}
+.card-content.tour-card-name {
+    text-align: center;
+    height: 7rem;
+}
+.card-content.tour-card a, span {
+    color: white;
+    font-size: 1.5rem;
 }
 .border-btm {
     border-bottom: 1px solid rgba(66,66,66,0.8);
@@ -208,6 +239,14 @@ button, input, optgroup, select, textarea {
 }
 .card-style {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4)
+}
+.post-card {
+    margin-left: -1.5rem;
+    margin-top: -0.5rem;
+}
+.tour-image {
+    margin: 0;
+    padding: 0;
 }
 /* shopping basket */
 img.responsive-img {
@@ -512,4 +551,12 @@ input[name='q']::placeholder {
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important;
     }
+}
+@media (max-width: 500px) {
+.post-card {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    margin-top: -0.5rem;
+}
+
 }

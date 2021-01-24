@@ -1,12 +1,12 @@
 <li>
-    <div class="row center-align">
+    <div class="row center-align" id="search-header">
         <form method="GET" action="{% url 'tours' %}">
-            <div class="input-field col s8 m8">
-                <input type="text" id="q" name="q" minlength="3" class="validate" />
+            <div class="input-field col s10">
+                <input type="text" id="q" name="q" minlength="3" class="validate header-search" />
                 <label for="q">Find a Tour</label>
             </div>
-            <div class="col s4 m4">
-                <button class="btn tuktuk-blue" type="submit">
+            <div class="col s2">
+                <button class="btn tuktuk-blue header-search-btn" type="submit">
                     <i class="fas fa-search prefix"></i>
                 </button>
             </div>

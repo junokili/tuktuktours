@@ -15,25 +15,25 @@
 {% endif %}
 <div class="container">
     <div class="row vertical-align" id="post-search">
-        <div class="col">
-            <form method="GET" action="{% url 'all_posts' %}">
-                <div class="col">
-                    <div class="input-field col post-search">
-                        <input type="text" id="qp" name="qp" minlength="3" class="validate" />
-                        <label for="qp">Search Posts</label>
-                        <button class="btn tuktuk-blue search-btn" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="input-field col post-search">
+        <form method="GET" action="{% url 'all_posts' %}" class="col s12 m6">
+            <div class="input-field col s10 post-search">
+                <input type="text" id="qp" name="qp" minlength="3" class="validate" />
+                <label for="qp">Search Posts</label>
+            </div>
+            <div class="col s2 center-align">
+                <button class="btn tuktuk-blue search-btn" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <div class="input-field col s11 m5 post-search">
             <select id="sort-selector">
                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
-                <option value="createdon_desc" {% if current_sorting == 'createdon_desc' %}selected{% endif %}>Most Recent First
+                <option value="createdon_desc" {% if current_sorting == 'createdon_desc' %}selected{% endif %}>Most
+                    Recent First
                 </option>
-                <option value="createdon_asc" {% if current_sorting == 'createdon_asc' %}selected{% endif %}>Oldest First
+                <option value="createdon_asc" {% if current_sorting == 'createdon_asc' %}selected{% endif %}>Oldest
+                    First
                 </option>
                 <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A to Z)
                 </option>
@@ -55,38 +55,45 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        {% for post in posts %}
+
+    {% for post in posts %}
+    <div class="row shadowed white">
         <div class="col s12">
-            <div class="card horizontal">
-                <div class="card-image">
-                    {% if post.image %}
-                    <a href="{% url 'post_detail' post.id %}">
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" />
-                    </a>
-                    {% else %}
-                    <a href="{% url 'post_detail' post.id %}">
-                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
-                    </a>
-                    {% endif %} </div>
-                <div class="card-stacked">
-                    <div class="card-content card-padding border-btm">
-                        <h4 class="grey-text text-darken-3">{{ post.title  }}</h4>
+            <div class="card">
+                <div class="col s12 m5">
+                    <div class="card-image post-card">
+                        {% if post.image %}
+                        <a href="{% url 'post_detail' post.id %}">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                        </a>
+                        {% else %}
+                        <a href="{% url 'post_detail' post.id %}">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
+                        </a>
+                        {% endif %}
                     </div>
-                    <div class="card-content card-padding">
-                        <p>{{ post.content|slice:":200" }}</p>
-                    </div>
-                    <div class="card-action card-padding">
-                        <a href="{% url 'post_detail' post.id  %}"
-                            class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button float-right">Read
-                            More
-                            &rarr;</a>
+                </div>
+                <div class="col s12 m7">
+                    <div class="card-stacked">
+                        <div class="card-content card-padding border-btm">
+                            <h4 class="grey-text text-darken-3">{{ post.title  }}</h4>
+                        </div>
+                        <div class="card-content card-padding border-btm">
+                            <p>{{ post.content|slice:":200" }}</p>
+                        </div>
+                        <div class="card-action card-padding">
+                            <a href="{% url 'post_detail' post.id  %}"
+                                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button float-right">Read
+                                More
+                                &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+
 </div>
 <div class="btt-link">
     <a class="waves-effect waves-light btn rounded-4 text-uppercase btt">

@@ -18,7 +18,7 @@
         {% endfor %}
     </div>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m4">
     <select id="sort-selector">
         <option value="" disabled selected>Sort Tours</option>
         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
@@ -31,7 +31,7 @@
         <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)
         </option>
     </select>
-    <label>Materialize Select</label>
+    <label></label>
 </div>
 <div class="col-12 col-md-6 order-md-first">
     <p class="text-muted mt-3 text-center text-md-left">
@@ -58,40 +58,16 @@
                 </a>
                 {% endif %}
             </div>
-            <div class="tour-name">{{ tour.category.friendly_name }}</div>
-            <div class="card-content valign-wrapper center-align">
-                <p class="tour-description">{{ tour.description }}</p>
+            <div class="black center-align">
+                <h5>{{ tour.category.friendly_name }}</h5>
             </div>
-            <div class="card-content card-link-div center-align valign-wrapper">
-                <span class="card-title activator">{{ tour.name }}
-                    <i class="fas fa-plus prefix white-text tooltipped" data-position="right"
-                        data-tooltip="Get Details">
-                    </i>
-                </span>
+            <div class="card-content tour-card-desc">
+                <p class="tour-description">{{ tour.description|slice:":200" }}</p>
             </div>
-            <div class="card-reveal">
-                <span class="card-title card-link-div center-align">{{ tour.name }}
-                    <i class="fas fa-times prefix white-text tooltipped right" id="event-deets-close"
-                        data-position="right" data-tooltip="Close Details">
-                    </i>
-                </span>
-                <p>
-                    <i class="fas fa-list-ul prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Category">
-                    </i>{{ tour.category.friendly_name }}<br />
-                    <i class="fas fa-edit prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Description">
-                    </i>{{ tour.description }}<br />
-                    <i class="fas fa-map prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Location">
-                    </i>{{ tour.includes }}<br />
-                    <i class="fas fa-map-marker-alt prefix cyan-text text-accent-3 tooltipped sgl-event"
-                        data-position="right" data-tooltip="Meet Point">
-                    </i>{{ tour.rating }}<br />
-                    <i class="fas fa-user prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Created by user">
-                    </i>{{ tour.price }}<br />
-                </p>
+            <div class="card-content tour-card-name tuktuk-blue white-text uppercase">
+                <a href="{% url 'indv_tour' tour.id %}">
+                    <span>{{ tour.name }}</span>
+                </a>
             </div>
         </div>
     </div>

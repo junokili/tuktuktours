@@ -9,6 +9,7 @@ class TourAdmin(admin.ModelAdmin):
         'sku',
         'name',
         'description',
+        'duration',
         'category',
         'price',
         'rating',

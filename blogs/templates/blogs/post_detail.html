@@ -103,12 +103,21 @@
         <div class="col s12">
             <a href="{% url 'edit_post' post.id %}"
                 class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Edit Post<i
-                    class="fas fa-pencil-alt"></i></a>
+                    class="fas fa-edit"></i></a>
             <a href="{% url 'delete_post' post.id %}"
                 class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Delete Post<i
-                    class="fas fa-pencil-alt"></i></a>
+                    class="fas fa-trash"></i></a>
         </div>
     </div>
 </div>
 {% endif %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'all_posts' %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                <i class="fas fa-chevron-left"></i>  Back to All Posts</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

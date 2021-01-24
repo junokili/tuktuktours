@@ -1,66 +1,58 @@
 {% extends "base.html" %} {% load static %} {% load materializecss %}
 {% block page_header %}
-
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>{{ tour.name }}</h4>
+    </div>
+</div>
 {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                {% if tour.image %}
-                <a href="{% url 'indv_tour' tour.id %}"></a>
-                <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
-                {% else %}
-                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
-                {% endif %}
+<div class="container">
+    <div class="card">
+        <div class="row border-btm" id="post-detail">
+            <div class="col s12 m4 tour-image">
+                <div class="card-image tour-image">
+                    {% if tour.image %}
+                    <a href="{% url 'indv_tour' tour.id %}">
+                        <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
+                    </a>
+                    {% else %}
+                    <a href="{% url 'indv_tour' tour.id %}">
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
+                    </a>
+                    {% endif %}
+                </div>
             </div>
-            <div class="tour-name">{{ tour.category.friendly_name }}</div>
-            <div class="card-content valign-wrapper center-align">
-                <p class="tour-description">{{ tour.description }}</p>
+            <div class="col s12 m8">
+                <div class="card-content card-padding border-btm">
+                    <h4 class=" tuktuk-blue-text bold">{{ tour.name }}</h4>
+                </div>
+                <div class="card-content card-padding border-btm">
+                    <h6 class="grey-text text-darken-3">${{ tour.price  }} per person</h6>
+                </div>
+                <div class="card-content card-padding border-btm">
+                    <h6 class="grey-text text-darken-3">{{ tour.rating }}</h6>
+                </div>
             </div>
-            <div class="card-content card-link-div center-align valign-wrapper">
-                <span class="card-title activator">{{ tour.name }}
-                    <i class="fas fa-plus prefix white-text tooltipped" data-position="right"
-                        data-tooltip="Get Details">
-                    </i>
-                </span>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title card-link-div center-align">{{ tour.name }}
-                    <i class="fas fa-times prefix white-text tooltipped right" id="event-deets-close"
-                        data-position="right" data-tooltip="Close Details">
-                    </i>
-                </span>
-                <p>
-                    <i class="fas fa-list-ul prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Category">
-                    </i>{{ tour.category.friendly_name }}<br />
-                    <i class="fas fa-edit prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Description">
-                    </i>{{ tour.description }}<br />
-                    <i class="fas fa-map prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Event Location">
-                    </i>{{ tour.includes }}<br />
-                    <i class="fas fa-map-marker-alt prefix cyan-text text-accent-3 tooltipped sgl-event"
-                        data-position="right" data-tooltip="Meet Point">
-                    </i>{{ tour.rating }}<br />
-                    <i class="fas fa-user prefix cyan-text text-accent-3 tooltipped sgl-event" data-position="right"
-                        data-tooltip="Created by user">
-                    </i>{{ tour.price }}<br />
-                </p>
-
+        </div>
+        <div class="card-content">
+            <div class="col s12">
+                <h6 class="grey-text text-darken-3 bold">Tour description: </h6>
+                <p>{{ tour.description }}</p>
+                <h6 class="grey-text text-darken-3 bold">What's included: </h6>
+                <p>{{ tour.includes }}</p>
+                <h6 class="grey-text text-darken-3 bold">Tour Duration: </h6>
+                <p>{{ tour.duration }} hours</p>
+                <h6 class="grey-text text-darken-3 bold">{{ reviews.count }}
+                    review{% if reviews.count > 1 or reviews.count == 0 %}s{% endif%}</h6>
             </div>
         </div>
     </div>
 </div>
 {% if user.is_authenticated %}
-<div class="card-body">
-    <a href="{% url 'add_review' tour.id %}"
-        class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="text-uppercase">Leave a review</span>
+<div class="center-align">
+    <a href="{% url 'add_review' tour.id %}" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
+        Leave a review <i class="fas fa-star"></i>
     </a>
 </div>
 {% endif %}
@@ -140,32 +132,37 @@
             </div>
         </div>
     </div>
-    <input type="submit" class="waves-effect waves-light btn-large rounded-4 text-uppercase" value="Add to Basket">
+    <input type="submit" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase" value="Add to Basket">
     <input type="hidden" name="redirect_url" value="{{ request.path }}">
 </form>
-<div class="col s12 m6">
-    <a href="{% url 'tours' %}" class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="text-uppercase">Back to All Tours</span>
-    </a>
-    {% if request.user.is_superuser %}
-    <a href="{% url 'edit_tour' tour.id %}"
-        class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="text-uppercase">Edit Tour</span>
-    </a>
-    <a href="{% url 'delete_tour' tour.id %}"
-        class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="text-uppercase">Delete Tour</span>
-    </a>
-    {% endif %}
+<div class="col s12 m4">
+    <a href="{% url 'tours' %}" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
+        <i class="fas fa-chevron-left"></i>
+        Back to All Tours</a>
+</div>
+{% if request.user.is_superuser %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'edit_tour' tour.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Edit Tour<i
+                    class="fas fa-edit"></i></a>
+            <a href="{% url 'delete_tour' tour.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Delete Tour<i
+                    class="fas fa-trash"></i></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'all_posts' %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Back to All Posts<i
+                    class="fas fa-edit"></i></a>
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}
 
