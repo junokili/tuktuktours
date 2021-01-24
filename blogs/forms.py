@@ -31,10 +31,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('writer', 'comment',)
-        placeholders = {
-            'writer': 'Your Name',
-            'comment': 'Your Comment',
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

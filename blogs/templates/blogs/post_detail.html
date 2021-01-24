@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static %}{% load materializecss %}
 {% block page_header %}
 <div class="row">
     <div class="col s12 valign-wrapper subheading">
@@ -8,104 +8,108 @@
 {% endblock %}
 {% block content %}
 {% if request.user.is_superuser %}
-<div class="col-12 col-md-6 order-md-first">
-    <p class="text-muted mt-3 text-center text-md-left">
-        <span class="small"><a href="{% url 'all_posts' %}">Back to All Posts</a></span>
-    </p>
-</div>
-<div>
-    <h4>
-        <a href="{% url 'add_post' %}"
-            class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">Write New Blog Post<i
-                class="fas fa-map-marked-alt map-icon"></i></a>
-    </h4>
-</div>
-<div class="row">
-    <div class="col s12 m6">
-        <h4>
-            <a href="{% url 'edit_post' post.id %}"
-                class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">Edit This Blog
-                Post<i class="fas fa-map-marked-alt map-icon"></i></a>
-        </h4>
-        <h4>
-            <a href="{% url 'delete_post' post.id %}"
-                class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">Delete This Blog
-                Post<i class="fas fa-map-marked-alt map-icon"></i></a>
-        </h4>
-    </div>
+<div class="container center-align">
+    <a href="{% url 'add_post' %}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Write
+        New Post<i class="fas fa-pencil-alt"></i></a>
 </div>
 {% endif %}
-<div class="row">
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                {% if post.image %}
-                <a href="{% url 'post_detail' post.id %}">
-                    <img src="{{ post.image.url }}" alt="{{ post.title }}" />
-                </a>
-                {% else %}
-                <a href="{% url 'post_detail' post.id %}">
-                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
-                </a>
-                {% endif %}
-            </div>
-            <div class="tour-name">{{ post.title }}</div>
-            <div class="card-content valign-wrapper center-align">
-                <p class="tour-description">{{ post.content|slice:":200" }}</p>
-            </div>
-            <div class="card-content card-link-div center-align valign-wrapper">
-                <span class="card-title activator">{{ post.author  }}
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-{% if user.is_authenticated %}
-<div class="card-body">
-    {% if new_comment %}
-    <div class="alert alert-success" role="alert">
-        Thanks for commenting!
-    </div>
-    {% else %}
-    <h3>Leave a comment</h3>
-    <form method="POST">
-        {{ comment_form }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    </form>
-    {% endif %}
-    {% endif %}
-    <div class="row">
-        <h2>{{ comments.count }} comments</h2>
-        {% for comment in comments %}
-        <div class="col s12 m4 l3">
-            <div class="card">
-                <div class="card-image">
+<div class="container">
+    <div class="card">
+        <div class="row border-btm" id="post-detail">
+            <div class="col s12 m4">
+                <div class="card-image post-detail">
                     {% if post.image %}
-                    <a href="#">
-                        <img src="{{ comment.image.url }}" alt="{{ comment.title }}" />
+                    <a href="{% url 'post_detail' post.id %}">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" />
                     </a>
                     {% else %}
-                    <a href="#">
-                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ comment.title }}" />
+                    <a href="{% url 'post_detail' post.id %}">
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
                     </a>
                     {% endif %}
                 </div>
-                <div class="tour-name">{{ comment.writer }}</div>
-                <div class="card-content valign-wrapper center-align">
-                    <p class="tour-description">{{ comment.comment|slice:":200" }}</p>
+            </div>
+            <div class="col s12 m8">
+                <div class="card-content card-padding border-btm">
+                    <h4 class="grey-text text-darken-3">{{ post.title  }}</h4>
                 </div>
-                <div class="card-content card-link-div center-align valign-wrapper">
-                    <span class="card-title activator">{{ comment.writtenon  }}
-                    </span>
+                <div class="card-content card-padding border-btm">
+                    <h6 class="grey-text text-darken-3">{{ post.author  }}</h6>
+                </div>
+                <div class="card-content card-padding border-btm">
+                    <h6 class="grey-text text-darken-3">{{ comments.count }}
+                        comment{% if comments.count > 1 or comments.count == 0 %}s{% endif%}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="card-content valign-wrapper">
+            <p>{{ post.content }}</p>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="card">
+        <div class="card-content grey-text text-darken-3">
+            {% if new_comment %}
+            <div class="alert alert-success" role="alert">
+                Thanks for commenting!
+            </div>
+            {% else %}
+            <h5 class="grey-text text-darken-3">Leave a Comment</h5>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="writer" name="writer" type="text" class="validate" minlength="3" maxlength="50"
+                            required>
+                        <label for="writer">Your Name:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="comment" name="comment" class="materialize-textarea validate" minlength="5"
+                            maxlength="250" required></textarea>
+                        <label for="comment">Your Comment:</label>
+                    </div>
+                </div>
+                <div class="center-align">
+                <button type="submit"
+                    class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Publish
+                    Comment</button>
+                    </div>
+
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> to leave a comment</p>
+    {% endif %}
+    <div class="row">
+        {% for comment in comments %}
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-content comment-card">
+                    <span class="card-title tuktuk-blue-text">{{ comment.writer }},
+                        {{ comment.writtenon }}</span>
+                    <p>{{ comment.comment}}</p>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-    <div class="btn">
-        <a class="back-to-top d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>
+</div>
+{% if request.user.is_superuser %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'edit_post' post.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Edit Post<i
+                    class="fas fa-pencil-alt"></i></a>
+            <a href="{% url 'delete_post' post.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Delete Post<i
+                    class="fas fa-pencil-alt"></i></a>
+        </div>
     </div>
-    {% endblock %}
+</div>
+{% endif %}
+{% endblock %}
