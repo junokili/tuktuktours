@@ -31,7 +31,7 @@
                     <h6 class="grey-text text-darken-3">${{ tour.price  }} per person</h6>
                 </div>
                 <div class="card-content card-padding border-btm">
-                    <h6 class="grey-text text-darken-3">{{ tour.rating }}</h6>
+                    <h6 class="grey-text text-darken-3">{{ tour.duration }} hours, starting at {{ tour.start_time }}</h6>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <h6 class="grey-text text-darken-3 bold">What's included: </h6>
                 <p>{{ tour.includes }}</p>
                 <h6 class="grey-text text-darken-3 bold">Tour Duration: </h6>
-                <p>{{ tour.duration }} hours</p>
+                <p>{{ tour.duration }} hours, starting at {{ tour.start_time }}</p>
                 <h6 class="grey-text text-darken-3 bold">{{ reviews.count }}
                     review{% if reviews.count > 1 or reviews.count == 0 %}s{% endif%}</h6>
             </div>
