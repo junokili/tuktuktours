@@ -10,7 +10,7 @@ $(document).ready(function(){
     $('.datepicker').datepicker({
         format: "dd mmmm, yyyy",
         yearRange: 1,
-        showClearBtn: true,
+        showClearBtn: false,
         i18n: {
             done: "OK"
         }

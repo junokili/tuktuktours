@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-content">
+        <div class="card-content border-btm">
             <div class="col s12">
                 <h6 class="grey-text text-darken-3 bold">Tour description: </h6>
                 <p>{{ tour.description }}</p>
@@ -47,98 +47,109 @@
                     review{% if reviews.count > 1 or reviews.count == 0 %}s{% endif%}</h6>
             </div>
         </div>
-    </div>
-</div>
-{% if user.is_authenticated %}
-<div class="center-align">
-    <a href="{% url 'add_review' tour.id %}" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
-        Leave a review <i class="fas fa-star"></i>
-    </a>
-</div>
-{% endif %}
-<div class="row">
-    <h2>{{ reviews.count }} reviews</h2>
-    {% for review in reviews %}
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                {% if review.review_emoji.rating_name == "Amazing!" %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}grin-stars-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% elif review.review_emoji.rating_name == "Great!" %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% elif review.review_emoji.rating_name == "Good" %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% elif review.review_emoji.rating_name == "OK" %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}meh-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% elif review.review_emoji.rating_name == "Disappointing" %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}frown-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% else %}
-                <a href="#">
-                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.review_emoji.rating_name }}" />
-                </a>
-                {% endif %}
-            </div>
-            <div class="tour-name">{{ review.author }}</div>
-            <div class="card-content valign-wrapper center-align">
-                <p class="tour-description">{{ review.review_content|slice:":200" }}</p>
-            </div>
-            <div class="card-content card-link-div center-align valign-wrapper">
-                <span class="card-title activator">{{ review.writtenon  }}
-                </span>
+        <div class="card-content border-btm">
+            <h6 class="grey-text text-darken-3 bold">Add this tour to your shopping basket</h6>
+            <div class="row">
+                <form action="{% url 'add_to_basket' tour.id %}" method="POST">
+                    {% csrf_token %}
+                    <!-- tour quantity -->
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <p>Quantity:</p><br />
+                            <div class="col s2">
+                                <button class="decrement-qty btn qty-blue-button" data-tour_id="{{ tour.tour.id }}"
+                                    id="decrement-qty_{{ tour.tour.id }}">
+                                    <span class="icon">
+                                        <i class="fas fa-minus"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="col s4">
+                                <input class="qty_input" type="number" name="quantity" value="1" min="1" max="12"
+                                    data-tour_id="{{ tour.tour.id }}" id="id_qty_{{ tour.tour.id }}">
+                            </div>
+                            <div class="col s2">
+                                <button class="increment-qty btn qty-blue-button" data-tour_id="{{ tour.tour.id }}"
+                                    id="increment-qty_{{ tour.tour.id }}">
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tour date -->
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <p>Date:</p>
+                            <input id="tour_date" name="tour_date" type="text" class="datepicker validate" required>
+                            <label for="tour_date"></label>
+                        </div>
+                    </div>
+                    <div class="row center-align">
+                        <input type="submit" class="sm-blue-button waves-effect waves-light btn-large uppercase"
+                            value="Add to Basket"><i class="fas fa-plus"></i>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-    {% endfor %}
-</div>
-<form action="{% url 'add_to_basket' tour.id %}" method="POST">
-    {% csrf_token %}
-    <div class="col-12">
-        <p class="mt-3"><strong>Quantity:</strong></p>
-        <div class="form-group w-50">
-            <!-- tour quantity -->
-            <div class="input-field">
-                <button class="decrement-qty btn btn-black rounded-0" data-tour_id="{{ tour.tour.id }}"
-                    id="decrement-qty_{{ tour.tour.id }}">
-                    <span class="icon">
-                        <i class="fas fa-minus"></i>
-                    </span>
-                </button>
-                <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="10"
-                    data-tour_id="{{ tour.tour.id }}" id="id_qty_{{ tour.tour.id }}">
-                <button class="increment-qty btn btn-black rounded-0" data-tour_id="{{ tour.tour.id }}"
-                    id="increment-qty_{{ tour.tour.id }}">
-                    <span class="icon">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                </button>
-            </div>
-            <!-- tour date -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-calendar-alt prefix cyan-text text-accent-3"></i>
-                    <input id="tour_date" name="tour_date" type="text" class="datepicker validate" required>
-                    <label for="tour_date">Date:</label>
+        <div class="card-content border-btm">
+            <h6 class="grey-text text-darken-3 bold">{{ reviews.count }}
+                review{% if reviews.count > 1 or reviews.count == 0 %}s{% endif%}</h6>
+            {% for review in reviews %}
+            <div class="row shadowed">
+                <div class="col s12">
+                    <div class="col s2">
+                        <div class="card-image review-image">
+                            {% if review.review_emoji.rating_name == "Amazing!" %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}grin-stars-solid.svg"
+                                    alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% elif review.review_emoji.rating_name == "Great!" %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% elif review.review_emoji.rating_name == "Good" %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% elif review.review_emoji.rating_name == "OK" %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}meh-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% elif review.review_emoji.rating_name == "Disappointing" %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}frown-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% else %}
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.review_emoji.rating_name }}" />
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col s10">
+                        <div class="card-content comment-card">
+                            <span class="card-title tuktuk-blue-text">{{ review.author }},
+                                {{ review.writtenon }}</span>
+                            <p>{{ review.review_content }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
+        {% if user.is_authenticated %}
+        <div class="center-align">
+            <a href="{% url 'add_review' tour.id %}"
+                class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
+                Leave a review <i class="fas fa-star"></i>
+            </a>
+        </div>
+        {% endif %}
     </div>
-    <input type="submit" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase" value="Add to Basket">
-    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-</form>
-<div class="col s12 m4">
-    <a href="{% url 'tours' %}" class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
-        <i class="fas fa-chevron-left"></i>
-        Back to All Tours</a>
 </div>
 {% if request.user.is_superuser %}
 <div class="container center-align">
@@ -157,12 +168,10 @@
 <div class="container center-align">
     <div class="row">
         <div class="col s12">
-            <a href="{% url 'all_posts' %}"
-                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Back to All Posts<i
-                    class="fas fa-edit"></i></a>
+            <a href="{% url 'tours' %}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                <i class="fas fa-chevron-left"></i> Back to All Tours</a>
         </div>
     </div>
-</div>
 </div>
 {% endblock %}
 

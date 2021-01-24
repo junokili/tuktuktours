@@ -122,7 +122,7 @@ input[type=text]:not(.browser-default).validate.header-search+label {top: -0.65r
 .input-field.col.post-search label{ top: 0.5rem; z-index: 999;}
 .select-wrapper .caret {color: #032ea1; z-index: 999;}
 .select-wrapper+label {font-size: 1rem;}
-.select-dropdown.dropdown-content li.selectedn{
+.select-dropdown.dropdown-content li.selected{
     color: #032ea1;
 }
 button, input, optgroup, select, textarea {
@@ -130,6 +130,14 @@ button, input, optgroup, select, textarea {
     color: #424242;
     text-align: left;
 }
+.datepicker-date-display { background: #032ea1; }
+.month-prev:hover { background: #032ea1; }
+.month-next:hover { background: #032ea1; }
+.is-today { color: #032ea1 !important; font-weight: 600 !important;}
+.is-selected { background: #032ea1 !important; }
+.datepicker-done { color: #032ea1 !important; font-weight: 600;}
+.datepicker-cancel { color: #424242 !important;}
+.datepicker-clear { color: #424242   !important;}
 /* home page */
 #home-img {
     background: url('/media/home-tuktuks.jpg');
@@ -248,7 +256,20 @@ button, input, optgroup, select, textarea {
     margin: 0;
     padding: 0;
 }
+.review-image {
+    padding: 2rem;
+}
 /* shopping basket */
+.qty-blue-button {
+    background: #032ea1;
+}
+.qty-blue-button a, i {
+    color: white;
+}
+.waves-effect input[type="submit"] {
+    color: white;
+    font-size: 1.5rem;
+}
 img.responsive-img {
     width: 4rem;
     height: 4rem;
