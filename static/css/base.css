@@ -127,6 +127,18 @@ input[type=text]:not(.browser-default).validate.header-search+label {top: -0.65r
 .select-dropdown.dropdown-content li.selected{
     color: #032ea1;
 }
+[type="checkbox"].filled-in:checked+span:not(.lever):before{
+    border-right:2px solid white;
+    border-bottom:2px solid white;
+}
+[type="checkbox"].filled-in:checked+span:not(.lever):after{
+    border:2px solid #032ea1;
+    background-color:#032ea1;
+}
+[type="checkbox"].filled-in.tabbed:checked:focus+span:not(.lever):after{
+    background-color:#032ea1;
+    border-color:#032ea1;
+}
 .add-tour .select-wrapper+label {top: -1rem;}
 button, input, optgroup, select, textarea {
     font-family: 'Caveat', cursive;
@@ -172,6 +184,12 @@ input[type=number]:not(.browser-default):focus:not([readonly])+label,
 input[type=search]:not(.browser-default):focus:not([readonly])+label, 
 textarea.materialize-textarea:focus:not([readonly])+label {
     color: #032ea1;
+}
+fieldset {
+    border: 0;
+}
+#payment-form label {
+    font-size: 0;
 }
 /* home page */
 #home-img {
@@ -347,6 +365,9 @@ img.responsive-img {
 }
 .remove-item {
     cursor: pointer;
+}
+.save-details span {
+    color: #424242;
 }
 /* footer */
 .fixed {

@@ -61,11 +61,11 @@
                 {{ order_form|materializecss }}
             </div>
             <!-- make this a materialize check box to save user info -->
-            <div class="row">
+            <div class="row save-details">
                 {% if user.is_authenticated %}
                 <label for="id-save-info">
-                    <input type="checkbox" id="id-save-info" name="save-info" checked="checked">
-                    <span>Save this delivery information to my profile</span>
+                    <input type="checkbox" class="filled-in" checked="checked" id="id-save-info" name="save-info">
+                    <span>Save this information to my profile</span>
                 </label>
                 {% else %}
                 <label class="form-check-label" for="id-save-info">
@@ -73,18 +73,25 @@
                     <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
                 </label>
                 {% endif %}
-                <div class="container">
-                    <div class="centre-align">
-                        <fieldset>
-                            <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
-                            <!-- Stripe card element goes here -->
-                            <div id="card-element"></div>
-                            <!-- Used to display form errors -->
-                            <div class="red-text" id="card-errors" role="alert"></div>
-                            <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                        </fieldset>
-                    </div>
+            </div>
+            <div class="container">
+                <div class="centre-align">
+                    <fieldset>
+                        <legend class="fieldset-label small text-black px-2 w-auto">Card Details</legend>
+                        <!-- Stripe card element goes here -->
+                        <div id="card-element"></div>
+                        <!-- Used to display form errors -->
+                        <div class="red-text" id="card-errors" role="alert"></div>
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                    </fieldset>
                 </div>
+                <p class="right-align">
+                    <span class="icon">
+                        <i class="fas fa-exclamation-circle red-text"></i>
+                    </span>
+                    <span class="red-text">Your card will be charged
+                        <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                </p>
             </div>
             <div class="submit-button center-align">
                 <a href="{% url 'view_basket' %}"
@@ -101,12 +108,7 @@
                     </span>
                 </button>
             </div>
-            <p class="small text-danger my-0">
-                <span class="icon">
-                    <i class="fas fa-exclamation-circle"></i>
-                </span>
-                <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
-            </p>
+
     </div>
     </form>
 </div>
