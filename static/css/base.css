@@ -29,6 +29,9 @@ h1, h2, h3, h4, h5, h6, p {
 .flashes {
     min-height: 4rem;
 }
+.flashes h4 {
+    padding: 1rem;
+}
 /* navbar - header */
 .spacer {
     height: 1rem;
@@ -269,7 +272,7 @@ fieldset {
     height: 12.5rem;
     padding-top: 0.75rem;
 }
-.card-content p {
+.card-content.order-info p {
     color: #424242;
     font-size: 1.2rem;
 }
@@ -325,6 +328,10 @@ fieldset {
 .card .card-content.comment-card {
     padding: 1rem;
 }
+.tour-card-desc p {
+    color: #424242;
+    font-size: 1.2rem;
+}
 .card-style {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4)
 }
@@ -368,6 +375,10 @@ img.responsive-img {
 }
 .save-details span {
     color: #424242;
+}
+.order-info p {
+    color: #424242;
+    font-size: 1.2rem;
 }
 /* footer */
 .fixed {
