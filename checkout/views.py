@@ -70,21 +70,24 @@ def checkout(request):
                         order_line_item.save()
                 except Tour.DoesNotExist:
                     messages.error(request, (
-                        "One of the tours in your shopping basket wasn't found in our database. "
+                        "One of the tours in your shopping basket wasn't "
+                        "found in our database. "
                         "Please call us for assistance!")
                         )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('successful_checkout', args=[order.order_number]))
+            return redirect(reverse('successful_checkout',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            messages.error(request, "There's nothing in your shopping basket at the moment")
+            messages.error(request, "There's nothing in your shopping "
+                           "basket at the moment")
             return redirect(reverse('tours'))
 
         current_basket = basket_contains(request)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
-from .models import Tour, Category, Rating
+from .models import Tour, Category
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 from .forms import TourDetailForm, CategoryForm, ReviewForm
@@ -99,6 +99,7 @@ def add_review(request, tour_id):
             new_review.tour = tour
             # Save the review to the database
             new_review.save()
+            messages.success(request, f'Thanks for reviewing the {tour.name}!')
             return redirect(reverse('indv_tour', args=[tour.id]))
     else:
         messages.error(request, 'Failed to add review. '
@@ -126,7 +127,8 @@ def add_tour(request):
         form = TourDetailForm(request.POST, request.FILES)
         if form.is_valid():
             tour = form.save()
-            messages.success(request, 'Successfully added new tour!')
+            messages.success(request, f'Successfully added the new \
+                             tour {tour.name}!')
             return redirect(reverse('indv_tour', args=[tour.id]))
         else:
             messages.error(request, 'Failed to add new tour. '
@@ -154,14 +156,14 @@ def edit_tour(request, tour_id):
         form = TourDetailForm(request.POST, request.FILES, instance=tour)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Successfully updated tour')
+            messages.success(request, f'Successfully updated the {tour.name}')
             return redirect(reverse('indv_tour', args=[tour.id]))
         else:
             messages.error(request, 'Failed to update tour. '
                            'Check that the form entry is valid')
     else:
         form = TourDetailForm(instance=tour)
-        messages.info(request, f'You are editing existing product {tour.name}')
+        messages.info(request, f'You are editing the {tour.name}')
 
     template = 'tours/edit_tour.html'
     context = {
@@ -180,7 +182,7 @@ def delete_tour(request, tour_id):
 
     tour = get_object_or_404(Tour, pk=tour_id)
     tour.delete()
-    messages.success(request, 'Tour deleted')
+    messages.success(request, f'Deleted the {tour.name}')
     return redirect(reverse('tours'))
 
 
@@ -196,7 +198,6 @@ def all_categories(request):
 
 
 def indv_category(request, category_id):
-    """ A view to show individual tour details """
 
     category = get_object_or_404(Category, pk=category_id)
 
@@ -217,8 +218,9 @@ def add_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully added new category!')
+            category = form.save()
+            messages.success(request, f'Successfully added new category \
+                             { category.friendly_name }!')
             return redirect(reverse('categories'))
         else:
             messages.error(request, 'Failed to add new category. '
@@ -246,13 +248,16 @@ def edit_category(request, category_id):
         form = CategoryForm(request.POST, request.FILES, instance=category)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Successfully updated category')
+            messages.success(request, f'Successfully updated category \
+                             { category.friendly_name }')
             return redirect(reverse('categories'))
         else:
-            messages.error(request, 'Failed to update category. Check that the form entry is valid')
+            messages.error(request, 'Failed to update category. '
+                           'Check that the form entry is valid')
     else:
         form = CategoryForm(instance=category)
-        messages.info(request, f'You are editing existing product {category.friendly_name}')
+        messages.info(request, f'You are editing the category \
+                      {category.friendly_name}')
 
     template = 'tours/categories/edit_category.html'
     context = {
@@ -271,5 +276,5 @@ def delete_category(request, category_id):
 
     category = get_object_or_404(Category, pk=category_id)
     category.delete()
-    messages.success(request, 'Category deleted')
+    messages.success(request, f'Deleted the category {category.friendly_name}')
     return redirect(reverse('categories'))

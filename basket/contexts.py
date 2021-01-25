@@ -42,6 +42,7 @@ def basket_contains(request):
         'discount': discount,
         'discount_delta': discount_delta,
         'discount_threshold': settings.DISCOUNT_THRESHOLD,
+        'discount_percentage': settings.DISCOUNT_PERCENTAGE,
         'grand_total': grand_total,
         }
 

@@ -33,7 +33,7 @@ def all_posts(request):
             query = request.GET['qp']
             if not query:
                 messages.error(request, "You didn't enter any search terms!")
-                return redirect(reverse('blogs'))
+                return redirect(reverse('all_posts'))
 
             queries = Q(title__icontains=query) | Q(content__icontains=query)
             posts = posts.filter(queries)
@@ -91,7 +91,8 @@ def add_post(request):
         form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
-            messages.success(request, 'Successfully added new post!')
+            messages.success(request, f'Successfully added new post \
+                             { post.title }!')
             return redirect(reverse('post_detail', args=[post.id]))
         else:
             messages.error(request, 'Failed to add new post. \
@@ -127,7 +128,8 @@ def edit_post(request, post_id):
         form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Successfully updated post')
+            messages.success(request, f'Successfully updated post \
+                             { post.title }')
             return redirect(reverse('post_detail', args=[post.id]))
         else:
             messages.error(request, 'Failed to update post. \
@@ -153,5 +155,5 @@ def delete_post(request, post_id):
 
     post = get_object_or_404(BlogPost, pk=post_id)
     post.delete()
-    messages.success(request, 'Post deleted')
+    messages.success(request, f'Deleted the post { post.title }')
     return redirect(reverse('all_posts'))
