@@ -100,29 +100,34 @@
             {% for review in reviews %}
             <div class="row shadowed">
                 <div class="col s12">
-                    <div class="col s2">
+                    <div class="col s12 m2 center-align">
                         <div class="card-image review-image">
                             {% if review.review_emoji.rating_name == "Amazing!" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}grin-stars-solid.svg"
                                     alt="{{ review.review_emoji.rating_name }}" />
                             </a>
+                            <p>Amazing!</p>
                             {% elif review.review_emoji.rating_name == "Great!" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
+                                                        <p>Great!</p>
                             {% elif review.review_emoji.rating_name == "Good" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
+                            <p>Good</p>
                             {% elif review.review_emoji.rating_name == "OK" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}meh-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
+                            <p>OK</p>
                             {% elif review.review_emoji.rating_name == "Disappointing" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}frown-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
+                            <p>Disappointing</p>
                             {% else %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}noimage.png" alt="{{ review.review_emoji.rating_name }}" />
@@ -130,8 +135,9 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col s10">
+                    <div class="col s12 m10">
                         <div class="card-content comment-card">
+                            <h6 class="grey-text text-darken-3 bold">{{ review.title }}</h6>
                             <span class="card-title tuktuk-blue-text">{{ review.author }},
                                 {{ review.writtenon }}</span>
                             <p>{{ review.review_content }}</p>

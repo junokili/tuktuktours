@@ -85,11 +85,11 @@ i:focus {
     min-height: 1rem;
     margin: 0.5rem;
 }
-.sm-blue-button a, i {
+.sm-blue-button a, i, span {
     color: white;
+    font-size: 1rem;
 }
 .sm-blue-button i {
-    font-size: 1rem;
     margin-left: 0.8rem;
 }
 .float-right {
@@ -112,22 +112,22 @@ i:focus {
 /* modified materialize css for forms */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem;}
-input[type=text]:not(.browser-default):focus:not([readonly])+label { color: #424242}
-input[type=text]:not(.browser-default).validate+label {top: 0.6rem; left: 1rem; color: #424242}
+input[type=text]:not(.browser-default).validate+label {top: 0.6rem; left: 1rem; color: #032ea1;}
 input[type=text]:not(.browser-default).validate.header-search+label {top: -0.65rem; left: 1rem;}
 .input-field.col label { color: #032ea1; left: 1.25rem; top: -0.5rem;}
 .dropdown-content li a {color: #424242; margin: 0rem 1rem;}
 .dropdown-content li span {color: #424242;}
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer;}
 .input-field.col.post-search label{ top: 0.5rem; z-index: 999;}
-.select-wrapper .caret {color: #032ea1; z-index: 999;}
+.select-wrapper .caret {color: #032ea1; z-index: 2;}
 .select-wrapper+label {font-size: 1rem;}
 .select-dropdown.dropdown-content li.selected{
     color: #032ea1;
 }
+.add-tour .select-wrapper+label {top: -1rem;}
 button, input, optgroup, select, textarea {
     font-family: 'Caveat', cursive;
-    color: #424242;
+    color: #032ea1;
     text-align: left;
 }
 .datepicker-date-display { background: #032ea1; }
@@ -138,6 +138,38 @@ button, input, optgroup, select, textarea {
 .datepicker-done { color: #032ea1 !important; font-weight: 600;}
 .datepicker-cancel { color: #424242 !important;}
 .datepicker-clear { color: #424242   !important;}
+
+input:not([type]):focus:not([readonly]), 
+input[type=text]:not(.browser-default):focus:not([readonly]), 
+input[type=password]:not(.browser-default):focus:not([readonly]), 
+input[type=email]:not(.browser-default):focus:not([readonly]), 
+input[type=url]:not(.browser-default):focus:not([readonly]), 
+input[type=time]:not(.browser-default):focus:not([readonly]), 
+input[type=date]:not(.browser-default):focus:not([readonly]), 
+input[type=datetime]:not(.browser-default):focus:not([readonly]), 
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]), 
+input[type=tel]:not(.browser-default):focus:not([readonly]), 
+input[type=number]:not(.browser-default):focus:not([readonly]), 
+input[type=search]:not(.browser-default):focus:not([readonly]), 
+textarea.materialize-textarea:focus:not([readonly]) {
+    box-shadow: 0 2px 0 0 #032ea1;
+    border-bottom: 0;
+}
+input:not([type]):focus:not([readonly])+label, 
+input[type=text]:not(.browser-default):focus:not([readonly])+label, 
+input[type=password]:not(.browser-default):focus:not([readonly])+label, 
+input[type=email]:not(.browser-default):focus:not([readonly])+label, 
+input[type=url]:not(.browser-default):focus:not([readonly])+label, 
+input[type=time]:not(.browser-default):focus:not([readonly])+label, 
+input[type=date]:not(.browser-default):focus:not([readonly])+label, 
+input[type=datetime]:not(.browser-default):focus:not([readonly])+label, 
+input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label, 
+input[type=tel]:not(.browser-default):focus:not([readonly])+label, 
+input[type=number]:not(.browser-default):focus:not([readonly])+label, 
+input[type=search]:not(.browser-default):focus:not([readonly])+label, 
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #032ea1;
+}
 /* home page */
 #home-img {
     background: url('/media/home-tuktuks.jpg');
@@ -212,8 +244,9 @@ button, input, optgroup, select, textarea {
     margin: 0;
     padding: 0.5rem;
 }
-.tour-card-desc {
+.card .card-content.tour-card-desc {
     height: 12.5rem;
+    padding-top: 0.75rem;
 }
 .card-content p {
     color: #424242;
@@ -229,9 +262,14 @@ button, input, optgroup, select, textarea {
     text-align: center;
     height: 7rem;
 }
+
 .card-content.tour-card a, span {
     color: white;
     font-size: 1.5rem;
+}
+.card-panel a, span {
+    color: white;
+    font-size: 1rem;
 }
 .border-btm {
     border-bottom: 1px solid rgba(66,66,66,0.8);
@@ -578,6 +616,5 @@ input[name='q']::placeholder {
     margin-left: -1.5rem;
     margin-right: -1.5rem;
     margin-top: -0.5rem;
-}
-
+    }
 }
