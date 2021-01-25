@@ -13,32 +13,49 @@
     <form action="{% url 'edit_tour' tour.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="container">
-            {% for field in form %}
-            {% if field.name != 'image' %}
-            {{ field | materializecss }}
-            {% else %}
-            {{ field }}
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="submit-button text-right mt-5 mb-2">
-            <a href="{% url 'tours' %}" class="btn btn-outline-black rounded-0">
-                <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
+            <div class="card-panel add-tour">
+                {% for field in form %}
+                {% if field.name != 'image' %}
+                {{ field | materializecss }}
+                {% else %}
+                <p>Current image:</p>
+                {% if tour.image %}
+                    <a class="edit-image" href="{% url 'indv_tour' tour.id %}">
+                        <img src="{{ tour.image.url }}" alt="{{ tour.name }}" />
+                    </a><br/>
+                    {% else %}
+                    <a class="edit-image" href="{% url 'indv_tour' tour.id %}">
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ tour.name }}" />
+                    </a><br/>
+                    {% endif %}
+                <span>
+                    <input id="new_image" value="Select Image" type="file" name="image" accept="image/*">
                 </span>
-                <span class="font-weight-bold">Cancel</span>
-            </a>
-            <button id="submit-button" class="btn btn-black rounded-0">
-                <span class="font-weight-bold">Update Tour</span>
-                <span class="icon">
-                    <i class="fas fa-lock"></i>
-                </span>
-            </button>
-            <p class="small text-danger my-0">
-                <span class="icon">
-                    <i class="fas fa-exclamation-circle"></i>
-                </span>
-            </p>
+                <p class="grey-text text-darken-3 bold" id="filename"></p><br />
+                {% endif %}
+                {% endfor %}
+                <div class="submit-button center-align">
+                    <a href="{% url 'tours' %}"
+                        class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Cancel</span>
+                    </a>
+                    <button id="submit-button"
+                        class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                        <span>Update Tour</span>
+                        <span class="icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </button>
+                </div>
+                <p class="small text-danger my-0">
+                    <span class="icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </span>
+                </p>
+            </div>
         </div>
     </form>
 </div>

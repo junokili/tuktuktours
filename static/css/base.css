@@ -262,13 +262,16 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     text-align: center;
     height: 7rem;
 }
-
-.card-content.tour-card a, span {
+#tour-card-name {
     color: white;
     font-size: 1.5rem;
 }
 .card-panel a, span {
     color: white;
+    font-size: 1rem;
+}
+.add-tour p {
+    color: #032ea1;
     font-size: 1rem;
 }
 .border-btm {
@@ -296,6 +299,9 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 }
 .review-image {
     padding: 2rem;
+}
+.edit-image img {
+    max-height: 7rem;
 }
 /* shopping basket */
 .qty-blue-button {

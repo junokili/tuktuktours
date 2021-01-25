@@ -59,7 +59,10 @@ INSTALLED_APPS = [
     'profiles',
     'blogs',
     'reviews',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {

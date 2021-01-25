@@ -9,10 +9,20 @@ class TourDetailForm(forms.ModelForm):
         model = Tour
         fields = '__all__'
 
-        placeholders = {
-            'category': 'Tour Category',
-        }
-
+    name = forms.CharField(label='Tour Name (e.g. Mojokerto Market Tour)')
+    sku = forms.CharField(label='Create new sku (e.g. tt00025)')
+    description = forms.CharField(label='Description (give details about '
+                                  'what you will see or do, with '
+                                  'some historical background)')
+    price = forms.DecimalField(label='Price (e.g. $25.00)')
+    duration = forms.DecimalField(label='Duration in hours (e.g. 2.5)')
+    start_time = forms.CharField(label='Start Time (e.g. 8am, 5pm)')
+    includes = forms.CharField(label='List what is included (e.g. Tuktuk '
+                               'driver and guide, entrance fees, '
+                               'mineral water etc.)')
+    image_url = forms.URLField(label='Add the image URL here or upload the '
+                               'image below (file should be 640 x 480px)',
+                                required=False)
     image = forms.ImageField(label='Image', required=False,
                              widget=CustomClearableFileInput)
 
