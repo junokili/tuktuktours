@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'blogs',
     'reviews',
     'crispy_forms',
+    'contact',
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
