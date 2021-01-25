@@ -55,6 +55,8 @@ Future features:
 - **Delete Confirmation** - so superusers do not delete tours and categories by accident
 - **Saving Draft Posts** - new posts are published automatically at the moment, 
 but a function to save a draft can be added
+- **Moderate Comments** - add a moderator step for editing/deleting comments that breach acceptable standards
+- **Moderate Reviews** - add a moderator step for editing/deleting reviews that breach acceptable standards
 
 
 ## Technologies used

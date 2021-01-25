@@ -270,9 +270,27 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     color: white;
     font-size: 1rem;
 }
-.add-tour p {
+.add-tour p, a {
     color: #032ea1;
     font-size: 1rem;
+}
+.all-auth-mod h2 {
+    color: #424242;
+}
+.all-auth-mod a {
+    color: #032ea1;
+    font-size: 1.5rem;
+}
+.all-auth-mod p {
+    color: #424242;
+    font-size: 1.5rem;
+}
+.all-auth-mod label {
+    font-size: 0;
+    color: #424242;
+}
+#order-history {
+    color: #032ea1;
 }
 .border-btm {
     border-bottom: 1px solid rgba(66,66,66,0.8);
