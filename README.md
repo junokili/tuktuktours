@@ -53,6 +53,9 @@ Future features:
 - **Advanced Search** - combining queries such as category and price
 - **Social Media Login** - enabling users multiple methods of signing include
 - **Delete Confirmation** - so superusers do not delete tours and categories by accident
+- **Saving Draft Posts** - new posts are published automatically at the moment, 
+but a function to save a draft can be added
+
 
 ## Technologies used
 

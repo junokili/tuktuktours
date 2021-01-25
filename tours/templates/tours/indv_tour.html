@@ -31,7 +31,8 @@
                     <h6 class="grey-text text-darken-3">${{ tour.price  }} per person</h6>
                 </div>
                 <div class="card-content card-padding border-btm">
-                    <h6 class="grey-text text-darken-3">{{ tour.duration }} hours, starting at {{ tour.start_time }}</h6>
+                    <h6 class="grey-text text-darken-3">{{ tour.duration }} hours, starting at {{ tour.start_time }}
+                    </h6>
                 </div>
             </div>
         </div>
@@ -112,7 +113,7 @@
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
-                                                        <p>Great!</p>
+                            <p>Great!</p>
                             {% elif review.review_emoji.rating_name == "Good" %}
                             <a href="#">
                                 <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
@@ -146,15 +147,15 @@
                 </div>
             </div>
             {% endfor %}
+            {% if request.user.is_authenticated %}
+            <div class="center-align">
+                <a href="{% url 'make_review' tour.id %}"
+                    class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
+                    Leave a review <i class="fas fa-star"></i>
+                </a>
+            </div>
+            {% endif %}
         </div>
-        {% if user.is_authenticated %}
-        <div class="center-align">
-            <a href="{% url 'add_review' tour.id %}"
-                class="sm-blue-button waves-effect waves-light btn rounded-4 uppercase">
-                Leave a review <i class="fas fa-star"></i>
-            </a>
-        </div>
-        {% endif %}
     </div>
 </div>
 {% if request.user.is_superuser %}

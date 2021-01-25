@@ -1,34 +1,39 @@
 {% extends "base.html" %} {% load static %} {% load materializecss %}
 {% block page_header %}
-
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Leave a review for {{ tour.name }}</h4>
+    </div>
+</div>
 {% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
+{% if request.user.is_authenticated %}
 <div class="card-body">
-    {% if new_review %}
-    <div class="alert alert-success" role="alert">
-        Thanks for reviewing this tour!
-    </div>
-    {% else %}
-    <h3>Leave a review</h3>
-    <form method="POST">
+    <form action="{% url 'add_review' tour.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for field in review_form %}
-        {{ field | materializecss }}
-        {% endfor %}
-        <button type="submit" class="btn btn-primary btn-lg">Publish Review</button>
+        <div class="container">
+            <div class="card-panel add-tour">
+                {{ review_form | materializecss }}
+                <div class="submit-button center-align">
+                    <a href="{% url 'indv_tour' tour.id %}"
+                        class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Cancel</span>
+                    </a>
+                <button id="submit-button" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                    <span>Publish Review</span>
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                </button>
+            </div>
+            </div>
+        </div>
     </form>
 </div>
 {% endif %}
-{% endif %}
-<div class="col s12 m6">
-    <a href="{% url 'tours' %}" class="see-tours-button waves-effect waves-light btn-large rounded-4 text-uppercase">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        <span class="text-uppercase">Back to All Tours</span>
-    </a>
-</div>
 {% endblock %}
 
 {% block postloadjs %}

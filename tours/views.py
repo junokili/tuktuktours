@@ -70,11 +70,24 @@ def indv_tour(request, tour_id):
 
 
 @login_required
+def make_review(request, tour_id):
+
+    tour = get_object_or_404(Tour, pk=tour_id)
+    review_form = ReviewForm
+
+    context = {
+        'tour': tour,
+        'review_form': review_form,
+    }
+
+    return render(request, 'tours/indv_tour_add_review.html', context)
+
+
+@login_required
 def add_review(request, tour_id):
     """ A view to add a review to an individual tour """
 
     tour = get_object_or_404(Tour, pk=tour_id)
-    reviews = tour.reviews.all()
     new_review = None
 
     if request.method == 'POST':
@@ -95,7 +108,6 @@ def add_review(request, tour_id):
     template = 'tours/indv_tour_add_review.html'
     context = {
         'tour': tour,
-        'reviews': reviews,
         'new_review': new_review,
         'review_form': review_form,
     }

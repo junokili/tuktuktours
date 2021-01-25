@@ -155,38 +155,3 @@ def delete_post(request, post_id):
     post.delete()
     messages.success(request, 'Post deleted')
     return redirect(reverse('all_posts'))
-
-
-"""
-@login_required
-def add_comment(request, post_id):
-
-    post = BlogPost.objects.get(pk=post_id)
-    post_id = int(post_id)
-
-    if not request.user.is_authenticated:
-        messages.error(request,
-                       'Sorry, you need to be logged in to do that.')
-        return redirect(reverse('post_detail'))
-
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST, request.FILES)
-        if comment_form.is_valid():
-            comment_form.save()
-            messages.success(request, f'Succssfully added comment to \
-                             {post.title}')
-            return redirect(reverse('post_detail', args=[post.id]))
-        else:
-            messages.error(request, 'Failed to add comment. \
-                           Please ensure the form is valid.')
-    else:
-        comment_form = CommentForm()
-
-    template = 'blogs/comments/add_comment.html'
-    context = {
-        'comment_form': comment_form,
-        'post': post,
-    }
-
-    return render(request, template, context)
-"""

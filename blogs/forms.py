@@ -10,20 +10,10 @@ class BlogPostForm(forms.ModelForm):
         fields = ('title', 'content', 'author',
                   'image',)
 
-        image = forms.ImageField(label='Image', required=False,
-                                 widget=CustomClearableFileInput)
+        image = forms.ImageField(label='Select Image', required=False)
 
     def __init__(self, *args, **kwargs):
-        """ add placeholders and classes"""
         super().__init__(*args, **kwargs)
-        placeholders = {
-            'title': 'Title',
-            'content': 'Body of post',
-        }
-
-        self.fields['title'].widget.attrs['autofocus'] = True
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'border-black rounded-0'
 
 
 class CommentForm(forms.ModelForm):

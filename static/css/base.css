@@ -318,6 +318,12 @@ img.responsive-img {
     width: 4rem;
     height: 4rem;
 }
+.file-field .btn {
+    background: #032ea1;
+    min-width: 5rem;
+    min-height: 1rem;
+    margin: 0.5rem;
+}
 /* footer */
 .fixed {
     min-height: 12rem;

@@ -46,7 +46,7 @@
             <p>{{ post.content }}</p>
         </div>
     </div>
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <div class="card">
         <div class="card-content grey-text text-darken-3">
             {% if new_comment %}
@@ -116,7 +116,7 @@
         <div class="col s12">
             <a href="{% url 'all_posts' %}"
                 class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
-                <i class="fas fa-chevron-left"></i>  Back to All Posts</a>
+                <i class="fas fa-chevron-left"></i> Back to All Posts</a>
         </div>
     </div>
 </div>
