@@ -8,8 +8,9 @@
 {% endblock %}
 {% block content %}
 
-<div class="row">
-    <form action="{% url 'contact' %}" method="POST" enctype="multipart/form-data" id="contact" onsubmit="return sendMail(this);">
+<div class="row" id="contact-div">
+    <form action="{% url 'contact' %}" method="POST" enctype="multipart/form-data" id="contact"
+        onsubmit="return sendMail(this);">
         {% csrf_token %}
         <div class="container">
             <div class="card-panel">
@@ -22,8 +23,7 @@
                         </span>
                         <span>Back to Tours</span>
                     </a>
-                    <button type="submit"
-                        class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                    <button type="submit" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
                         <span>Send Message</span>
                         <span class="icon">
                             <i class="fas fa-plus"></i>
@@ -34,4 +34,15 @@
         </div>
     </form>
 </div>
+<div id="email-success"></div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+{% include 'contact/send_message.html' %}
+{% include 'contact/remove_contact_form.html' %}
+<script type="text/javascript">
+    (function () {
+        emailjs.init("user_O4p1uzoCxjXWmUYNVNa1Y");
+    })();
+</script>
 {% endblock %}

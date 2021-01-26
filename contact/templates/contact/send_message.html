@@ -1,0 +1,21 @@
+<!-- code validated through JSHint: https://jshint.com/ -->
+<script type="text/javascript">
+function sendMail(contact) {
+    emailjs.send("gmail", "sby_email", {
+        "name": contact.message_author.value,
+        "email": contact.message_email.value,
+        "order": contact.order_number.value,
+        "help": contact.message_body.value,
+    })
+    .then(
+        function(response) {
+            removeFormSuccess(); // Success confirmation message and form removal
+            console.log("sent", response);
+        },
+        function(error) {
+            console.log("fail", error);
+        }
+    );
+    return false;  // To block from loading a new page
+}
+</script>
