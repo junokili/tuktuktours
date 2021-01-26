@@ -1,6 +1,5 @@
 from django import forms
 from .models import BlogPost, Comment
-from tours.widgets import CustomClearableFileInput
 
 
 class BlogPostForm(forms.ModelForm):

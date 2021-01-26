@@ -7,7 +7,17 @@ class TourDetailForm(forms.ModelForm):
 
     class Meta:
         model = Tour
-        fields = '__all__'
+        fields = ('name',
+                  'category',
+                  'sku',
+                  'description',
+                  'includes',
+                  'price',
+                  'duration',
+                  'start_time',
+                  'image_url',
+                  'image',
+                  )
 
     name = forms.CharField(label='Tour Name (e.g. Mojokerto Market Tour)')
     sku = forms.CharField(label='Create new sku (e.g. tt00025)')
@@ -22,7 +32,7 @@ class TourDetailForm(forms.ModelForm):
                                'mineral water etc.)')
     image_url = forms.URLField(label='Add the image URL here or upload the '
                                'image below (file should be 640 x 480px)',
-                                required=False)
+                               required=False)
     image = forms.ImageField(label='Image', required=False,
                              widget=CustomClearableFileInput)
 
