@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-content border-btm">
+        <div class="card-content border-btm indv-tour-card">
             <div class="col s12">
                 <h6 class="grey-text text-darken-3 bold">Tour description: </h6>
                 <p>{{ tour.description }}</p>
@@ -55,7 +55,7 @@
                     {% csrf_token %}
                     <!-- tour quantity -->
                     <div class="row">
-                        <div class="input-field col s12 m6">
+                        <div class="input-field col s12 m6 add-to-basket">
                             <p>Quantity:</p><br />
                             <div class="col s2">
                                 <button class="decrement-qty btn qty-blue-button" data-tour_id="{{ tour.tour.id }}"
@@ -81,7 +81,7 @@
                     </div>
                     <!-- tour date -->
                     <div class="row">
-                        <div class="input-field col s12 m6">
+                        <div class="input-field col s12 m6  add-to-basket">
                             <p>Date:</p>
                             <input id="tour_date" name="tour_date" type="text" class="datepicker validate" required>
                             <label for="tour_date"></label>
@@ -102,31 +102,31 @@
             <div class="row shadowed">
                 <div class="col s12">
                     <div class="col s12 m2 center-align">
-                        <div class="card-image review-image">
+                        <div class="card-image review-image add-to-basket">
                             {% if review.review_emoji.rating_name == "Amazing!" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}grin-stars-solid.svg"
+                                <img src="{{ MEDIA_URL }}emoji_star.svg"
                                     alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>Amazing!</p>
                             {% elif review.review_emoji.rating_name == "Great!" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}grin-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_grin.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>Great!</p>
                             {% elif review.review_emoji.rating_name == "Good" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}smile-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_smile.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>Good</p>
                             {% elif review.review_emoji.rating_name == "OK" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}meh-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_neutral.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>OK</p>
                             {% elif review.review_emoji.rating_name == "Disappointing" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}frown-solid.svg" alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_frown.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>Disappointing</p>
                             {% else %}
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="col s12 m10">
-                        <div class="card-content comment-card">
+                        <div class="card-content comment-card add-to-basket">
                             <h6 class="grey-text text-darken-3 bold">{{ review.title }}</h6>
                             <span class="card-title tuktuk-blue-text">{{ review.author }},
                                 {{ review.writtenon }}</span>

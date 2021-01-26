@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,7 +59,6 @@ INSTALLED_APPS = [
     'materializecssform',
     'profiles',
     'blogs',
-    'reviews',
     'crispy_forms',
     'contact',
 ]
@@ -136,7 +136,6 @@ LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'tuktuk_tours.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -146,6 +145,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.parse('postgres://nlgaqrbylhwrvc:e8bfbb83546544aeb2a3ec21538d3526e14fabcdc69ef7b19c7e088f9c0634a0@ec2-52-30-161-203.eu-west-1.compute.amazonaws.com:5432/d19mv2ufevqf35')
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

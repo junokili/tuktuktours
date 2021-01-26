@@ -88,6 +88,34 @@ forms, basic card and card reveal styling, dropdown menus, date and time pickers
 
 ## Deployment
 
+This project was developed using Gitpod and deployed through Heroku. 
+It can be accessed here: http://tuk-tuk-tours.herokuapp.com/
+
+The steps taken to set up the project and to deploy it to Heroku were as follows:
+1. Create a git repository
+2. Create a .gitnore file and add non-publishable files e.g. pycache, env.py, pyc etc
+4. Create a Procfile file (terminal command - echo web: python app.py > Procfile)
+5. Add the new files to the staging area in the terminal (git add)
+6. Commit the files to the repository with an appropriate message (git commit -m "message")
+7. Push the files to the repository (git push)
+8. Login to Heroku (https://heroku.com, or sign up) and create a new app, following the prompts to name 
+the project and select a region
+9. Within the app go to the Resources tab and find Heroku Postgres in the Add-ons and choose a plan
+3. In github install dj database package (terminal command - pip3 install dj_database_url)
+4. And install psycopg2 (terminal command - pip3 install psycopg2-binary)
+5. Create a requirements.txt file (terminal command - pip3 freeze > requirements.txt)
+6. Add dj_database_url to settings.py and add the link to the Heroku database (from Heroku > Settings > Reveal Config Vars)
+
+8. Within the app go to the Deploy tab
+9. Select Deployment method: GitHub - Connect to GitHub
+10. Check your username, enter the repository name, click Search. 
+11. When the repository has been found, click Connect
+12. Go to the Settings tab and click Reveal Config vars
+13. Enter the Key-Value pairs for the Config Vars (IP (0.0.0.0), PORT (5000), SECRET_KEY (hidden variable),
+ MONGO_URI (from MongoDB) and MONGO_DBNAME (from MongoDB))
+14. Go to the Deploy tab select Deploy and Enable Automatic Deployment
+15. Confirm that app was succesfully deployed. 
+
 To run the app locally in GitHub:
 1. Login to GitHub 
 2. Navigate to the project repository (https://github.com/junokili/tuktuktours)
