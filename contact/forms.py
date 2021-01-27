@@ -9,7 +9,7 @@ class MessageForm(forms.ModelForm):
         fields = ('message_email', 'message_author',
                   'order_number', 'message_body',)
 
-    message_email = forms.EmailField(label='Email')
+    message_email = forms.EmailField(label='Your contact email')
     message_author = forms.CharField(label='Name')
     order_number = forms.CharField(label='Order Number (if applicable)',
                                    required=False)

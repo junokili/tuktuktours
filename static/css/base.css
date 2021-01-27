@@ -77,6 +77,7 @@ i:focus {
 .discount-heading h4, p {
     margin: 0 auto;
     font-size: 1.5rem;
+    color: white;
 }
 .subheading {
     background: #000;
@@ -322,6 +323,7 @@ fieldset {
     padding: 1rem;
 }
 .tour-card-desc p {
+    color: #424242;
     font-size: 1.2rem;
 }
 .indv-tour-card p {
@@ -381,6 +383,7 @@ img.responsive-img {
     color: #424242;
 }
 .order-info p {
+    color: #424242;
     font-size: 1.2rem;
 }
 /* footer */
@@ -490,6 +493,9 @@ input[name='q']::placeholder {
     }
     .tour-card-name span {
         font-size: 1.5rem;
+    }
+    .hp-total {
+        color: #424242;
     }
 }
 @media (max-width: 500px) {

@@ -19,13 +19,10 @@
     <!-- Dropdown Structure -->
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{% url 'tours' %}">All Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=villages,street_art,cultural,traditional">Cultural Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a></li>
+        <li><a href="{% url 'tours' %}?category=tea_plant,lake_hill">Scenic Tours</a></li>
         <li><a href="{% url 'tours' %}?category=temple">Temple Tours</a></li>
-        <li><a href="{% url 'tours' %}?category=market,street_food,spice">Market & Food Tours</a>
-        </li>
-        <li><a href="{% url 'tours' %}?category=villages,street_art,cultural">Cultural Tours</a>
-        </li>
-        <li><a href="{% url 'tours' %}?category=sunrise,tea_plant,lake_hill">Sunrise & Scenic
-                Tours</a></li>
     </ul>
 </li>
 {% if request.user.is_superuser %}
@@ -34,8 +31,8 @@
     <a class="dropdown-trigger" href="#" data-target="dropdown3">Blog</a>
     <!-- Dropdown Structure -->
     <ul id="dropdown3" class="dropdown-content">
-        <li><a href="{% url 'all_posts' %}">View All Posts</a></li>
-        <li><a href="{% url 'add_post' %}">Write New Post</a></li>
+        <li><a href="{% url 'all_posts' %}">All Posts</a></li>
+        <li><a href="{% url 'add_post' %}">Add New Post</a></li>
     </ul>
 </li>
 {% else %}
@@ -46,16 +43,18 @@
 {% if request.user.is_authenticated %}
 <li>
     <!-- Dropdown Trigger -->
-    <a class="dropdown-trigger" href="#" data-target="dropdown2">My Account</a>
+    <a class="dropdown-trigger" href="#" data-target="dropdown2">Account</a>
     <!-- Dropdown Structure -->
     <ul id="dropdown2" class="dropdown-content">
-        <li><a href="{% url 'user_profile' %}">My Profile</a></li>
-        <li><a href="#">My Order History</a></li>
+        <li><a href="{% url 'user_profile' %}">Profile & Order History</a></li>
         {% if request.user.is_superuser %}
-        <li><a href="{% url 'tours' %}">View Tours</a></li>
-        <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
-        <li><a href="{% url 'categories' %}">View Categories</a></li>
-        <li><a href="{% url 'add_category' %}">Add Category</a></li>
+        <li><a href="#">Manage Tours</a></li>
+        <ul class="sublist">
+            <li><a href="{% url 'tours' %}">View Tours</a></li>
+            <li><a href="{% url 'add_tour' %}">Add New Tour</a></li>
+            <li><a href="{% url 'categories' %}">View Categories</a></li>
+            <li><a href="{% url 'add_category' %}">Add New Category</a></li>
+        </ul>
         {% endif %}
     </ul>
 </li>
@@ -72,10 +71,9 @@
 </li>
 {% endif %}
 <li>
-    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-white{% endif %}"
-        href="{% url 'view_basket' %}">
+    <a href="{% url 'view_basket' %}">
         <i class="fas fa-shopping-basket fa-lg"></i>
-        <span class="hp-total">
+        <span class="hp-total {% if grand_total %}bold{% endif %}">
             {% if grand_total %}
             ${{ grand_total|floatformat:2 }}
             {% else %}
