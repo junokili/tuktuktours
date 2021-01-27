@@ -283,7 +283,7 @@ fieldset {
 }
 .tour-card-name span {
     color: white;
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 .add-tour p, a {
     color: #032ea1;
@@ -301,6 +301,9 @@ fieldset {
 }
 .all-auth-mod label {
     font-size: 0;
+    color: #424242;
+}
+.all-auth-mod input::placeholder {
     color: #424242;
 }
 #order-history {
@@ -378,7 +381,6 @@ img.responsive-img {
     color: #424242;
 }
 .order-info p {
-    color: #424242;
     font-size: 1.2rem;
 }
 /* footer */
@@ -460,54 +462,6 @@ ul.social > li > a > i:focus {
 input[name='q']::placeholder {
     color: #424242;
 }
-/* Allauth form formatting */
-
-.allauth-form-inner-content p {
-    margin-top: 1.5rem; /* mt-4 */
-    color: #424242; /* text-secondary */
-}
-.allauth-form-inner-content input {
-    border-color: #000;
-    border-radius: 0;
-}
-
-.allauth-form-inner-content label:not([for='id_remember']) {
-    display: none;
-}
-
-.allauth-form-inner-content input::placeholder {
-    color: #aab7c4;
-}
-
-.allauth-form-inner-content button,
-.allauth-form-inner-content input[type='submit'] {
-	/* btn */
-	display: inline-block;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-.allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
-    background-color: #222;
-    border-color: #222;
-}
-.allauth-form-inner-content a {
-	color: #17a2b8; /* text-info */
-}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -534,6 +488,9 @@ input[name='q']::placeholder {
     .tour-card-desc p {
         font-size: 1rem;
     }
+    .tour-card-name span {
+        font-size: 1.5rem;
+    }
 }
 @media (max-width: 500px) {
     .post-card {
@@ -541,16 +498,20 @@ input[name='q']::placeholder {
         margin-right: -1.5rem;
         margin-top: -0.5rem;
     }
-    .card.card-content.tour-card-desc p {
-        font-size: 1.2rem;
+    .tour-card-desc p {
+        font-size: 1.5rem;
     }
     .bottom-border{
         border-bottom: 2px solid white;
+        border-right: 0;
     }
     input[type=text]:not(.browser-default).validate+label {
         top: -0.2rem;;
     }
     .post-search input[type=text]:not(.browser-default).validate+label {
         top: 0.5rem;
+    }
+    .tour-card-name span {
+        font-size: 2rem;
     }
 }
