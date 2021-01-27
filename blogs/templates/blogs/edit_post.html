@@ -65,7 +65,7 @@
     })
 </script>
 <script type="text/javascript">
-    $('#content').val('');
-  M.textareaAutoResize($('#content'));
+    $('#id_content').val(`${post.content}`);
+  M.textareaAutoResize($('#id_content'));
 </script>
 {% endblock %}

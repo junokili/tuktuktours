@@ -15,14 +15,21 @@
         <div class="container">
             <div class="card-panel add-tour">
                 {% for field in form %}
-                {% if field.name != 'image' %}
+                {% if field.name != 'image' and field.name != 'content' %}
                 {{ field | materializecss }}
                 {% else %}
+                {% if field.name == 'content' %}
+                <div class="input-field col s12">
+                    <textarea id="id_content" name="content" class="materialize-textarea"></textarea>
+                    <label for="id_content">Add your post content here</label>
+                </div>
+                {% else %}
+                {% if field.name == 'image' %}
                 <span>
                     <input id="new_image" value="Select Image" type="file" name="image" accept="image/*">
                 </span>
                 <p class="grey-text text-darken-3 bold" id="filename"></p><br />
-                {% endif %}
+                {% endif %}{% endif %}{% endif %}
                 {% endfor %}
                 <div class="submit-button center-align">
                     <a href="{% url 'all_posts' %}"
@@ -49,7 +56,7 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('#content').val('');
-  M.textareaAutoResize($('#content'));
+    $('#id_content').val('');
+    M.textareaAutoResize($('#id_content'));
 </script>
 {% endblock %}

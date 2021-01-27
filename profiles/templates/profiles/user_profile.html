@@ -16,13 +16,6 @@
                 <h6 class="grey-text text-darken-3">My Information</h6>
                 {{ form | materializecss }}
                 <div class="submit-button center-align">
-                    <a href="{% url 'user_profile' %}"
-                        class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span>Cancel</span>
-                    </a>
                     <button id="submit-button"
                         class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
                         <span>Update Profile</span>
@@ -53,7 +46,8 @@
                         {% for order in orders %}
                         <tr>
                             <td>
-                                <a id="order-history" href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
+                                <a id="order-history" href="{% url 'order_history' order.order_number %}"
+                                    title="{{ order.order_number }}">
                                     {{ order.order_number|truncatechars:6 }}
                                 </a>
                             </td>

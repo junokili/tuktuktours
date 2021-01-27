@@ -14,11 +14,10 @@
 </div>
 {% endif %}
 <div class="row">
-
     {% for category in categories %}
     <div class="col s12 m3">
         <div class="card white center-align">
-            <div class="card-content tuktuk-blue card-padding">
+            <div class="card-content black card-padding">
                 <h4>{{ category.friendly_name }}</h4>
             </div>
             <div class="shadowed card-action">
@@ -33,12 +32,11 @@
     </div>
     {% endfor %}
 </div>
-<div class="btn">
-    <a class="back-to-top d-flex h-100">
-        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+<div class="btt-link">
+    <a class="waves-effect waves-light btn rounded-4 text-uppercase btt">
+        <i class="fas fa-arrow-up"></i>
     </a>
 </div>
-
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}

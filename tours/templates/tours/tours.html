@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="row">
-<div class="input-field col s12 m4">
+<div class="input-field col s12 m6 l4">
     <select id="sort-selector">
         <option value="" disabled selected>Sort Tours</option>
         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by ...</option>
@@ -35,16 +35,15 @@
     <label></label>
 </div>
 </div>
-<div class="col-12 col-md-6 order-md-first">
-    <p class="text-muted mt-3 text-center text-md-left">
+<div class="col s12 search-result count">
+    <p>
         {% if search_text or current_categories or current_sorting != 'None_None' %}
-        <span class="small"><a href="{% url 'tours' %}">All Tours</a> | </span>
+        <span><a href="{% url 'tours' %}">All Tours</a> | </span>
         {% endif %}
         {{ tours|length }} {% if tours|length == 1 %}Tour{% else%}Tours{% endif %}{% if search_text %} found for
         <strong>"{{ search_text }}"</strong>{% endif %}
     </p>
 </div>
-
 <div class="row">
     {% for tour in tours %}
     <div class="col s12 m4 l3">

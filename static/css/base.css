@@ -11,17 +11,17 @@ body {
 .bold {
     font-weight: 600;
 }
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6 {
     color: white;
+}
+p {
+    color: #424242;
 }
 .tuktuk-blue {
     background: #032ea1;
 }
 .tuktuk-blue-text {
     color: #032ea1;
-}
-.black-fill {
-    background: #000;
 }
 .uppercase {
     text-transform: uppercase;
@@ -97,6 +97,9 @@ i:focus {
 }
 .sm-blue-button i {
     margin-left: 0.8rem;
+}
+.md-blue-button a {
+    font-size: 1.5rem;
 }
 .float-right {
     float: right;
@@ -200,7 +203,7 @@ fieldset {
     background-position: center;
     background-repeat: no-repeat;
     padding: 0;
-    min-height: 30rem;
+    min-height: 15rem;
 }
 .about-us {
     color: white;
@@ -216,22 +219,6 @@ fieldset {
     width: 3rem;
     margin-left: 2rem; 
 }
-/*
-.main-logo-link {
-    width: fit-content;
-}
-*/
-.see-tours-button {
-    background: #032ea1;
-    color: white;
-    min-width: 20rem;
-    min-height: 5rem;
-    margin: 2rem;
-    padding-top: 0.5rem;
-}
-.see-tours-button:hover,
-.see-tours-button:active,
-.see-tours-button:focus,
 .btn:hover,
 .btn:active,
 .btn:focus {
@@ -255,8 +242,11 @@ fieldset {
     padding-top: 1rem;
 }
 /* card displays */
-.count {
-    margin-left: 1rem;
+.search-result {
+    padding-left: 2rem;
+}
+.count p {
+    color: white;
 }
 .card, .shadowed {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.35), 0 3px 1px -2px rgba(0,0,0,0.35), 0 1px 5px 0 rgba(0,0,0,0.4);
@@ -285,14 +275,15 @@ fieldset {
 .card-content.tour-card-name {
     text-align: center;
     height: 7rem;
-}
-#tour-card-name {
-    color: white;
-    font-size: 1.5rem;
+    padding-top: 0.5rem;
 }
 .card-panel a, span {
     color: white;
     font-size: 1rem;
+}
+.tour-card-name span {
+    color: white;
+    font-size: 2rem;
 }
 .add-tour p, a {
     color: #032ea1;
@@ -306,7 +297,6 @@ fieldset {
     font-size: 1.5rem;
 }
 .all-auth-mod p {
-    color: #424242;
     font-size: 1.5rem;
 }
 .all-auth-mod label {
@@ -329,7 +319,6 @@ fieldset {
     padding: 1rem;
 }
 .tour-card-desc p {
-    color: #424242;
     font-size: 1.2rem;
 }
 .indv-tour-card p {
@@ -355,7 +344,7 @@ fieldset {
     margin: 0;
     padding: 0;
 }
-.review-image {
+.card-image.review-image {
     padding: 1rem;
 }
 .edit-image img {
@@ -421,28 +410,29 @@ img.responsive-img {
 .footer .fa:hover {
     color: #032ea1;
 }
+.footer p {
+    color: #fff;
+}
 .info-text-top {
-    margin-top: 20px;
-    font-size: 22px;
+    margin-top: 2rem;
+    font-size: 1.5rem;
 }
 .info-text {
-    margin-top: -10px;
-    font-size: 22px;
+    margin-top: -1rem;
+    font-size: 1.5rem;
 }
 .list-inline {
-    margin-top: 50px;
+    margin-top: 2rem;
     padding-left: 0;
-    margin-left: -5px;
+    margin-left: -0.5rem;
     list-style: none;
 }
 .list-inline > li {
     display: inline-block;
-    padding-right: 5px;
-    padding-left: 5px;
 }
 ul.social > li > a > i {
-    margin: 15px;
-    font-size: 52px;
+    margin: 1rem;
+    font-size: 3rem;
     color: #fff;
 }
 ul.social > li > a > i:hover,
@@ -470,24 +460,12 @@ ul.social > li > a > i:focus {
 input[name='q']::placeholder {
     color: #424242;
 }
-
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
-}
-
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    color: #424242; /* text-secondary */
 }
-
 .allauth-form-inner-content input {
     border-color: #000;
     border-radius: 0;
@@ -519,116 +497,60 @@ input[name='q']::placeholder {
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 0;
-
-    /* standard bootstrap btn transitions */
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {	
 	color: #fff;
     background-color: #222;
     border-color: #222;
 }
-
 .allauth-form-inner-content a {
 	color: #17a2b8; /* text-info */
 }
+/* -------------------------------- Media Queries */
 
-/* Product Form */
-
-.btn-file {
-    position: relative;
-    overflow: hidden;
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
 }
-
-.btn-file input[type="file"] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.custom-checkbox .custom-control-label::before {
-    border-radius: 0;
-    border-color: #dc3545;
-}
-
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    border-radius: 0;
-}
-
-
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
-    .header-container {
-        padding-top: 164px;
-    }
-}
-
 /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
-    .header-container {
-        padding-top: 116px;
-    }
-
-    body {
-        height: calc(100vh - 116px);
-    }
-
-    .display-4.logo-font.text-black {
-        font-size: 2rem;
-    }
-
     .nav-link {
         padding: 0.15rem;
     }
-
     .nav-link i.fa-lg {
         font-size: 1rem;
     }
-
     .navbar-toggler {
         padding: .6rem .6rem;
         font-size: 1rem;
     }
-
-    #delivery-banner h4 {
-        font-size: .9rem;
-    }
-
-    .btn.btn-outline-black.rounded-0,
-    .btn.btn-black.rounded-0 {
-        padding: .375rem .375rem;
-    }
-
-    .btn.btn-outline-black.rounded-0.btn-lg,
-    .btn.btn-black.rounded-0.btn-lg {
-        padding: .375rem .375rem;
-        font-size: .75rem;
-    }
-
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important;
     }
+    .tour-card-desc p {
+        font-size: 1rem;
+    }
 }
 @media (max-width: 500px) {
-.post-card {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    margin-top: -0.5rem;
+    .post-card {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        margin-top: -0.5rem;
+    }
+    .card.card-content.tour-card-desc p {
+        font-size: 1.2rem;
+    }
+    .bottom-border{
+        border-bottom: 2px solid white;
+    }
+    input[type=text]:not(.browser-default).validate+label {
+        top: -0.2rem;;
+    }
+    .post-search input[type=text]:not(.browser-default).validate+label {
+        top: 0.5rem;
     }
 }
