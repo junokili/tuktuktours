@@ -94,17 +94,24 @@ It can be accessed here: http://tuk-tuk-tours.herokuapp.com/
 The steps taken to set up the project and to deploy it to Heroku were as follows:
 1. Create a git repository
 2. Create a .gitnore file and add non-publishable files e.g. pycache, env.py, pyc etc
-4. Create a Procfile file (terminal command - echo web: python app.py > Procfile)
 5. Add the new files to the staging area in the terminal (git add)
 6. Commit the files to the repository with an appropriate message (git commit -m "message")
 7. Push the files to the repository (git push)
 8. Login to Heroku (https://heroku.com, or sign up) and create a new app, following the prompts to name 
 the project and select a region
 9. Within the app go to the Resources tab and find Heroku Postgres in the Add-ons and choose a plan
-3. In github install dj database package (terminal command - pip3 install dj_database_url)
-4. And install psycopg2 (terminal command - pip3 install psycopg2-binary)
-5. Create a requirements.txt file (terminal command - pip3 freeze > requirements.txt)
-6. Add dj_database_url to settings.py and add the link to the Heroku database (from Heroku > Settings > Reveal Config Vars)
+10. In github install dj_database_package (terminal command - pip3 install dj_database_url)
+11. And install psycopg2 (terminal command - pip3 install psycopg2-binary)
+12. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
+13. Add dj_database_url to settings.py and add the link to the Heroku database (from Heroku > Settings > Reveal Config Vars)
+14. Rerun all migrations and create a superuser
+15. Set up an if statement in settings.py to connect to either the Heroku database or the original django one
+16. Install gunicorn (terminal command - pip3 install gunicorn)
+17. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
+4. Create a Procfile file in github
+19. Login to Heroku in the CLI (heroku login -i)
+20. Add heroku app to ALLOWED_HOSTS in settings.py
+
 
 8. Within the app go to the Deploy tab
 9. Select Deployment method: GitHub - Connect to GitHub

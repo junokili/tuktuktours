@@ -1,0 +1,1 @@
+web: gunicorn tuktuk-tours.wsgi:application
