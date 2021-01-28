@@ -58,6 +58,7 @@ but a function to save a draft can be added
 - **Moderate Comments** - add a moderator step for editing/deleting comments that breach acceptable standards
 - **Moderate Reviews** - add a moderator step for editing/deleting reviews that breach acceptable standards
 
+Additional testing of e.g checkout and basket apps before making this a vaiable e-commerce store. 
 
 ## Technologies used
 
@@ -123,6 +124,7 @@ the project and select a region
 12. Set up AWS account to host static files ....
 13. In Github pip3 install boto3, and pip3 install django_storages
 14. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
+25. Add storages to installed apps in settings.py
 
 
 
