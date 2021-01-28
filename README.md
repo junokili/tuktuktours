@@ -111,6 +111,8 @@ the project and select a region
 4. Create a Procfile file in github
 19. Login to Heroku in the CLI (heroku login -i)
 20. Add heroku app to ALLOWED_HOSTS in settings.py
+21. set git remote to heroku in CLI (heroku git:remote -a tuktuk-tours)
+22. Push to Heroku (git push heroku master)
 
 
 8. Within the app go to the Deploy tab

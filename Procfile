@@ -1,1 +1,1 @@
-web: gunicorn tuktuk-tours.wsgi:application
+web: gunicorn tuktuk_tours.wsgi:application
