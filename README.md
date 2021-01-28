@@ -108,22 +108,21 @@ the project and select a region
 15. Set up an if statement in settings.py to connect to either the Heroku database or the original django one
 16. Install gunicorn (terminal command - pip3 install gunicorn)
 17. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
-4. Create a Procfile file in github
+4. Create a Procfile file in github (in file - web: gunicorn tuktuk_tours.wsgi:application)
 19. Login to Heroku in the CLI (heroku login -i)
 20. Add heroku app to ALLOWED_HOSTS in settings.py
+21. Temporarily disable collecting static files (heroku config:set DISABLE_COLLECTSTATIC=1 --app tuktuk-tours)
 21. set git remote to heroku in CLI (heroku git:remote -a tuktuk-tours)
-22. Push to Heroku (git push heroku master)
-
-
-8. Within the app go to the Deploy tab
+22. Push to Heroku (git push heroku master) and open app to check it has been successfully deployed
+8. Within the app in heroku go to the Deploy tab
 9. Select Deployment method: GitHub - Connect to GitHub
 10. Check your username, enter the repository name, click Search. 
-11. When the repository has been found, click Connect
+11. When the repository has been found, click Connect and Enable Automatic Deployment
+11. Get a django secret key and add it to Heroku Settings > Config Vars
+11. Add the secret key variable to settings.py
 12. Go to the Settings tab and click Reveal Config vars
 13. Enter the Key-Value pairs for the Config Vars (IP (0.0.0.0), PORT (5000), SECRET_KEY (hidden variable),
  MONGO_URI (from MongoDB) and MONGO_DBNAME (from MongoDB))
-14. Go to the Deploy tab select Deploy and Enable Automatic Deployment
-15. Confirm that app was succesfully deployed. 
 
 To run the app locally in GitHub:
 1. Login to GitHub 
