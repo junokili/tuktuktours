@@ -120,6 +120,13 @@ the project and select a region
 11. When the repository has been found, click Connect and Enable Automatic Deployment
 11. Get a django secret key and add it to Heroku Settings > Config Vars
 11. Add the secret key variable to settings.py
+12. Set up AWS account to host static files ....
+13. In Github pip3 install boto3, and pip3 install django_storages
+14. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
+
+
+
+
 12. Go to the Settings tab and click Reveal Config vars
 13. Enter the Key-Value pairs for the Config Vars (IP (0.0.0.0), PORT (5000), SECRET_KEY (hidden variable),
  MONGO_URI (from MongoDB) and MONGO_DBNAME (from MongoDB))
