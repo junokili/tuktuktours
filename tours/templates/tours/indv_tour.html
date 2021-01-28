@@ -7,6 +7,20 @@
 </div>
 {% endblock %}
 {% block content %}
+{% if request.user.is_superuser %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'edit_tour' tour.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Edit Tour<i
+                    class="fas fa-edit"></i></a>
+            <a href="{% url 'delete_tour' tour.id %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Delete Tour<i
+                    class="fas fa-trash"></i></a>
+        </div>
+    </div>
+</div>
+{% endif %}
 <div class="container">
     <div class="card">
         <div class="row border-btm" id="post-detail">
@@ -101,12 +115,11 @@
             {% for review in reviews %}
             <div class="row shadowed">
                 <div class="col s12">
-                    <div class="col s12 m2 center-align">
+                    <div class="col s2 m2 center-align" id="small-review">
                         <div class="card-image review-image" id="review-emoji">
                             {% if review.review_emoji.rating_name == "Amazing!" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}emoji_star.svg"
-                                    alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_star.svg" alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>Amazing!</p>
                             {% elif review.review_emoji.rating_name == "Great!" %}
@@ -121,7 +134,8 @@
                             <p>Good</p>
                             {% elif review.review_emoji.rating_name == "OK" %}
                             <a href="#">
-                                <img src="{{ MEDIA_URL }}emoji_neutral.svg" alt="{{ review.review_emoji.rating_name }}" />
+                                <img src="{{ MEDIA_URL }}emoji_neutral.svg"
+                                    alt="{{ review.review_emoji.rating_name }}" />
                             </a>
                             <p>OK</p>
                             {% elif review.review_emoji.rating_name == "Disappointing" %}
@@ -136,7 +150,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col s12 m10">
+                    <div class="col s10 m10">
                         <div class="card-content comment-card add-to-basket">
                             <h6 class="grey-text text-darken-3 bold">{{ review.title }}</h6>
                             <span class="card-title tuktuk-blue-text">{{ review.author }},
@@ -158,25 +172,66 @@
         </div>
     </div>
 </div>
-{% if request.user.is_superuser %}
-<div class="container center-align">
-    <div class="row">
-        <div class="col s12">
-            <a href="{% url 'edit_tour' tour.id %}"
-                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Edit Tour<i
-                    class="fas fa-edit"></i></a>
-            <a href="{% url 'delete_tour' tour.id %}"
-                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Delete Tour<i
-                    class="fas fa-trash"></i></a>
-        </div>
-    </div>
-</div>
-{% endif %}
 <div class="container center-align">
     <div class="row">
         <div class="col s12">
             <a href="{% url 'tours' %}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
                 <i class="fas fa-chevron-left"></i> Back to All Tours</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>Interested? Check out the blog</h4>
+    </div>
+</div>
+{% for post in posts %}
+{% if post.tour.name == tour.name %}
+<div class="container">
+    <div class="row shadowed white">
+        <div class="col s12">
+            <div class="card">
+                <div class="col s12 m5">
+                    <div class="card-image post-card">
+                        {% if post.image %}
+                        <a href="{% url 'post_detail' post.id %}">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                        </a>
+                        {% else %}
+                        <a href="{% url 'post_detail' post.id %}">
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ post.title }}" />
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col s12 m7">
+                    <div class="card-stacked blog-post">
+                        <div class="card-content card-padding border-btm">
+                            <h4 class="grey-text text-darken-3">{{ post.title  }}</h4>
+                        </div>
+                        <div class="card-content card-padding border-btm">
+                            <p>{{ post.content|slice:":200" }}</p>
+                        </div>
+                        <div class="card-action card-padding">
+                            <a href="{% url 'post_detail' post.id  %}"
+                                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button float-right">Read
+                                More
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+<div class="container center-align">
+    <div class="row">
+        <div class="col s12">
+            <a href="{% url 'all_posts' %}"
+                class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
+                See All Posts <i class="fas fa-chevron-right"></i> </a>
         </div>
     </div>
 </div>

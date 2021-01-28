@@ -35,6 +35,9 @@ class Tour(models.Model):
     def __str__(self):
         return self.name
 
+    def get_tour_name(self):
+        return self.name
+
 
 class Review(models.Model):
     tour = models.ForeignKey(Tour, null=False, blank=False,

@@ -3,11 +3,9 @@ from .models import BlogPost, Comment
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'status',
+    list_display = ('title', 'slug', 'tour',
                     'createdon', 'image')
-    list_filter = ("status",)
     search_fields = ['title', 'content']
-    prepopulated_fields = {'slug': ('title',)}
 
     ordering = ('createdon',)
 

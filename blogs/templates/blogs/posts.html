@@ -9,7 +9,7 @@
 {% block content %}
 {% if request.user.is_superuser %}
 <div class="container center-align">
-    <a href="{% url 'add_post' %}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">Write
+    <a href="{% url 'add_post' %}" class="waves-effect waves-light btn-large rounded-4 text-uppercase sm-blue-button">Write
         New Post<i class="fas fa-pencil-alt"></i></a>
 </div>
 {% endif %}

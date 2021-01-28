@@ -1,12 +1,13 @@
 from django import forms
 from .models import BlogPost, Comment
+from tours.models import Tour
 
 
 class BlogPostForm(forms.ModelForm):
 
     class Meta:
         model = BlogPost
-        fields = ('title', 'content', 'author',
+        fields = ('title', 'content', 'author', 'tour',
                   'image_url', 'image',)
 
     content = forms.CharField(label='Add your post content here')
@@ -17,6 +18,10 @@ class BlogPostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        tours = Tour.objects.all()
+        tour_names = [(tour.id, tour.get_tour_name()) for tour in tours]
+
+        self.fields['tour'].choices = tour_names
 
 
 class CommentForm(forms.ModelForm):

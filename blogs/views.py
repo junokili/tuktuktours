@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import BlogPost
 from .forms import BlogPostForm, CommentForm
 from profiles.models import UserProfile
+from tours.models import Tour
 
 
 def all_posts(request):
@@ -53,6 +54,7 @@ def post_detail(request, post_id):
     """ A view to show individual blog post details """
 
     post = get_object_or_404(BlogPost, pk=post_id)
+    tour = Tour.objects.all()
     comments = post.comments.all()
     new_comment = None
 
@@ -71,6 +73,7 @@ def post_detail(request, post_id):
     context = {
         'post': post,
         'comments': comments,
+        'tour': tour,
         'new_comment': new_comment,
         'comment_form': comment_form,
     }

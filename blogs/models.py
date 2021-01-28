@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from profiles.models import UserProfile
+from tours.models import Tour
 
 STATUS = (
     (0, "Draft"),
@@ -10,7 +11,10 @@ STATUS = (
 
 class BlogPost(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='posts')
+                                     null=True, blank=True,
+                                     related_name='posts')
+    tour = models.ForeignKey(Tour, on_delete=models.SET_NULL,
+                             null=True, blank=True, related_name='posts')
     title = models.CharField(max_length=254, null=False, blank=True)
     slug = AutoSlugField(populate_from='title')
     author = models.CharField(max_length=50, null=False, blank=False, default='')
@@ -25,6 +29,9 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_tour_name(self):
+        return self.tour
 
 
 class Comment(models.Model):

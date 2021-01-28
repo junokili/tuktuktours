@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
 from .models import Tour, Category
+from blogs.models import BlogPost
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 from .forms import TourDetailForm, CategoryForm, ReviewForm
@@ -59,10 +60,12 @@ def indv_tour(request, tour_id):
     """ A view to show individual tour details """
 
     tour = get_object_or_404(Tour, pk=tour_id)
+    posts = BlogPost.objects.all()
     reviews = tour.reviews.all()
 
     context = {
         'tour': tour,
+        'posts': posts,
         'reviews': reviews,
     }
 

@@ -520,4 +520,14 @@ input[name='q']::placeholder {
     .tour-card-name span {
         font-size: 2rem;
     }
+    #small-review {
+        padding: 0.25rem;
+    }
+    #review-emoji {
+        padding: 1rem 0 0;
+    }
+    #review-emoji p {
+        color: #424242;
+        font-size: 0.75rem;
+    }
 }
