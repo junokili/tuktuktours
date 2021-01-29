@@ -59,16 +59,14 @@
             </div>
         </div>
         {% else %}
-        <div class="container">
-            <div class="card-panel">
+        <div class="row center-align empty">
                 <h6 class="grey-text text-darken-3">Your shopping basket is empty.</h6>
                 <div class="col s12">
                     <a href="{% url 'tours' %}"
                         class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
                         <i class="fas fa-chevron-left"></i> Back to All Tours</a>
                 </div>
-            </div>
-        </div>
+                </div>
         {% endif %}
     </div>
 </div>

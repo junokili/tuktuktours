@@ -36,6 +36,9 @@ information in the form of blogs going beyond what you can just see and do.
 
 ### User Stories
 
+User stories can be found in a seperate document here:
+
+
 ### Design Choices
 
 **Overall Design** The site has a clear identity, with a consistent and predictable theme and style 
@@ -51,9 +54,10 @@ The features currently offered provide the customer and business owner with what
 they are simple to implement and use. Future releases can add value in bite-size increments, 
 such as displaying tours in a map format.
 
-
 **Font** The google font, Caveat, was chosen for the site, as it is fun and friendly, and fits 
-with the noticeboard style of the site (similar to a handwritten style).
+with the noticeboard style of the site (similar to a handwritten style). The font is used in all aspects 
+of the site, including forms, as this remains on brand with the playful nature of a travel site 
+(the stripe card element is the one place a more simple font style is used). 
 
 **Colours** The colour scheme for the site is based around three main colours: royal blue, black and white.
  These colours were originally chosen based on the Cambodian flag, as this was the initial business location.
@@ -111,6 +115,13 @@ Features include:
 and several of the “most popular” tours are displayed in small cards (these currently filtered by sku, 
 but in a future release it would be filtered by user generated ratings). 
 
+### Authentication app:
+- **Sign Up / Login / Log Out** - a signing up feature as only registered users can access specific areas or 
+functions of the site. Users can easily log out at the end of a session
+
+### Profiles app:
+- **Account / Profile** - basic information about the user and a way to store order history and billing details.
+
 ### Tours app:
 - **All Tours** - displaying all the tours available in an easy to read and view card format with links to tour details
 - **Category Buttons** - users can click a category button to filter the tours displayed
@@ -121,14 +132,7 @@ Also contains the "Add to Basket" (quantity and date), "Leave Review" and "Blog"
 - **Individual Tour pages - Reviewing** - authenticated users can submit a review with a rating for a specific tour
 (currently graphical, but has a numerical component)
 - **Manage Tours** - superusers have access to simple forms to add new tours, edit existing tours and delete tours
-
-### Authentication app:
-- **Sign Up / Login / Log Out** - a signing up feature as only registered users can access specific areas or 
-functions of the site. Users can easily log out at the end of a session
-
-### Profiles app:
-- **Account / Profile** - basic information about the user and a way to store order history and billing details.
-- **Manage Categories** - a simple app for superusers to view, create, edit and delete tour categories 
+- **Manage Categories** - superusers have access to simple forms to view, create, edit and delete tour categories 
 
 ### Blog app:
 - **Blog** - a page displaying all posts added to the site with search / sort functions
@@ -136,6 +140,7 @@ functions of the site. Users can easily log out at the end of a session
 - **Sorting Menus** - users can sort the and posts by date (oldest / newest) and title (A-Z / Z-A)
 - **Individual Post pages** - to display the full content of individual posts, including comments
 - **Individual Post pages - Commmenting** - a form for authenticated users to add comments to individual posts
+- **Manage Posts** - superusers have access to simple forms to view, create, edit and delete blog posts 
 
 ### Contact Us app:
 - **Contact Us** - for users to easily address queries to or ask for additional 
@@ -152,15 +157,17 @@ of the user's basket in a session
 and enter billing details (which can be saved to the user profile if the user is authenticated) 
 as well as a stripe element for secure card payment
 - **Successful checkout** - a form reviewing the order the user has just made, with the details of what
-was purchased (quantity, date) and the price, discount and grand total.
+was purchased (quantity, date) and the price, discount and grand total. Superusers can access order details 
+in the admin and in stripe. 
+
 
 Future features:
 - **Map of Tours** - tour locations can be displayed on a map
 - **Advanced Search** - combining queries such as category and price
-- **Social Media Login** - enabling users multiple methods of signing include
+- **Social Media Login** - enabling users multiple methods of signing including e.g. faccebook, twitter, instagram etv
 - **Delete Confirmation** - so superusers do not delete tours, categories and posts by accident
 - **Saving Draft Posts** - new posts are published automatically at the moment, 
-but a function to save a draft can be added
+but a function to save a draft can be added, and has been already created in the model
 - **Moderate Comments** - add a moderator step for editing/deleting comments that breach acceptable standards
 - **Moderate Reviews** - add a moderator step for editing/deleting reviews that breach acceptable standards
 - **Most Popular/Reviewed Tours / Most Commented Posts** - an additional sorting system to allow users
@@ -173,16 +180,19 @@ to directly find the e.g. most popular tours or posts on the site
 - CSS: styling
 - JavaScript: contact us/email, back to top buttons, quantity decrease/increase buttons
 - Python: connecting to Django and performing CRUD operations
-- Django: for the database containing tours (and reviews), user profiles, a blog (posts and comments), shopping basket and checkout
+- Django: for the database containing tours (and reviews), user profiles, a blog (posts and comments), 
+shopping basket and checkout
 - Font Awesome: icons that visually represent the form criteria and info display https://fontawesome.com
 - Google Fonts: a back-up font family that represents the style and design of the site https://fonts.google.com
 - Materialize (CSS, JavaScript/JQuery) for the functionality of the navbar, hamburger menu, 
 forms, basic card and card reveal styling, dropdown menus, date and time pickers
     and the grid structuring of the site https://materialize.com
 
+
 ## Testing 
 
 Additional testing of e.g checkout and basket apps before making this a vaiable e-commerce store. 
+Accidentally exposed postgres database on intial deployment, so deleted app and started a new one. 
 
 - **Links**
 
@@ -201,60 +211,106 @@ Additional testing of e.g checkout and basket apps before making this a vaiable 
 This project was developed using Gitpod and deployed through Heroku. 
 It can be accessed here: http://tuk-tuk-tours.herokuapp.com/
 
-The steps taken to set up the project and to deploy it to Heroku were as follows:
+Set up the project and deploy it to Heroku:
 1. Create a git repository
 2. Create a .gitnore file and add non-publishable files e.g. pycache, env.py, pyc etc
-5. Add the new files to the staging area in the terminal (git add)
-6. Commit the files to the repository with an appropriate message (git commit -m "message")
-7. Push the files to the repository (git push)
-8. Login to Heroku (https://heroku.com, or sign up) and create a new app, following the prompts to name 
+3. Add the new files to the staging area in the terminal (CLI - git add)
+4. Commit the files to the repository with an appropriate message (CLI - git commit -m "message")
+5. Push the files to the repository (CLI - git push)
+6. Login to Heroku (https://heroku.com, or sign up) and create a new app, following the prompts to name 
 the project and select a region
-9. Within the app go to the Resources tab and find Heroku Postgres in the Add-ons and choose a plan
-10. In github install dj_database_package (terminal command - pip3 install dj_database_url)
-11. And install psycopg2 (terminal command - pip3 install psycopg2-binary)
-12. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
-13. Add dj_database_url to settings.py and add the link to the Heroku database (from Heroku > Settings > Reveal Config Vars)
-14. Rerun all migrations and create a superuser
-15. Set up an if statement in settings.py to connect to either the Heroku database or the original django one
-16. Install gunicorn (terminal command - pip3 install gunicorn)
-17. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
-4. Create a Procfile file in github (in file - web: gunicorn tuktuk_tours.wsgi:application)
-19. Login to Heroku in the CLI (heroku login -i)
-20. Add heroku app to ALLOWED_HOSTS in settings.py
-21. Temporarily disable collecting static files (heroku config:set DISABLE_COLLECTSTATIC=1 --app tuktuk-tours)
-21. set git remote to heroku in CLI (heroku git:remote -a tuktuk-tours)
-22. Push to Heroku (git push heroku master) and open app to check it has been successfully deployed
-8. Within the app in heroku go to the Deploy tab
-9. Select Deployment method: GitHub - Connect to GitHub
-10. Check your username, enter the repository name, click Search. 
-11. When the repository has been found, click Connect and Enable Automatic Deployment
-11. Get a django secret key and add it to Heroku Settings > Config Vars
-11. Add the secret key variable to settings.py
-12. Set up AWS account to host static files ....
-13. In Github pip3 install boto3, and pip3 install django_storages
-14. Update requirements.txt file (terminal command - pip3 freeze > requirements.txt)
-25. Add storages to installed apps in settings.py
+7. Within the app go to the Resources tab and find Heroku Postgres in the Add-ons and choose a plan
+8. In github install dj_database_package (CLI - pip3 install dj_database_url)
+9. In github install psycopg2 (CLI - pip3 install psycopg2-binary)
+10. Update requirements.txt file (CLI - pip3 freeze > requirements.txt)
+11. Add dj_database_url to settings.py and add the link to the Heroku database 
+(from Heroku > Settings > Reveal Config Vars) - do not push to git while the postgres database is exposed
+12. Rerun all migrations and create a superuser 
+13. Set up an if statement in settings.py to connect to either the remote Heroku database 
+or the local sql database (to allow local deployment / development mode)
+14. Install gunicorn (terminal command - pip3 install gunicorn)
+15. Update requirements.txt file (CLI - pip3 freeze > requirements.txt)
+16. Create a Procfile file in github (in file - web: gunicorn tuktuk_tours.wsgi:application)
+17. Login to Heroku in the CLI (heroku login -i)
+18. Add heroku app to ALLOWED_HOSTS in settings.py
+19. Temporarily disable collecting static files (CLI - heroku config:set DISABLE_COLLECTSTATIC=1 --app tuktuk-tours)
+20. Set git remote to heroku in CLI (heroku git:remote -a tuktuk-tours)
+21. Push to Heroku (CLI - git push heroku master) and open app to check it has been successfully deployed
+22. Within the app in Heroku go to the Deploy tab
+23. Select Deployment method: GitHub - Connect to GitHub
+24. Check your username, enter the repository name, click Search. 
+25. When the repository has been found, click Connect and Enable Automatic Deployment
+26. Get a django secret key (via the internet browser) and add it to Heroku Settings > Config Vars
+27. Add the secret key variable to settings.py (do not expose the secret key)
+28. App should be successfully deployed (without static files). Open app in Heroku
+
+Set up an Amazon Web Services Account to host static files:
+1. Create an AWS account (www.aws.amazon.com) or login to your existing account
+2. In the Management Console go to S3
+3. Click on Buckets and create a new bucket withan appropriate name, region, and unblock all public access
+4. In Properties > Enable Static web hosting with default conditions
+5. In Permissions > CORS config set the CORS configuration (see Learn More for what to add)
+6. In Bucket Policy > Policy Generator, create an S3 Bucket Policy with (effect: allow, principal: *,
+actions: get object, arn: from the Bucket Policy info provided by AWS) > Add Statement > Generate Policy
+7. Copy Policy into Bucket Policy input, remembering to add /* at the end of the resources key
+8. In Access Control > Check Everyone has List Permissions
+9. In Management Console > IAM > Groups > Add New Group (give it a name, ig nore subsequent tabs for now)
+10. In Policies > Create Policy > JSON > Import Management Policy > Amazon S3 Full Access > Import
+11. In the policy change the resources to "["arn: ...", "arn: .... /*"] > Review Policy (add a name and description) > Create Policy
+12. In Group > Permissions > Attach Policy (find it by name)
+13. In Users > Add New User > give a name and allow programmable access > Add to Group > Create User
+14. Download and safely store csv file with key information
+15. Add AWS keys to Heroku > Settings> Config Vars
+16. In github install boto3 (CLI - pip3 install boto3)
+17. In github install django-storages (CLI - pip3 install django-storages)
+18. Update requirements.txt file (CLI - pip3 freeze > requirements.txt)
+19. Add 'storages' to INSTALLED APPS in settings.py, and add AWS Bucket Name, region and key variables, 
+add AWS custom domain
+20. Create a custom_storages.py file at the project level to hold classes for media and static storage locations
+21. Add storage and static / media file locations and urls to settings.py
+22. Add AWS Object Parameters for the cacheing of files to settings.py
+23. Push to Heroku and check the AWS bucket now has the static files
+24. In AWS > S3 > Bucket > Create Folder named media
+25. Upload required media files, grant Public read access in Additional Settings
+26. App should be successfully deployed with static files. Open app in Heroku
+
+Set up Stripe for payments:
+1. Create a Stripe account, or login (www.stripe.com)
+2. Go to Stripe > Dashboard and find user keys
+3. Add Stripe public and secret keys to Heroku > Settings > Congfig Vars (do not expose keys)
+4. Add a new webhook for the heroku app (https://tuktuk-tours.herokuapp.com/checkout/wh/)
+5. Select Recieve all Evens and Add Endpoint
+6. Copy the webhook signing secret and add to Heroku > Settings > Config Vars
+7. Test the webhook
+8. App should be successfully deployed for demo stripe payments. Oppen app in Heroku
 
 To run the app locally in GitHub:
 1. Login to GitHub 
 2. Navigate to the project repository (https://github.com/junokili/tuktuktours)
 3. Click on the Gitpod button and a new, local workspace will be created within Gitpod
+4. Install required dependencies (CLI - pip3 install django, pip3 install django-allauth)
+5. create a superuser (CLI - python3 manage.py createsuperuser)
+6. Install additional required dependencies (using CLI pip3 install) for django-countries, pillow, stripe,
+materializecss, gunicorn, boto3, psycopg2-binary, django-storages
+7. Create requirements.txt file (CLI - pip3 freeze > requirements.txt)
+8. Run site (CLI - python3 manage.py runserver)
+
 
 ## Credits
 
 **Content**
-
-**Media**
-Tuktuk icon:
-<div>Icons made by <a href="http://www.creaticca.com/" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
-JS for increment / decrement buttons, 
-from Code Institute Django Project
+All content is the developer's own, unless otherwise accredited. 
+Resurces used, but modified have come from:
+Code Institutue (DJango walkthrough project) e.g. javascript used for increment / decrement buttons, 
 
 https://github.com/kalwalkden/django-materializecss-form
-
 https://djangocentral.com/creating-comments-system-with-django/
 
-https://fontawesome.com/license
+**Media**
+All photos are the developers own
+Tuktuk icon:
+Creaticca Creative Agency (http://www.creaticca.com) 
 
 **Acknowledgements**
+Thanks to my mentor, Sebastian Immel, for giving insight into how the project looked and adding additional value
+Toby, for the business name.

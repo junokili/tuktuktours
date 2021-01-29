@@ -416,6 +416,9 @@ img.responsive-img {
     color: #032ea1;
     font-size: 1.2rem;
 }
+.empty h6 {
+    padding-bottom: 2rem;
+}
 /* footer */
 .fixed {
     min-height: 12rem;
