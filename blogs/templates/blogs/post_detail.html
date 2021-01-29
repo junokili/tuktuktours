@@ -9,7 +9,8 @@
 {% block content %}
 {% if request.user.is_superuser %}
 <div class="container center-align">
-    <a href="{% url 'add_post' %}" class="waves-effect waves-light btn-large rounded-4 text-uppercase sm-blue-button">Write
+    <a href="{% url 'add_post' %}"
+        class="waves-effect waves-light btn-large rounded-4 text-uppercase sm-blue-button">Write
         New Post<i class="fas fa-pencil-alt"></i></a>
 </div>
 <div class="container center-align">
@@ -50,12 +51,19 @@
                 </div>
                 <div class="card-content card-padding border-btm">
                     <h6 class="grey-text text-darken-3">{{ comments.count }}
-                        comment{% if comments.count > 1 or comments.count == 0 %}s{% endif%}</h6>
+                        comment{% if comments.count > 1 or comments.count == 0 %}s{% endif %}</h6>
                 </div>
             </div>
         </div>
         <div class="card-content valign-wrapper blog-post">
             <p>{{ post.content }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 valign-wrapper subheading" id="comments">
+            <h5>Comments{% if not request.user.is_authenticated %} (<a href="{% url 'account_login' %}">Login</a> to
+                leave a comment)</h5>
+            {% endif %}
         </div>
     </div>
     {% if request.user.is_authenticated %}
@@ -92,8 +100,6 @@
             {% endif %}
         </div>
     </div>
-    {% else %}
-    <p>Please <a href="{% url 'login' %}">login</a> to leave a comment</p>
     {% endif %}
     <div class="row">
         {% for comment in comments %}

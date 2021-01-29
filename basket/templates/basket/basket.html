@@ -36,7 +36,7 @@
                     <td>{{ tour.quantity }}</td>
                     <td>{{ tour.tour.price }}</td>
                     <td>{{ tour.tour.price | calc_subtotal:tour.quantity }}</td>
-                    <td>{{ tour.tour_date }}</td>
+                    <td>{{ tour.tour_date|slice:"6" }}</td>
                     <td><a class="red-text remove-item" id="remove_{{ tour.tour_id }}">Remove</a></td>
                 </tr>
                 {% endfor %}

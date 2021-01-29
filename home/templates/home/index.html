@@ -3,31 +3,90 @@
 
 {% endblock %}
 {% block content %}
+<div class="row">
+    <div class="col s12 valign-wrapper subheading yogya">
+        <h4>Why visit Yogyakarta by Tuk Tuk?</h4>
+    </div>
+</div>
 <div class="container">
-    <div class="card">
-        <div class="row" id="post-detail">
-            <div class="col s12 m5">
-                <div class="card-image post-detail" id="home-img">
+    <div class="row shadowed white home-page">
+        <div class="col s12">
+            <div class="card">
+                <div class="col s12 m5">
+                    <div class="card-image post-detail">
+                        <img src="{{ MEDIA_URL }}home-tuktuks.jpg" alt="Tuk Tuk Tours" />
+                    </div>
                 </div>
-            </div>
-            <div class="col s12 m7">
-                <div class="card-content card-padding border-btm">
-                    <h4 class="grey-text text-darken-3">About Us</h4>
-                </div>
-                <div class="card-content card-padding">
-                    <h6 class="grey-text text-darken-3">What better way is there than touring in a tuktuk with a local driver and guide who
-                        can tell you everything you want to know? Join us for one of our fascinating tours in Yogyakarta and beyond.
-                        We have a whole variety of tours from visting markets, historic temples to traditional villages as well as 
-                        tours where you can learn about and experience celebrated forms of art, such as shadow puppetry and dance, 
-                        as well as the latest in street art. <br/><br/>
-                        Our guides are here to give you an unforgettable experience. They are all local, speak excellent English and 
-                        know the best places for the most delicious street food!<br/>
-                    </h6>
-                        <button class="sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
+                <div class="col s12 m7">
+                    <div class="card-content card-padding">
+                        <h6 class="grey-text text-darken-3">What better way is there than touring in a tuktuk with a
+                            local
+                            driver and guide who
+                            can tell you everything you want to know? <br /><br />
+                            Yogyakarta is famous as the center of Javanese celebrated classical arts and culture,
+                            such
+                            as
+                            batik, silversmithing, and traditional dance. Still ruled by a
+                            monarchy you can
+                            visit the king's palace within the city center. Not only that, but it's located in the
+                            middle
+                            of the must-see
+                            temple complexes of Borobudur and Prambanan. <br /><br />
+
+                            With so much to see and do going with a guided tuktuk tour
+                            will give you an extra insight
+                            into Javanese life and culture.<br />
+                        </h6>
+                        <button
+                            class="float-right sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
                             <a href="{% url 'tours' %}">
                                 See all tours<i class="fas fa-angle-double-right map-icon"></i>
                             </a>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 valign-wrapper subheading">
+        <h4>About Us</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row shadowed white home-page">
+        <div class="col s12">
+            <div class="card">
+                <div class="col s12 m5">
+                    <div class="card-image post-detail">
+                        <img src="{{ MEDIA_URL }}street-food-curry.jpg" alt="Yogyakarta" />
+                    </div>
+                </div>
+                <div class="col s12 m7">
+                    <div class="card-content card-padding">
+                        <h6 class="grey-text text-darken-3">
+                            We have a whole variety of tours from visting markets, historic temples to traditional
+                            villages
+                            as well as
+                            tours where you can learn about and experience traditional forms of art alongside the latest
+                            in
+                            street art.
+                            We have been running our tours for several years and have
+                            a wealth of knowledge about the history and culture of the area. <br /><br />
+                            Our guides are here to give you an unforgettable experience. They are all local, speak
+                            excellent
+                            English and will help you with any souvenir shopping, or choosing the best things to try in
+                            the
+                            markets and street food stalls!<br />
+                        </h6>
+                        <button
+                            class="float-right sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
+                            <a href="{% url 'tours' %}">
+                                See all tours<i class="fas fa-angle-double-right map-icon"></i>
+                            </a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,5 +128,12 @@
     </div>
     {% endif %}
     {% endfor %}
+</div>
+<div class="center-align">
+    <button class="sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
+        <a href="{% url 'tours' %}">
+            See all tours<i class="fas fa-angle-double-right map-icon"></i>
+        </a>
+    </button>
 </div>
 {% endblock %}

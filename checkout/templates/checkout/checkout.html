@@ -39,7 +39,7 @@
                     <td>{{ tour.quantity }}</td>
                     <td>{{ tour.tour.price }}</td>
                     <td>{{ tour.tour.price | calc_subtotal:tour.quantity }}</td>
-                    <td>{{ tour.tour_date }}</td>
+                    <td>{{ tour.tour_date|slice:"6"}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -60,15 +60,15 @@
             <div class="col s12">
                 {{ order_form|materializecss }}
             </div>
-            <!-- make this a materialize check box to save user info -->
-            <div class="row save-details">
+            <!-- materialize check box to save user info -->
+            <div class="row save-details" id="form-check">
                 {% if user.is_authenticated %}
                 <label for="id-save-info">
                     <input type="checkbox" class="filled-in" checked="checked" id="save-info" name="save-info">
                     <span>Save this information to my profile</span>
                 </label>
                 {% else %}
-                <label class="form-check-label" for="save-info">
+                <label class="form-check-label tuktuk-blue-text" for="save-info">
                     <a href="{% url 'account_signup' %}">Create an account</a> or
                     <a href="{% url 'account_login' %}">login</a> to save this information
                 </label>

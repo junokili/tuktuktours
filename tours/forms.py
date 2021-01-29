@@ -26,7 +26,7 @@ class TourDetailForm(forms.ModelForm):
                                   'some historical background)')
     price = forms.DecimalField(label='Price (e.g. $25.00)')
     duration = forms.DecimalField(label='Duration in hours (e.g. 2.5)')
-    start_time = forms.CharField(label='Start Time (e.g. 8am, 5pm)')
+    start_time = forms.CharField(label='Pick up time from hotel (e.g. 8am)')
     includes = forms.CharField(label='List what is included (e.g. Tuktuk '
                                'driver and guide, entrance fees, '
                                'mineral water etc.)')

@@ -133,7 +133,7 @@ functions of the site. Users can easily log out at the end of a session
 ### Blog app:
 - **Blog** - a page displaying all posts added to the site with search / sort functions
 - **Search Bars** - users can search the blog posts by keywords
-- **Sorting Menus** - users can sort the and posts by date (oldest / newest)
+- **Sorting Menus** - users can sort the and posts by date (oldest / newest) and title (A-Z / Z-A)
 - **Individual Post pages** - to display the full content of individual posts, including comments
 - **Individual Post pages - Commmenting** - a form for authenticated users to add comments to individual posts
 

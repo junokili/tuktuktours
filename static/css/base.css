@@ -86,6 +86,9 @@ i:focus {
 .subheading h4 {
     margin: 0 auto;
 }
+.subheading.yogya h4 {
+    font-size: 2rem;
+}
 .sm-blue-button {
     background: #032ea1;
     min-width: 10rem;
@@ -199,12 +202,22 @@ fieldset {
     font-size: 0;
 }
 /* home page */
-#home-img {
+#yogya-img {
     background: url('/media/home-tuktuks.jpg');
     background-position: center;
     background-repeat: no-repeat;
     padding: 0;
     min-height: 15rem;
+}
+#home-img {
+    background: url('/media/street-food-curry.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    min-height: 15rem;
+}
+.home-page {
+    padding-bottom: 1rem;
 }
 .about-us {
     color: white;
@@ -327,6 +340,10 @@ fieldset {
     color: #424242;
     font-size: 1.2rem;
 }
+.tour-card-name i {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+}
 .indv-tour-card p {
     color: #424242;
     font-size: 1.2rem;
@@ -355,6 +372,10 @@ fieldset {
 }
 .edit-image img {
     max-height: 7rem;
+}
+#comments a {
+    color: white;
+    font-size: 1.64rem;
 }
 /* shopping basket */
 .qty-blue-button {
@@ -385,6 +406,14 @@ img.responsive-img {
 }
 .order-info p {
     color: #424242;
+    font-size: 1.2rem;
+}
+#form-check label {
+    color: #424242;
+    font-size: 1.2rem;
+}
+#form-check a {
+    color: #032ea1;
     font-size: 1.2rem;
 }
 /* footer */
