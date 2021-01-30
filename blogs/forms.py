@@ -10,6 +10,7 @@ class BlogPostForm(forms.ModelForm):
         fields = ('title', 'content', 'author', 'tour',
                   'image_url', 'image',)
 
+    title = forms.CharField(label='Title', required=True)
     content = forms.CharField(label='Add your post content here')
     image_url = forms.URLField(label='Add the image URL here or upload the '
                                'image below',

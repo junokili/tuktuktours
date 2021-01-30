@@ -58,7 +58,7 @@
                 {% endif %}
             </div>
             <div class="black center-align">
-                <h5>{{ tour.category.friendly_name }}</h5>
+                <h5>{% if tour.category.friendly_name %}{{ tour.category.friendly_name }}{% else %}Tuk Tuk Tours{% endif %}</h5>
             </div>
             <div class="card-content tour-card-desc">
                 <p class="tour-description">{{ tour.description|slice:":200" }}</p>

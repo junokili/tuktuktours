@@ -19,6 +19,7 @@ class TourDetailForm(forms.ModelForm):
                   )
 
     name = forms.CharField(label='Tour Name (e.g. Mojokerto Market Tour)')
+    category = forms.CharField(label='Choose a Category', required=True)
     sku = forms.CharField(label='Create new sku (e.g. tt00025)')
     description = forms.CharField(label='Description (give details about '
                                   'what you will see or do, with '

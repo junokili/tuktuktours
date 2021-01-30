@@ -224,6 +224,10 @@ with the only errors being a handful of "line too long" errors in e.g. calculati
 
 - **Testing of app functions**
 
+If e.g. a Category is deleted, the tours with that category are not deleted and they revert to having no category.
+This is the expected reposnse. 
+
+
 - **Testing of User Stories**
 
 ## Deployment
