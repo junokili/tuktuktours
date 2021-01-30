@@ -201,14 +201,26 @@ Accidentally exposed postgres database on intial deployment, so deleted app and 
 - **Responsiveness**
 
 - **Language Validation**
-Validator thorws up errors due to templating languages
-Thinks h1 in checkout page is blank, but this contains the icon with the loading spinner
-Throws up stray tag errors for the table in the basket, but all of these are paired. It could not 
-process the html beyond {% for tour in basket_not_empty %} so I had to validate this page in two chunks
-Includes e.g. navbars throw up errors, due to not having a body element
+The HTML was validated through W3C HTML Validation Service (https://validator.w3.org/nu/). 
+A significant number of errors are thrown up, however these are due to the templating language.
+Some additional errors were noted e.g.
+The validator sees an h1 element in the checkout page is blank, 
+but this acutlly only contains the icon with the loading spinner
+The validator also threw upstray tag errors for the table in the basket, but all of these are paired. 
+It could not process the html beyond {% for tour in basket_not_empty %} so I had to validate this page in two chunks
+Also the includes e.g. navbars throw up errors, due to not having body elements.
 
-Apparent undefined variables in javascript for contact us, but these are defined in external files 
+The CSS was validated with no reported errors through 
+W3C CSS Validation Service (https://jigsaw.w3.org/css-validator/).
 
+The JavaScript files were validated through JSHint (https://jshint.com/) with the only errors being the 
+use of functionality only with ES6 (for which a comment was added) and apparent unused functions, 
+however these are all invoked within other functions or button clicks, likewise the apparent 
+undefined variables are all defined and utilised.
+
+The Python code was validated through PEP8 Online (http://pep8online.com/) 
+with the only errors being a handful of "line too long" errors in e.g. calculations.
+ 
 
 - **Testing of app functions**
 

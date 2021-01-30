@@ -17,7 +17,8 @@ class BlogPost(models.Model):
                              null=True, blank=True, related_name='posts')
     title = models.CharField(max_length=254, null=False, blank=True)
     slug = AutoSlugField(populate_from='title')
-    author = models.CharField(max_length=50, null=False, blank=False, default='')
+    author = models.CharField(max_length=50, null=False, blank=False,
+                              default='')
     content = models.TextField()
     createdon = models.DateTimeField(auto_now_add=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
