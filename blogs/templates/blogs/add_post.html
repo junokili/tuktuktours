@@ -26,7 +26,7 @@
                 {% else %}
                 {% if field.name == 'image' %}
                 <span>
-                    <input id="new_image" value="Select Image" type="file" name="image" accept="image/*">
+                    <input id="new_image" type="file" name="image" accept="image/*">
                 </span>
                 <p class="grey-text text-darken-3 bold" id="filename"></p><br />
                 {% endif %}{% endif %}{% endif %}
@@ -55,7 +55,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('#id_content').val('');
     M.textareaAutoResize($('#id_content'));
 </script>

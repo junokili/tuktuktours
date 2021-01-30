@@ -63,7 +63,7 @@
             <!-- materialize check box to save user info -->
             <div class="row save-details" id="form-check">
                 {% if user.is_authenticated %}
-                <label for="id-save-info">
+                <label for="save-info">
                     <input type="checkbox" class="filled-in" checked="checked" id="save-info" name="save-info">
                     <span>Save this information to my profile</span>
                 </label>
@@ -75,7 +75,7 @@
                 {% endif %}
             </div>
             <div class="container">
-                <div class="centre-align">
+                <div class="center-align">
                     <fieldset>
                         <legend class="fieldset-label small text-black px-2 w-auto">Card Details</legend>
                         <!-- Stripe card element goes here -->
@@ -112,7 +112,7 @@
     </div>
 </div>
 <div id="loading-overlay">
-    <h1 class="text-light logo-font loading-spinner">
+    <h1 class="loading-spinner">
         <span class="icon">
             <i class="fas fa-3x fa-sync-alt fa-spin"></i>
         </span>

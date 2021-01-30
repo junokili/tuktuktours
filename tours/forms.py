@@ -1,6 +1,5 @@
 from django import forms
 from .models import Tour, Category, Review, Rating
-from .widgets import CustomClearableFileInput
 
 
 class TourDetailForm(forms.ModelForm):
@@ -33,8 +32,7 @@ class TourDetailForm(forms.ModelForm):
     image_url = forms.URLField(label='Add the image URL here or upload the '
                                'image below (file should be 640 x 480px)',
                                required=False)
-    image = forms.ImageField(label='Image', required=False,
-                             widget=CustomClearableFileInput)
+    image = forms.ImageField(label='Image', required=False,)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -71,5 +69,3 @@ class ReviewForm(forms.ModelForm):
         names = [(rating.id, rating.get_rating_name()) for rating in ratings]
 
         self.fields['review_emoji'].choices = names
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'border-black rounded-0'

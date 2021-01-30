@@ -37,12 +37,10 @@
                             will give you an extra insight
                             into Javanese life and culture.<br />
                         </h6>
-                        <button
-                            class="float-right sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
-                            <a href="{% url 'tours' %}">
-                                See all tours<i class="fas fa-angle-double-right map-icon"></i>
-                            </a>
-                        </button>
+                        <a href="{% url 'tours' %}"
+                            class="float-right md-blue-button sm-blue-button waves-effect waves-light btn-large uppercase">
+                            See all tours<i class="fas fa-angle-double-right map-icon"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -80,12 +78,10 @@
                             the
                             markets and street food stalls!<br />
                         </h6>
-                        <button
-                            class="float-right sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
-                            <a href="{% url 'tours' %}">
-                                See all tours<i class="fas fa-angle-double-right map-icon"></i>
-                            </a>
-                        </button>
+                        <a href="{% url 'tours' %}"
+                            class="float-right md-blue-button sm-blue-button waves-effect waves-light btn-large uppercase">
+                            See all tours<i class="fas fa-angle-double-right map-icon"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -121,7 +117,7 @@
             </div>
             <div class="card-content tour-card-name tuktuk-blue white-text uppercase">
                 <a href="{% url 'indv_tour' tour.id %}">
-                    <span id="tour-card-name">{{ tour.name }}  <i class="fas fa-arrow-right"></i></span>
+                    <span id="tour-card-name">{{ tour.name }} <i class="fas fa-arrow-right"></i></span>
                 </a>
             </div>
         </div>
@@ -130,10 +126,8 @@
     {% endfor %}
 </div>
 <div class="center-align">
-    <button class="sm-blue-button md-blue-button waves-effect waves-light btn-large uppercase">
-        <a href="{% url 'tours' %}">
-            See all tours<i class="fas fa-angle-double-right map-icon"></i>
-        </a>
-    </button>
+    <a href="{% url 'tours' %}" class="md-blue-button sm-blue-button waves-effect waves-light btn-large uppercase">
+        See all tours<i class="fas fa-angle-double-right map-icon"></i>
+    </a>
 </div>
 {% endblock %}

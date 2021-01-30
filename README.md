@@ -201,6 +201,14 @@ Accidentally exposed postgres database on intial deployment, so deleted app and 
 - **Responsiveness**
 
 - **Language Validation**
+Validator thorws up errors due to templating languages
+Thinks h1 in checkout page is blank, but this contains the icon with the loading spinner
+Throws up stray tag errors for the table in the basket, but all of these are paired. It could not 
+process the html beyond {% for tour in basket_not_empty %} so I had to validate this page in two chunks
+Includes e.g. navbars throw up errors, due to not having a body element
+
+Apparent undefined variables in javascript for contact us, but these are defined in external files 
+
 
 - **Testing of app functions**
 
@@ -302,7 +310,7 @@ materializecss, gunicorn, boto3, psycopg2-binary, django-storages
 All content is the developer's own, unless otherwise accredited. 
 Resurces used, but modified have come from:
 Code Institutue (DJango walkthrough project) e.g. javascript used for increment / decrement buttons, 
-
+sort selector, python for basket tools and context, 
 https://github.com/kalwalkden/django-materializecss-form
 https://djangocentral.com/creating-comments-system-with-django/
 

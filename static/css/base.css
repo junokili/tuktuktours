@@ -102,7 +102,7 @@ i:focus {
 .sm-blue-button i {
     margin-left: 0.8rem;
 }
-.md-blue-button a {
+.md-blue-button {
     font-size: 1.5rem;
 }
 .float-right {
@@ -522,7 +522,7 @@ input[name='q']::placeholder {
         padding: .25rem .5rem !important;
     }
     .tour-card-desc p {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     .tour-card-name span {
         font-size: 1.5rem;

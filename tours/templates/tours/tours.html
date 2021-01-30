@@ -10,11 +10,9 @@
 <div class="row">
     <div class="col s12 center-align">
         {% for c in categories %}
-        <button class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
-            <a href="{% url 'tours' %}?category={{ c.name }}">
+            <a href="{% url 'tours' %}?category={{ c.name }}" class="waves-effect waves-light btn rounded-4 text-uppercase sm-blue-button">
                 <span>{{ c.friendly_name }}</span>
             </a>
-        </button>
         {% endfor %}
     </div>
 </div>
@@ -82,12 +80,12 @@
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('.btt-link').click(function (e) {
         window.scrollTo(0, 0)
     })
 </script>
-<script type="text/javascript">
+<script>
     $('#sort-selector').change(function () {
         var selector = $(this);
         var currentURL = new URL(window.location);
