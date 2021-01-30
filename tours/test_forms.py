@@ -39,11 +39,9 @@ class TestTourDetailForm(TestCase):
         self.assertIn('duration', form.errors.keys())
         self.assertEqual(form.errors['duration'][0], 'This field is required.')
 
-    def test_category_is_required(self):
-        form = TourDetailForm({'category': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('category', form.errors.keys())
-        self.assertEqual(form.errors['category'][0], 'This field is required.')
+    def test_category_is_not_required(self):
+        form = TourDetailForm({'name': 'Tour Name'})
+        self.assertTrue(form.is_valid)
 
     def test_start_time_is_not_required(self):
         form = TourDetailForm({'name': 'Tour Name'})

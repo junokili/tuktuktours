@@ -200,17 +200,6 @@ def all_categories(request):
     return render(request, 'tours/categories.html', context)
 
 
-def indv_category(request, category_id):
-
-    category = get_object_or_404(Category, pk=category_id)
-
-    context = {
-        'category': category,
-    }
-
-    return render(request, 'tours/categories/indv_category.html', context)
-
-
 @login_required
 def add_category(request):
     """ Add a new category to the site """

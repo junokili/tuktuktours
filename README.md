@@ -195,10 +195,20 @@ Additional testing of e.g checkout and basket apps before making this a vaiable 
 Accidentally exposed postgres database on intial deployment, so deleted app and started a new one. 
 
 - **Links**
-
-- **Sending emails**
+All internal and external links have been tested. The links to external sites (e.g. facebook, instagram) 
+display a "coming soon" image as the social media for the site has not yet been created. 
+Internal links, such as button clicks, menu links, links to sections, have all been tested to check 
+that they perform as requested.
 
 - **Responsiveness**
+During the development process the responsiveness of the site was checked through 
+chrome developer tools for main device formats. The grid structuring uses responsive 
+parameters for display effectiveness in e.g. displaying parallel event cards (4 on large screens, 
+3 on medium screens and 1 on small screens), font sizes, image sizes, stacking some divs vertically
+on small screens and horizontally on larger screens (e.g. individual post and tour pages) and 
+for the navbar collapsing below medium screen widths. 
+The site has also been tested successfully on different browsers e.g. Chrome, Firefox, Edge.
+
 
 - **Language Validation**
 The HTML was validated through W3C HTML Validation Service (https://validator.w3.org/nu/). 
@@ -224,11 +234,19 @@ with the only errors being a handful of "line too long" errors in e.g. calculati
 
 - **Testing of app functions**
 
+All CRUD functions of apps have been tested manually. Some basic automated tests have been added, such
+as getting the correct page response and validating forms, but due to time constraints these are limited.
+
+Testing of apps can be found in a seperate document here:
+
+
 If e.g. a Category is deleted, the tours with that category are not deleted and they revert to having no category.
-This is the expected reposnse. 
+This is the expected response. 
 
 
 - **Testing of User Stories**
+
+Testing of apps can be found in a seperate document here:
 
 ## Deployment
 
@@ -324,11 +342,12 @@ materializecss, gunicorn, boto3, psycopg2-binary, django-storages
 
 **Content**
 All content is the developer's own, unless otherwise accredited. 
-Resurces used, but modified have come from:
+Resources used, but modified have come from:
 Code Institutue (DJango walkthrough project) e.g. javascript used for increment / decrement buttons, 
 sort selector, python for basket tools and context, 
 https://github.com/kalwalkden/django-materializecss-form
 https://djangocentral.com/creating-comments-system-with-django/
+https://gist.github.com/tommorris/cd1048418cccfa346fef
 
 **Media**
 All photos are the developers own
