@@ -44,6 +44,7 @@ This goal is acheived by the addition of a blog app, which is related to the tou
 **User Stories**
 
 User stories can be found in a seperate document here:
+https://github.com/junokili/tuktuktours/blob/master/additional_readme_files/USER_STORIES.pdf
 
 ### **Scope**
 
@@ -275,12 +276,12 @@ or if data is missing (e.g. "Please fill out this field.").
 Form labels also add extra information to assist the user. 
 
 Testing of apps can be found in a seperate document here:
-
+https://github.com/junokili/tuktuktours/blob/master/additional_readme_files/TESTING_APPS.pdf
 
 - **Testing of User Stories**
 
 Testing of User Stories can be found in a seperate document here:
-
+https://github.com/junokili/tuktuktours/blob/master/additional_readme_files/TESTING_USER_STORIES.pdf
 
 - **Additional Comments**
 
