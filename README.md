@@ -145,7 +145,7 @@ Comments are displayed underneath the post as individual cards to look like smal
 
 ## Features
 
-Features include:
+**Features include:**
 ### Home app:
 - **Home Page / About Us** - The Home page loads an About Us / Yogyakarta section on a card panel 
 and several of the “most popular” tours are displayed in small cards (these currently filtered by sku, 
@@ -199,7 +199,7 @@ was purchased (quantity, date) and the price, discount and grand total. Superuse
 in the admin and in stripe. 
 
 
-Future features:
+**Future features:**
 - **Map of Tours** - tour locations can be displayed on a map
 - **Advanced Search** - combining queries such as category and price
 - **Social Media Login** - enabling users multiple methods of signing including e.g. faccebook, twitter, instagram etv
@@ -383,21 +383,20 @@ materializecss, gunicorn, boto3, psycopg2-binary, django-storages
 ## Credits
 
 **Content**
-All content is the developer's own, unless otherwise accredited. 
-Resources used, but modified have come from:
-Code Institutue (DJango walkthrough project) e.g. javascript used for increment / decrement buttons, 
-sort selector, python for basket tools and context, 
-https://github.com/kalwalkden/django-materializecss-form
-https://djangocentral.com/creating-comments-system-with-django/
-https://gist.github.com/tommorris/cd1048418cccfa346fef
+All content is the developer's own, unless otherwise accredited. Resources used, but modified have come from:
+- Code Institutue (DJango walkthrough project) e.g. javascript used for increment / decrement buttons, 
+sort selector, python for basket tools and context
+- setting up materialize css forms: https://github.com/kalwalkden/django-materializecss-form
+- Code modified for adding comments to blog posts: https://djangocentral.com/creating-comments-system-with-django/
+- Setting up the user for the automated test: https://gist.github.com/tommorris/cd1048418cccfa346fef
 
 **Media**
 All images are the developers own except:
-Tuktuk icon from Creaticca Creative Agency (http://www.creaticca.com) 
-Coming Soon image from Vectorstock 
+- Tuktuk icon from Creaticca Creative Agency http://www.creaticca.com
+- Coming Soon image from Vectorstock 
 https://www.vectorstock.com/royalty-free-vector/coming-soon-neon-sign-coming-soon-badge-in-vector-21133321
 
 **Acknowledgements**
-Thanks to my mentor, Sebastian Immel, for giving insight into how the project looked and 
+- Thanks to my mentor, Sebastian Immel, for giving insight into how the project looked and 
 adding additional value to how the project should function
-Toby, for the business name.
+- Toby, for the business name.
