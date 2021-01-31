@@ -294,8 +294,13 @@ https://github.com/junokili/tuktuktours/blob/master/additional_readme_files/TEST
 
 During the build the postgres database was accidentally exposed when intially deployment, so 
 the first heroku app was deleted and a new app, with a new database was created. 
-The google API key is exposed, however restrictions are set in the Google Cloud Platform
-Further testing of e.g checkout and basket apps would ne required before making this a vaiable e-commerce store. 
+
+The google API key is exposed, however restrictions are set in the Google Cloud Platform.
+
+The contact messages are not posted to the database, however it is confirmed thar an email is received at the owner's 
+address. The contact app was removed from the admin console to stop internal server errors when trying to access it.  
+
+Further testing of e.g checkout and basket apps would be required before making this a vaiable e-commerce store. 
 
 
 ## Deployment
