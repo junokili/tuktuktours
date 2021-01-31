@@ -6,12 +6,16 @@ This project is a full-stack site, Tuk Tuk Tours, that allows a database of regi
 to manage and/or interact with a common dataset. The database is structured so that certain 
 datasets can be managed by super users, other sets by authenticated users and some by any user. 
 It can be accessed here: http://tuktuk-tours.herokuapp.com
+
 The site is based around a travel company, who want to sell tours within the Yogyakarta area of Java, 
 Indonesia. Super users can manage the database of tours available, as well as create blog posts 
 that provide additional information to entice customers when choosing a tour. Any user can view 
 and search all the tours and blog posts, while authenticated users have the additional ability 
-to purchase a tour, submit reviews of tours and comment on posts. The site owner maintains 
-overall admin control over the database. The company adds additional value by providing a 
+to submit reviews of tours and comment on posts. To reduce button clicking anonymous users can also make a purchase. 
+The site owner maintains 
+overall admin control over the database. 
+
+The company adds additional value by providing a 
 service to customers that is not currently available in this style, offers local employment 
 opportunities for guides and drivers and benefits the communities in which the tours are based. 
 
@@ -21,9 +25,10 @@ opportunities for guides and drivers and benefits the communities in which the t
 
 **Project Goals**
 
-The primary goal of Tuk Tuk Tours is to provide an B2C e-commerce site for selling tours. 
+The primary goal of Tuk Tuk Tours is to provide a B2C e-commerce site for selling tours. 
 The goal is achieved by providing a site that is fun and compelling, with a unique design that stands out.
-There are a limited number of button clicks between viewing products and purchase
+There are a limited number of button clicks between viewing products and purchase.
+
 The secondary goal is to attract additional visitors to the local area, by publishing interesting 
 information in the form of blogs going beyond what you can just see and do.
 
@@ -32,6 +37,7 @@ information in the form of blogs going beyond what you can just see and do.
 To find and purchase tours to go on when visiting Yogyakarta. 
 This goal is acheived by making the site look credible and trustworthy, with easy actions for the user to get what they want with a 
 minimum of button clicks. 
+
 To find out additional information about the culture and history of the area 
 This goal is acheived by the addition of a blog app, which is related to the tours. 
 
