@@ -2,7 +2,7 @@ from django.db import models
 from profiles.models import UserProfile
 
 
-class Message(models.Model):
+class Contact(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
                                      related_name='contact')

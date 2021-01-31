@@ -25,6 +25,7 @@ def contact(request):
             profile = UserProfile.objects.get(user=request.user)
             message_form = MessageForm(initial={
                 'message_email': profile.default_email,
+                'message_author': profile.default_full_name,
                     })
     except UserProfile.DoesNotExist:
         message_form = MessageForm()
