@@ -58,7 +58,9 @@
         {% endif %}
     </ul>
 </li>
+{% endif %}
 <li><a href="{% url 'contact' %}">Contact Us</a></li>
+{% if request.user.is_authenticated %}
 <li>
     <a href="{% url 'account_logout' %}" class="waves-effect waves-light text-shadow tuktuk-blue btn">Log Out</a>
 </li>

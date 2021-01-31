@@ -286,6 +286,7 @@ Testing of User Stories can be found in a seperate document here:
 
 During the build the postgres database was accidentally exposed when intially deployment, so 
 the first heroku app was deleted and a new app, with a new database was created. 
+The google API key is exposed, however restrictions are set in the Google Cloud Platform
 Further testing of e.g checkout and basket apps would ne required before making this a vaiable e-commerce store. 
 
 

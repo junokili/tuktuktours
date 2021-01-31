@@ -21,10 +21,11 @@ def contact(request):
         message_form = MessageForm()
 
     try:
-        profile = UserProfile.objects.get(user=request.user)
-        message_form = MessageForm(initial={
-            'message_email': profile.default_email,
-                })
+        if request.user.is_authenticated:
+            profile = UserProfile.objects.get(user=request.user)
+            message_form = MessageForm(initial={
+                'message_email': profile.default_email,
+                    })
     except UserProfile.DoesNotExist:
         message_form = MessageForm()
 
