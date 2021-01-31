@@ -43,6 +43,15 @@ def all_tours(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             tours = tours.filter(queries)
 
+        if 'qt' in request.GET:
+            query = request.GET['qt']
+            if not query:
+                messages.error(request, "You didn't enter any search terms!")
+                return redirect(reverse('tours'))
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            tours = tours.filter(queries)
+
     current_sorting = f'{sort}_{direction}'
 
     context = {

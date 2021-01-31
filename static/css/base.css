@@ -265,7 +265,7 @@ fieldset {
 /* blog pages */
 .search-btn {
     margin-top: 2rem;
-    margin-left: -1.5rem;
+    margin-left: -1rem;
     z-index: 9999;
 }
 #post-search {
