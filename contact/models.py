@@ -1,7 +1,11 @@
 from django.db import models
+from profiles.models import UserProfile
 
 
 class Message(models.Model):
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='contact')
     message_email = models.EmailField(max_length=254, null=False, blank=False)
     message_author = models.CharField(max_length=50, null=False, blank=False,
                                       default='')

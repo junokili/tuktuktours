@@ -70,7 +70,7 @@
                     <!-- tour quantity -->
                     <div class="row">
                         <div class="input-field col s12 m6 add-to-basket">
-                            <p>Quantity:</p><br />
+                            <p>Number of people:</p><br />
                             <div class="col s2">
                                 <button class="decrement-qty btn qty-blue-button" data-tour_id="{{ tour.tour.id }}"
                                     id="decrement-qty_{{ tour.tour.id }}">
@@ -109,10 +109,18 @@
                 </form>
             </div>
         </div>
+            <div class="row">
+        <div class="card-content" id="review">
+            <h5 class="grey-text text-darken-3">Reviews{% if not request.user.is_authenticated %} (<a class="tuktuk-blue-text" href="{% url 'account_login' %}">Login</a> to
+                leave a review)</h5>
+            {% endif %}
+        </div>
+    </div>
         <div class="card-content border-btm">
             <h6 class="grey-text text-darken-3 bold">{{ reviews.count }}
                 review{% if reviews.count > 1 or reviews.count == 0 %}s{% endif%}</h6>
             {% for review in reviews %}
+            
             <div class="row shadowed">
                 <div class="col s12">
                     <div class="col s2 m2 center-align" id="small-review">

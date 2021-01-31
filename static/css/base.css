@@ -115,13 +115,20 @@ i:focus {
 .btn:active,
 .btn:focus {
     background: white;
+}
+.sm-blue-button a, i, span:hover,
+.sm-blue-button a, i, span:active,
+.sm-blue-button a, i, span:focus,
+.btn:hover,
+.btn:active,
+.btn:focus {
     color: #032ea1;
 }
-.sm-blue-button a:hover,
-.sm-blue-button a:active,
-.sm-blue-button a:focus {
-    color: #032ea1;
-}
+div#location-map {
+  min-height: 300px;
+  max-width: 500px;
+  margin: 10px auto 20px;
+  }
 /* modified materialize css for forms */
 input[type=text]:not(.browser-default):focus:not([readonly]) { background-color: white; border-bottom: 0;}
 input[type=text]:not(.browser-default) { background-color: white; height: 2.4rem; margin-top: 1.05rem; padding-left: 0.5rem;}
@@ -375,6 +382,9 @@ fieldset {
 }
 #comments a {
     color: white;
+    font-size: 1.64rem;
+}
+#review a {
     font-size: 1.64rem;
 }
 /* shopping basket */

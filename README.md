@@ -17,31 +17,67 @@ opportunities for guides and drivers and benefits the communities in which the t
 
 ## UX
 
-### Project Goals
+### **Strategy**
 
-The primary goal of Tuk Tuk Tours is to provide an e-commerce site for selling tours. 
+**Project Goals**
+
+The primary goal of Tuk Tuk Tours is to provide an B2C e-commerce site for selling tours. 
+The goal is achieved by providing a site that is fun and compelling, with a unique design that stands out.
+There are a limited number of button clicks between viewing products and purchase
 The secondary goal is to attract additional visitors to the local area, by publishing interesting 
 information in the form of blogs going beyond what you can just see and do.
 
-### User Goals
+**User Goals**
 
-- To find and purchase tours to go on when visiting Yogyakarta
- To find out additional information about the culture and history of the area 
+To find and purchase tours to go on when visiting Yogyakarta. 
+This goal is acheived by making the site look credible and trustworthy, with easy actions for the user to get what they want with a 
+minimum of button clicks. 
+To find out additional information about the culture and history of the area 
+This goal is acheived by the addition of a blog app, which is related to the tours. 
 
-### Developer / Business Goals
+**Developer / Business Goals**
 
 - Increase the volume of tourists to the area, by offering a new style of tour
 - Make a site that looks professional, that users want to use and come back to and can trust to make secure purchases through
 - Consolidate and expand knowledge of multiple programming languages
 
-### User Stories
+**User Stories**
 
 User stories can be found in a seperate document here:
 
+### **Scope**
 
-### Design Choices
+The existing features provide the users with what they currently need. The business owner can add new tours to 
+their site, update existing ones and view customer orders.
+Customers can easily view the information they need to make a purchase and go through the minimum number
+ of steps to complete a purchase. 
+ Future releases will add value to the site, by increasing the management capability for the owner, 
+ and range of information and search functions for the user. 
 
-**Overall Design** The site has a clear identity, with a consistent and predictable theme and style 
+### **Structure**
+
+The site has a consistent theme and style with the site name as a home page link and a menu at the top right. 
+All clickable links have clear actions and responses. The site is designed over multiple pages 
+and the key information for each pages’ content is clear. It is easy to know where you are, 
+and how to get where you want to be with e.g. Back to All Tours, Back to All Posts and a back to top button on certain longer pages.
+Buttons change colour on hover, making it clear that they are action links.
+
+The information architecture allows users to easily move through the content, with related content 
+displayed together tied to the users' needs. 
+
+### **Skeleton**
+
+Information is revealed across a small number of pages, with the key elements in the navbars and 
+linked to from the home page in several places. The limited number of pages keeps the site simple 
+and easy to navigate to find the information the user needs, leading the user to continue the experience. 
+Choices are simple so the user is not overwhelmed with options, and each click provides 
+immediate value with specific content.
+Familiar icons and names with consistent colours and text are used for ease of navigation. All apps and 
+functions are designed in a similar way giving easy useability. 
+
+### **Surface**
+
+- **Overall Design** The site has a clear identity, with a consistent and predictable theme and style 
 throughout. The rationale behind the style of the site is to represent a notice board that you might 
 see in a guest house, with adverts and notices pinned to it. Shadowed cards displaying the tours, posts, 
 forms etc. sit on top of a weathered wood background, as if attached to a real board.
@@ -54,12 +90,12 @@ The features currently offered provide the customer and business owner with what
 they are simple to implement and use. Future releases can add value in bite-size increments, 
 such as displaying tours in a map format.
 
-**Font** The google font, Caveat, was chosen for the site, as it is fun and friendly, and fits 
+- **Font** The google font, Caveat, was chosen for the site, as it is fun and friendly, and fits 
 with the noticeboard style of the site (similar to a handwritten style). The font is used in all aspects 
 of the site, including forms, as this remains on brand with the playful nature of a travel site 
 (the stripe card element is the one place a more simple font style is used). 
 
-**Colours** The colour scheme for the site is based around three main colours: royal blue, black and white.
+- **Colours** The colour scheme for the site is based around three main colours: royal blue, black and white.
  These colours were originally chosen based on the Cambodian flag, as this was the initial business location.
   The colour scheme is modern, simple and clear, and therefore has been retained for the change of business location.
 White text stands out on royal blue and black banners for the menu, headers and notification messages 
@@ -68,13 +104,13 @@ White text stands out on royal blue and black banners for the menu, headers and 
   Medium-dark grey text on a white background is used for clarity in the majority of the 
   detailed text in e.g. blog posts, tour information, shopping basket. 
 
-**Card images** The images used on the site were chosen as they visually represent the tours or posts. 
+- **Images** The images used on the site were chosen as they visually represent the tours or posts. 
 They are all colourful, vibrant images, making the content more attractive to the users. 
 They are also indicative of what the customer will see if they choose to buy a tour. 
 The home page image has a similar colour palette to the theme of the site giving a coherent style to the front page,
  and additional images have been edited with consistent parameters (e.g. contrast and small vignette)
 
-**Forms** The forms for superusers (creating and editing tours, blog posts and categories), 
+- **Forms** The forms for superusers (creating and editing tours, blog posts and categories), 
 the authentication system and user profiles (all users) and reviewing tours or commenting 
 on posts (authenticated users) are clear and simple with easy-to-understand labelling. 
 They all have a defensive design shown by warning signs, when a field is either not filled in 
@@ -82,15 +118,15 @@ correctly (with the correct format shown), or a required field is missing and di
 underline that turns green when validated. All action buttons have text and icons to 
 make their actions clear. Forms use materialize card styling.
 
-**Icons** Icons are used to enhance the experience of using e.g. the forms. 
+- **Icons** Icons are used to enhance the experience of using e.g. the forms. 
 They have been chosen for their obvious meaning and add a simple visual pointer, instead of just text. 
 
-**Styling** The Home page uses a card panel to diplay the About Us information 
+- **Styling** The Home page uses a card panel to diplay the About Us information 
 and several of the “most popular” 
 tours are displayed in small cards (currently filtered by sku, but in a future release it would be filtered 
 by user generated ratings). 
 
-The tours are displayed as individual image cards with an eye-catching photo, category name, 
+    The tours are displayed as individual image cards with an eye-catching photo, category name, 
 and tour name for easy visual filtering, and a snippet of the description. 
 Clicking on a tour photo or name takes the user to the detailed tour information page, 
 also displayed in a card format. The card has a simple layout, with bold headings, 
@@ -98,13 +134,13 @@ with the necessary information (details such as duration, start time etc.).
 There is a clear Leave Review option and existing reviews are displayed in small 
 card panels within the main card, with a simple visual guide (emoji) for the rating. 
 
-Blog posts are also all displayed on a single page in image card format, 
+    Blog posts are also all displayed on a single page in image card format, 
 with an eye-catching photo, post title, author etc in the header and a snippet of the 
 post content with a clear action button for the full post. The post detail is then displayed 
 in a large card format with a clean layout and a clear Leave Comment section. 
 Comments are displayed underneath the post as individual cards to look like small notes on a notice board.  
 
-Forms have consistent style using the card format. 
+    Forms have consistent style using the card format. 
 
 
 ## Features
@@ -141,6 +177,8 @@ Also contains the "Add to Basket" (quantity and date), "Leave Review" and "Blog"
 - **Individual Post pages** - to display the full content of individual posts, including comments
 - **Individual Post pages - Commmenting** - a form for authenticated users to add comments to individual posts
 - **Manage Posts** - superusers have access to simple forms to view, create, edit and delete blog posts 
+- **Driver/guide app** - superusers can add information about the drivers and guides to show a more
+personal service to the customers. 
 
 ### Contact Us app:
 - **Contact Us** - for users to easily address queries to or ask for additional 
@@ -191,14 +229,11 @@ forms, basic card and card reveal styling, dropdown menus, date and time pickers
 
 ## Testing 
 
-Additional testing of e.g checkout and basket apps before making this a vaiable e-commerce store. 
-Accidentally exposed postgres database on intial deployment, so deleted app and started a new one. 
-
 - **Links**
 All internal and external links have been tested. The links to external sites (e.g. facebook, instagram) 
 display a "coming soon" image as the social media for the site has not yet been created. 
-Internal links, such as button clicks, menu links, links to sections, have all been tested to check 
-that they perform as requested.
+Internal links, such as button clicks, menu links, back-to-top buttons have all been tested to check 
+that they perform as expected.
 
 - **Responsiveness**
 During the development process the responsiveness of the site was checked through 
@@ -209,44 +244,50 @@ on small screens and horizontally on larger screens (e.g. individual post and to
 for the navbar collapsing below medium screen widths. 
 The site has also been tested successfully on different browsers e.g. Chrome, Firefox, Edge.
 
-
 - **Language Validation**
-The HTML was validated through W3C HTML Validation Service (https://validator.w3.org/nu/). 
+    - The HTML was validated through W3C HTML Validation Service (https://validator.w3.org/nu/). 
 A significant number of errors are thrown up, however these are due to the templating language.
 Some additional errors were noted e.g.
 The validator sees an h1 element in the checkout page is blank, 
-but this acutlly only contains the icon with the loading spinner
+but this element actually only contains an icon with the loading spinner
 The validator also threw upstray tag errors for the table in the basket, but all of these are paired. 
 It could not process the html beyond {% for tour in basket_not_empty %} so I had to validate this page in two chunks
 Also the includes e.g. navbars throw up errors, due to not having body elements.
+Any other errors that were encountered were fixed. 
 
-The CSS was validated with no reported errors through 
+    - The CSS was validated with no reported errors through 
 W3C CSS Validation Service (https://jigsaw.w3.org/css-validator/).
 
-The JavaScript files were validated through JSHint (https://jshint.com/) with the only errors being the 
+    - The JavaScript files were validated through JSHint (https://jshint.com/) with the only errors being the 
 use of functionality only with ES6 (for which a comment was added) and apparent unused functions, 
 however these are all invoked within other functions or button clicks, likewise the apparent 
 undefined variables are all defined and utilised.
 
-The Python code was validated through PEP8 Online (http://pep8online.com/) 
+    - The Python code was validated through PEP8 Online (http://pep8online.com/) 
 with the only errors being a handful of "line too long" errors in e.g. calculations.
  
-
 - **Testing of app functions**
 
-All CRUD functions of apps have been tested manually. Some basic automated tests have been added, such
-as getting the correct page response and validating forms, but due to time constraints these are limited.
+All functions of apps have been tested manually. Some basic automated tests have been added, such
+as getting the correct page response and form validation, but due to time constraints these are limited.
+All forms display the correct validation parameters, with a warning for how to correctly enter the data, 
+or if data is missing (e.g. "Please fill out this field."). 
+Form labels also add extra information to assist the user. 
 
 Testing of apps can be found in a seperate document here:
-
-
-If e.g. a Category is deleted, the tours with that category are not deleted and they revert to having no category.
-This is the expected response. 
 
 
 - **Testing of User Stories**
 
-Testing of apps can be found in a seperate document here:
+Testing of User Stories can be found in a seperate document here:
+
+
+- **Additional Comments**
+
+During the build the postgres database was accidentally exposed when intially deployment, so 
+the first heroku app was deleted and a new app, with a new database was created. 
+Further testing of e.g checkout and basket apps would ne required before making this a vaiable e-commerce store. 
+
 
 ## Deployment
 
@@ -350,10 +391,12 @@ https://djangocentral.com/creating-comments-system-with-django/
 https://gist.github.com/tommorris/cd1048418cccfa346fef
 
 **Media**
-All photos are the developers own
-Tuktuk icon:
-Creaticca Creative Agency (http://www.creaticca.com) 
+All images are the developers own except:
+Tuktuk icon from Creaticca Creative Agency (http://www.creaticca.com) 
+Coming Soon image from Vectorstock 
+https://www.vectorstock.com/royalty-free-vector/coming-soon-neon-sign-coming-soon-badge-in-vector-21133321
 
 **Acknowledgements**
-Thanks to my mentor, Sebastian Immel, for giving insight into how the project looked and adding additional value
+Thanks to my mentor, Sebastian Immel, for giving insight into how the project looked and 
+adding additional value to how the project should function
 Toby, for the business name.
