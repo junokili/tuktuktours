@@ -116,12 +116,28 @@ i:focus {
 .btn:focus {
     background: white;
 }
-.sm-blue-button a, i, span:hover,
-.sm-blue-button a, i, span:active,
-.sm-blue-button a, i, span:focus,
+.sm-blue-button a,i,span:hover,
+.sm-blue-button a,i,span:active,
+.sm-blue-button a,i,span:focus,
 .btn:hover,
 .btn:active,
 .btn:focus {
+    color: #032ea1;
+}
+.change-color {
+    color: white;
+}
+.change-color a:hover,
+.change-color a:active,
+.change-color a:focus {
+    color: #032ea1;
+}
+#change-color input[type="submit"] {
+    color: white;
+}
+#change-color input[type="submit"]:hover,
+#change-color input[type="submit"]:active,
+#change-color input[type="submit"]:focus {
     color: #032ea1;
 }
 div#location-map {
