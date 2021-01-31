@@ -243,7 +243,8 @@ parameters for display effectiveness in e.g. displaying parallel event cards (4 
 3 on medium screens and 1 on small screens), font sizes, image sizes, stacking some divs vertically
 on small screens and horizontally on larger screens (e.g. individual post and tour pages) and 
 for the navbar collapsing below medium screen widths. 
-The site has also been tested successfully on different browsers e.g. Chrome, Firefox, Edge.
+The site has also been tested successfully on different browsers e.g. Chrome, Firefox, Edge. One noted change 
+was the text on the image upload button (in Firefox it reverts to Browse, instead of Choose Image).
 
 - **Language Validation**
     - The HTML was validated through W3C HTML Validation Service (https://validator.w3.org/nu/). 
